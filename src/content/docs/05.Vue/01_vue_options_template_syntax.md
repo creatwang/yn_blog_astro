@@ -1,5 +1,5 @@
 ---
-title: '第一节、vuejs介绍'
+title: 'Vue options|template 基础语法'
 ---
 
 # 第一节、vuejs介绍

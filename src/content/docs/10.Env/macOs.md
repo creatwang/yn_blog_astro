@@ -1,5 +1,5 @@
 ---
-title: 'macOs'
+title: 'macOs常见命令'
 ---
 
 1. 编辑器编辑文件夹权限

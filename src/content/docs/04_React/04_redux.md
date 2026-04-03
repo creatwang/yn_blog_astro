@@ -1,5 +1,5 @@
 ---
-title: '第一节、redux 介绍'
+title: 'redux状态管理'
 ---
 
 # 第一节、redux 介绍

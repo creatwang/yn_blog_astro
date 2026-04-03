@@ -1,5 +1,5 @@
 ---
-title: '第一节、Vuex状态管理'
+title: 'Vuex状态管理'
 ---
 
 # 第一节、Vuex状态管理

@@ -17,4 +17,4 @@ title: 'vitepress规范'
 
 `*/assets/markdown/assets/${filename}.assets`
 
-![image-20230903202152413](/assets/markdown/assets/12_vitepress.assets/image-20230903202152413.png)
+![image-20230903202152413](/src/assets/markdown/assets/12_vitepress.assets/image-20230903202152413.png)

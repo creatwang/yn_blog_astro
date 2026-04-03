@@ -1,5 +1,5 @@
 ---
-title: '十、Composition API 基本语法'
+title: 'Composition API'
 ---
 
 

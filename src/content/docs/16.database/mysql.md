@@ -1,5 +1,5 @@
 ---
-title: 'mysql'
+title: 'Mysql'
 ---
 
 | 数据库名称     | yanan_store                                                  |

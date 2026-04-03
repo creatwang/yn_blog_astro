@@ -1,5 +1,5 @@
 ---
-title: 'chrom插件'
+title: 'chrome插件开发'
 ---
 
 谷歌扩展

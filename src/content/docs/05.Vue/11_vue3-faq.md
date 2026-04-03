@@ -1,5 +1,5 @@
 ---
-title: '11_vue3-faq'
+title: 'Vue3常见问题'
 ---
 
 1. .vue文件的声明

@@ -1,5 +1,5 @@
 ---
-title: '第一节、TypeScript 介绍'
+title: 'TypeScript'
 ---
 
 

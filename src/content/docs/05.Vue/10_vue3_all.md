@@ -1,5 +1,5 @@
 ---
-title: '一、邂逅Vue.js开发'
+title: 'Vue开发文档'
 ---
 
 # 一、邂逅Vue.js开发

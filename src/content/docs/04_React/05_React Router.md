@@ -1,5 +1,5 @@
 ---
-title: '第一节、前端路由 react-router介绍'
+title: 'react-router'
 ---
 
 # 第一节、前端路由 react-router介绍

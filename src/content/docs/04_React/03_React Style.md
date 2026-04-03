@@ -1,5 +1,5 @@
 ---
-title: '第一节、React的过渡动画'
+title: 'React样式'
 ---
 
 # 第一节、React的过渡动画

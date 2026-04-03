@@ -1,5 +1,5 @@
 ---
-title: '一节、create-react-app 创建应用'
+title: 'React 组件化知识'
 ---
 
 # 一节、create-react-app 创建应用

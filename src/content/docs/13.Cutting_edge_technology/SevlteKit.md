@@ -1,5 +1,5 @@
 ---
-title: '一、SvelteKit 中的路由'
+title: 'SvelteKit'
 ---
 
 # 一、SvelteKit 中的路由

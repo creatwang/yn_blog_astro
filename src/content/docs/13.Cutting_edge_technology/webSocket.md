@@ -1,5 +1,5 @@
 ---
-title: 'webSocket'
+title: 'WebSocket'
 ---
 
 webSocket 是一种在单个tcp链接上进行全双工通信协议，仅需要一次握手就允许服务端进行消息推送

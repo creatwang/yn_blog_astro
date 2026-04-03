@@ -1,5 +1,5 @@
 ---
-title: 'nuxt服务端执行流程'
+title: 'Nuxt'
 ---
 
 # nuxt服务端执行流程

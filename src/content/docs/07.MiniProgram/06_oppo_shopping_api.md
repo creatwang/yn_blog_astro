@@ -1,5 +1,5 @@
 ---
-title: '06_oppo_shopping_api'
+title: 'oppo_shopping_api'
 ---
 
 

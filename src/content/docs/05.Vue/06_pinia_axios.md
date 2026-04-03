@@ -1,5 +1,5 @@
 ---
-title: 'Pinia 介绍'
+title: 'Pinia状态管理'
 ---
 
 # Pinia 介绍

@@ -1,5 +1,5 @@
 ---
-title: '第一章、react 介绍'
+title: 'React 基础语法'
 ---
 
 # 第一章、react 介绍

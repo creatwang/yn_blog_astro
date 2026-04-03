@@ -1,5 +1,5 @@
 ---
-title: 'Threejs三要素'
+title: 'Threejs'
 ---
 
 # Threejs三要素
