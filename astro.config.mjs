@@ -7,10 +7,10 @@ export default defineConfig({
 	site: 'https://www.yanan.store',
 	integrations: [
 		starlight({
-			title: 'Yn Knowledge base',
+			title: 'Creatwang',
 			customCss: ['/src/styles/starlight-theme.css'],
 			logo: {
-				src: './src/assets/imgs/logo/opacity_0_logo.png',
+				src: './src/assets/imgs/logo/black_logo.png',
 				alt: 'YN Blog Logo',
 			},
 			favicon: '/favicon.ico',
