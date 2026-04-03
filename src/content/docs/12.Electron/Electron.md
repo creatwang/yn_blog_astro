@@ -424,7 +424,7 @@ btn.addEventListener('click',()=>{
 
 4、整体结构
 
-![1726990583274](/src/assets/imgs/electron/1726990583274.png)
+![1726990583274](/assets/imgs/electron/1726990583274.png)
 
 ## 三、进程通信（IPC）
 
