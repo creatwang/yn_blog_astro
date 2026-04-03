@@ -243,7 +243,7 @@ chrome.tabs.sendMessage(tabId, message, function(response) {
 
 ##### 通过跟用户相关的请求分析，我们可以通过cookie拿到登陆凭证，这样我们就可以在接下来需要登录凭证的请求的请求头中加上cookie就可以拿到相关的数据。
 
-![image-20250515102518852](/assets/imgs/image-20250515102518852.png)
+![image-20250515102518852](/src/assets/imgs/image-20250515102518852.png)
 
 
 
@@ -505,7 +505,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 
 ##### 可以看到，这上面有很多写好的脚步提供给我们，我们也可以自己添加脚本上去，开发也非常方便。
 
-![image-20250515102731456](/assets/imgs/image-20250515102731456.png)
+![image-20250515102731456](/src/assets/imgs/image-20250515102731456.png)
 
 
 
