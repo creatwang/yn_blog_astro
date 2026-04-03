@@ -1,0 +1,91 @@
+:root {
+  --sl-font: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+:root[data-theme="dark"] {
+  --sl-color-bg: #080c14;
+  --sl-color-bg-nav: #0b1220;
+  --sl-color-bg-sidebar: #0a101d;
+  --sl-color-bg-inline-code: #111d30;
+  --sl-color-text: #e7edf7;
+  --sl-color-text-accent: #4dd4ff;
+  --sl-color-accent-high: #20c8ff;
+  --sl-color-accent: #15bdf2;
+  --sl-color-accent-low: #12344d;
+  --sl-color-gray-6: #9ea8bb;
+}
+
+:root[data-theme="dark"] .header,
+:root[data-theme="dark"] .sidebar-pane,
+:root[data-theme="dark"] .right-sidebar-panel {
+  backdrop-filter: blur(8px);
+}
+
+:root[data-theme="dark"] .main-frame {
+  background:
+    radial-gradient(1200px 700px at 85% -10%, rgba(32, 200, 255, 0.14), transparent 58%),
+    radial-gradient(1000px 600px at 0% -20%, rgba(125, 90, 255, 0.12), transparent 52%),
+    var(--sl-color-bg);
+}
+
+.content-panel {
+  border-radius: 16px;
+}
+
+.card {
+  border: 1px solid rgba(77, 212, 255, 0.18);
+  background: linear-gradient(180deg, rgba(17, 26, 42, 0.95), rgba(12, 18, 30, 0.95));
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(77, 212, 255, 0.55);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.athena-hero {
+  margin: 0 0 2rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(77, 212, 255, 0.2);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(21, 189, 242, 0.1), rgba(125, 90, 255, 0.1));
+}
+
+.athena-hero h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.athena-subtitle {
+  margin: 0;
+  color: var(--sl-color-gray-3);
+}
+
+.athena-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.athena-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.95rem;
+  border-radius: 10px;
+  border: 1px solid rgba(77, 212, 255, 0.45);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.athena-btn.primary {
+  background: linear-gradient(90deg, #11bdf2, #5f7dff);
+  color: #fff;
+}
+
+.athena-btn.ghost {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--sl-color-text);
+}
