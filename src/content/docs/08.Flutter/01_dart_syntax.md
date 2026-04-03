@@ -18,7 +18,7 @@ title: 'Flutter Started'
 
 > 这“三棵树”协同工作的机制是其性能强大的核心原因。到 2026 年，虽然底层的渲染引擎演进到了 **Impeller**，但其三树联动逻辑依然遵循以下经典架构
 
-​
+
 
 ## 1.1、三棵树的角色定位
 
@@ -2167,7 +2167,7 @@ Widget build(BuildContext context) {
     home: const HomeScreen(),
   );
 
-  ```
+  ```dart
 
 
 
@@ -2291,11 +2291,10 @@ class HomeProductGrid extends ConsumerWidget {
 - responsive_framework
   - 设置响应式布局
 
-- **`riverpod_generator`**
-
+- **`riverpod`**
   - **用途**：将你带有 `@riverpod` 注解的函数或类，转化为 UI 可用的 `fetchUserProvider` 或 `counterProvider`。
   - **不运行后果**：你写的 `extends _$Counter` 会持续报错，且 UI 无法找到对应的 Provider。
-
+  
 - **`freezed`**
   - **用途**：生成**不可变对象**。它会自动帮你写好 `copyWith`、`==` 和 `hashCode`（这是实现你最开始要求的 **Set 集合存放对象自动去重** 的核心逻辑）。
   - **不运行后果**：无法使用复杂的模型类。
