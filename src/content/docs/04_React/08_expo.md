@@ -147,7 +147,7 @@ export const cartAtom = withImmer(baseCartAtom);
 
    请谨慎使用此类代码。
 
-   
+
 
 4. **执行构建**：
 
@@ -169,7 +169,7 @@ export const cartAtom = withImmer(baseCartAtom);
 
 # 项目目录结构说明
 
-> 下列为**当前仓库内已有路径的完整树**（不含 `node_modules/`、`.git/`）。  
+> 下列为**当前仓库内已有路径的完整树**（不含 `node_modules/`、`.git/`）。
 > 若已执行 `npx expo prebuild`，本地还会多出 `android/`、`ios/` 等原生工程目录，生成后请自行补充到笔记中。
 
 ## 完整目录树（带备注）

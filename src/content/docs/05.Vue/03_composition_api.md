@@ -12,7 +12,7 @@ title: '十、Composition API 基本语法'
 
   * 在对应的属性中编写对应的功能模块；
   * 实现某一个功能时，对应的代码逻辑会被拆分到各个属性中；
-  * 组件变得更大、更复杂，同一个功能的逻辑就会被拆分的很分散； 
+  * 组件变得更大、更复杂，同一个功能的逻辑就会被拆分的很分散；
   * 不便于查找和处理单个逻辑关注点；
 
 * ##### Composition API：
@@ -28,8 +28,8 @@ title: '十、Composition API 基本语法'
   * `props`：
     * 父组件传递过来的属性会被放到props对象中；
   * `context`（包含三个属性）：
-    * `attrs`：所有的非prop的attribute； 
-    * `slots`：父组件传递过来的插槽； 
+    * `attrs`：所有的非prop的attribute；
+    * `slots`：父组件传递过来的插槽；
     * `emit`：当组件内部需要发出事件时会用到emit；
 
 * #####  返回值：
@@ -95,9 +95,9 @@ title: '十、Composition API 基本语法'
   * ```js
     // 使用的时候不需要写.value；使用时候是深层解包
     <h2>当前计数: {{ info.counter }}</h2>
-    // 修改的时候需要写.value；修改时候不是深层解包 
+    // 修改的时候需要写.value；修改时候不是深层解包
     <button @click="info.counter.value++">+1</button>
-    
+
     const counter = ref(0)
     const info = {  //普通对象里面套ref
         counter
@@ -115,7 +115,7 @@ title: '十、Composition API 基本语法'
     * ```js
       // 若使用reactive函数，只会返回一个代理对象，若对对象进行替换则失去响应式；只能把数据逐个push到数组里；
       // const musics = reactive([])
-      
+
       const musics = ref([])
       // musics的值是被ref对象.value属性所维护，修改ref对象的value值后，值依然被ref对象所包裹，所以依然存在响应式；
       onMounted(() => {
@@ -144,13 +144,13 @@ title: '十、Composition API 基本语法'
 * ##### 传入三个类型的参数：
 
   * 普通对象；
-  * `reactive` 返回的对象； 
+  * `reactive` 返回的对象；
   * `ref `的对象；
 
 * ##### readonly使用规则：
 
-  * `readonly` 返回的对象都是不允许修改的（无论在父组件还是在子组件）； 
-  * 但是经过 `readonly` 处理的原来的对象是允许被修改的； 
+  * `readonly` 返回的对象都是不允许修改的（无论在父组件还是在子组件）；
+  * 但是经过 `readonly` 处理的原来的对象是允许被修改的；
 
 * ##### 示例：
 
@@ -158,13 +158,13 @@ title: '十、Composition API 基本语法'
 
     * ```js
       <show-info :roInfo="roInfo" @changeRoInfoName="changeRoInfoName"></show-info>
-      
+
       const info = reactive({
           name: "why",
           age: 18,
           height: 1.88
       })
-      
+
       // 使用readOnly包裹info
       const roInfo = readonly(info)
       return {
@@ -177,7 +177,7 @@ title: '十、Composition API 基本语法'
     * ```js
       // 只要在子组件修改接收的数据，代码就会无效(报警告)
       <button @click="roInfo.name = 'james'">ShowInfo按钮</button>
-      
+
       props: {
           // readonly数据
           roInfo: {
@@ -185,7 +185,7 @@ title: '十、Composition API 基本语法'
               default: () => ({})
           }
       },
-      // 需要修改数据，必须通过注册自定义事件，让父组件监听事件来修改数据；    
+      // 需要修改数据，必须通过注册自定义事件，让父组件监听事件来修改数据；
       emits: ["changeRoInfoName"],
       setup(props, context) {
           function roInfoBtnClick() {
@@ -205,16 +205,16 @@ title: '十、Composition API 基本语法'
 
 * ##### isProxy：
 
-  * 检查对象是否是由 `reactive` 或 `readonly` 创建的 `proxy`。 
+  * 检查对象是否是由 `reactive` 或 `readonly` 创建的 `proxy`。
 
 * ##### isReactive：
 
-  * 检查对象是否是由 `reactive` 创建的响应式代理： 
-  * 如果该代理是 `readonly` 建的，但包裹了由 `reactive` 创建的另一个代理，它也会返回 `true`； 
+  * 检查对象是否是由 `reactive` 创建的响应式代理：
+  * 如果该代理是 `readonly` 建的，但包裹了由 `reactive` 创建的另一个代理，它也会返回 `true`；
 
 * ##### isReadonly：
 
-  * 检查对象是否是由 `readonly` 创建的只读代理。 
+  * 检查对象是否是由 `readonly` 创建的只读代理。
 
 * ##### toRaw：
 
@@ -222,7 +222,7 @@ title: '十、Composition API 基本语法'
 
 * ##### shallowReactive：
 
-  * 创建一个响应式代理，它跟踪其自身 `property` 的响应性，但不执行嵌套对象的深层响应式转换 **(深层还是原生对象)。** 
+  * 创建一个响应式代理，它跟踪其自身 `property` 的响应性，但不执行嵌套对象的深层响应式转换 **(深层还是原生对象)。**
 
 * ##### shallowReadonly：
 
@@ -245,19 +245,19 @@ title: '十、Composition API 基本语法'
             age: 18,
             height: 1.88
         })
-    
+
         // reactive被解构后会变成普通的值, 失去响应式
         // const { name, age } = info
-        
+
         // toRefs: 使得解构出来的属性具有响应式；
         const { name, age } = toRefs(info)
-        
+
         // 在setup中修改解构的值需要解包
         name.value = "coder"
-        
+
         // toRef:
         const height = toRef(info, "height")
-    
+
         return {
             name,
             age,
@@ -276,16 +276,16 @@ title: '十、Composition API 基本语法'
 
 * ##### isRef：
 
-  * 判断值是否是一个ref对象； 
+  * 判断值是否是一个ref对象；
 
 * ##### shallowRef
 
-  * 创建一个浅层的ref对象； 
+  * 创建一个浅层的ref对象；
 
 * ##### triggerRef：
 
   * 手动触发和 shallowRef 相关联的副作用；
-  * 
+  *
 
 ## 1.9、setup不可以使用this
 
@@ -309,13 +309,13 @@ title: '十、Composition API 基本语法'
 
     * ```js
       <h2>{{ fullname }}</h2>
-      
+
       import { reactive, computed, ref } from 'vue'
       const names = reactive({
           firstName: "kobe",
           lastName: "bryant"
       })
-      
+
       const fullname = computed(() => {
           return names.firstName + " " + names.lastName
       })
@@ -346,12 +346,12 @@ title: '十、Composition API 基本语法'
 
   * ```js
     <h2 ref="titleRef">我是标题</h2>
-    
+
     import { ref, onMounted } from 'vue'
-    
+
     setup() {
         const titleRef = ref()
-        
+
         // 挂载完后才能获取到元素
         onMounted(() => {
             // 在setup里需要解包
@@ -367,7 +367,7 @@ title: '十、Composition API 基本语法'
 
   * ```js
     <show-info ref="showInfoRef"></show-info>
-    
+
     const showInfoRef = ref()
     // 挂载完后才能获取到组件实例
     onMounted(() => {
@@ -391,7 +391,7 @@ title: '十、Composition API 基本语法'
   * ```js
     // 导入方式
     import { onMounted } from 'vue'
-    
+
     setup() {
         onMounted(() => {   //传入的才是生命周期钩子
             console.log("onmounted")
@@ -405,7 +405,7 @@ title: '十、Composition API 基本语法'
 
 * ##### provide可以传入两个参数：
 
-  * key：提供的属性名称； 
+  * key：提供的属性名称；
 
   * value：提供的属性值；
 
@@ -413,7 +413,7 @@ title: '十、Composition API 基本语法'
 
     * ```js
       import { provide, ref } from 'vue'
-      
+
       const name = ref("why")
       //不同于Options API，其传递过去接收到的就是响应式数据；
       //reactive不能单独传递对象里的某个属性，响应式会失效；
@@ -432,7 +432,7 @@ title: '十、Composition API 基本语法'
 
     * ```js
       import { inject } from 'vue'
-      
+
       const name = inject("name")   //提供的是ref对象，那么获取到的也是ref对象
       const age = inject("age")
       //定义默认值；
@@ -451,8 +451,8 @@ title: '十、Composition API 基本语法'
 
 * ##### 监听方法：
 
-  * watch：需要手动指定侦听的数据源； 
-  * watchEffect：用于自动收集响应式数据的依赖； 
+  * watch：需要手动指定侦听的数据源；
+  * watchEffect：用于自动收集响应式数据的依赖；
 
 
 
@@ -468,16 +468,16 @@ title: '十、Composition API 基本语法'
 
   * ```js
     import { watch } from 'vue'
-    
+
     const x = ref(0)
     const y = ref(0)
-    
+
     //1.ref基本类型
-    
+
     watch(x, (newX) => {
       console.log(`x is ${newX}`)
     })
-    
+
     //2.参数可以是getter 函数
     watch(
       () => x.value + y.value,
@@ -485,21 +485,21 @@ title: '十、Composition API 基本语法'
         console.log(`sum of x + y is: ${sum}`)
       }
     )
-    
+
     //3、监听多个数据源，数组形式
     watch([x, () => y.value], ([newX, newY]) => {
       console.log(`x is ${newX} and y is ${newY}`)
     })
-    
-    
+
+
     //4.注意，你不能直接侦听响应式对象的属性值，例如
     const obj = reactive({ count: 0 })
-    
+
     // 错误，因为 watch() 得到的参数是一个 number
     watch(obj.count, (count) => {
       console.log(`count is: ${count}`)
     })
-    
+
     //5.需要用一个返回该属性的 getter 函数，提供一个 getter 函数
     //注意，如果getter返回的是个对象的话，之有对象被替换才会触发，浅层的
     watch(
@@ -508,7 +508,7 @@ title: '十、Composition API 基本语法'
         console.log(`count is: ${count}`)
       }
     )
-    
+
     //6.你也可以给上面这个例子显式地加上 deep 选项，强制转成深层侦听器
     watch(
       () => state.someObject,
@@ -548,7 +548,7 @@ title: '十、Composition API 基本语法'
     //返回值是一个函数；不需要停止监听可不用变量接收；
     const stopWatch = watchEffect(() => {
         console.log("-------", counter.value, name.value)
-    
+
         // 判断counter.value >= 10，停止监听；
         if (counter.value >= 10) {
             stopWatch()  //调用函数停止监听；
@@ -574,7 +574,7 @@ title: '十、Composition API 基本语法'
 
 * `<script setup>`是在.vue文件中使用组合式 API 的编译时语法糖；
 
-  * 更少的样板内容，更简洁的代码； 
+  * 更少的样板内容，更简洁的代码；
 
 * ##### 顶层作用域的绑定会被暴露给模板：
 
@@ -608,7 +608,7 @@ title: '十、Composition API 基本语法'
 
     * ```js
       <h2>{{ name }}</h2>
-      
+
       //可以不赋值给变量，赋值给变量主要为了在setup中使用props;
       //赋不赋值给变量都可以，在模板中直接使用传递的属性即可，如上
       const props = defineProps({
@@ -680,7 +680,7 @@ title: '十、Composition API 基本语法'
 
     * ```js
       <show-info ref="showInfoRef"></show-info>
-      
+
       const showInfoRef = ref()
       onMounted(() => {
           showInfoRef.value.foo()
@@ -720,7 +720,7 @@ title: '十、Composition API 基本语法'
 * ##### 安装Vue Router：
 
   * `npm install vue-router`
-  
+
 * 注意：`router hooks` 只能在 `setup` 中使用，在 `hooks` 中会存在 `undefined`
 
   ~~~js
@@ -728,13 +728,13 @@ title: '十、Composition API 基本语法'
   export function useRouter() {
     return  router;
   }
-  
+
   export function useRoute() {
     return router.currentRoute;
   }
   ~~~
 
-  
+
 
 
 
@@ -749,13 +749,13 @@ title: '十、Composition API 基本语法'
 
 * hash的优势就是兼容性更好，在老版IE中都可以运行，但是缺陷是有一个#，显得不像一个真实的路径。
 
-  
+
 
 ### 1.4.2、hash和history模式示例
 
 * ```js
   import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-  
+
   // 创建一个路由: 映射关系
   const router = createRouter({
       // 指定采用的模式: hash
@@ -774,8 +774,8 @@ title: '十、Composition API 基本语法'
     | 刷新不会存在 404 问题                                        | 由于刷新页面之后会向服务器发送请求，浏览器直接访问嵌套路由时，会报 404 问题。 |
     | 不需要服务器任何配置                                         | 需要在服务器配置⼀个回调路由                                 |
     | 会影响a标签锚点的使用，可以使用 `scrollIntoView()` 方法      |                                                              |
-    
-    
+
+
 
 ## 1.5、路由的默认路径
 
@@ -808,11 +808,11 @@ title: '十、Composition API 基本语法'
 
   * ##### replace属性：
 
-    * 当点击时，会调用 router.replace()，而不是 router.push()； 
+    * 当点击时，会调用 router.replace()，而不是 router.push()；
 
-  * ##### active-class属性： 
+  * ##### active-class属性：
 
-    * 设置激活a元素后应用的class，默认是router-link-active； 
+    * 设置激活a元素后应用的class，默认是router-link-active；
 
   * ##### exact-active-class属性：
 
@@ -823,7 +823,7 @@ title: '十、Composition API 基本语法'
   * ```vue
     //字符串写法
     <router-link to="/home">home</router-link>
-    
+
     //对象写法
     <router-link :to="{ path: '/home', query: { name: 'why'}}"></router-link>
     ```
@@ -837,8 +837,8 @@ title: '十、Composition API 基本语法'
 * ##### 示例：
 
   * ```js
-    { 
-    	path: "/home", 
+    {
+    	path: "/home",
         // component可以传入一个组件，也可以接收一个函数，需要返回一个Promise；
         component: () => import("../Views/Home.vue")
     }
@@ -848,7 +848,7 @@ title: '十、Composition API 基本语法'
 
 ## 1.8、路由的其他属性
 
-* name属性：路由记录独一无二的名称； 
+* name属性：路由记录独一无二的名称；
 * meta属性：自定义的数据；
 
 
@@ -875,7 +875,7 @@ title: '十、Composition API 基本语法'
       //路径只为/uesr则无法跳到user组件；
       <router-link to="/user/321">用户</router-link>
       //若想跳到user的子路由组件，需要to="/user/321/userChild"
-      
+
       <router-view></router-view>
       ```
 
@@ -901,7 +901,7 @@ title: '十、Composition API 基本语法'
 
   * ```js
     import { useRoute } from 'vue-router'
-    
+
     const route = useRoute()
     console.log(route.params.id)
     ```
@@ -941,8 +941,8 @@ title: '十、Composition API 基本语法'
 
     * ```js
       routes: [
-         { 
-            path: "/home", 
+         {
+            path: "/home",
             ...,
             children: [
               {
@@ -955,10 +955,10 @@ title: '十、Composition API 基本语法'
                  {
                    // /home/recommend
                    path: "recommend",  // 不可加斜杠
-                   ...  
-                 },		
+                   ...
+                 },
           	}
-            ]  
+            ]
          }
       ]
       ```
@@ -985,13 +985,13 @@ title: '十、Composition API 基本语法'
     //普通写法
     //传入路径
     this.$router.push('/home')
-    
+
     //对象写法
     //属性为路由名或路径
     this.$router.push({
         // name: "home"
         path: "/home",
-        
+
         //传入query参数
         query: {
             name: "why",
@@ -1004,17 +1004,17 @@ title: '十、Composition API 基本语法'
 
   * ```js
     import { useRouter } from 'vue-router'
-    
+
     const router = useRouter()
-    
+
     // 普通写法
     router.push("/home")
-    
+
     // 对象写法
     router.push({
         // name: "home"
         path: "/home",
-        
+
         //传入query参数
         query: {
             name: "why",
@@ -1054,12 +1054,12 @@ title: '十、Composition API 基本语法'
 
     * ```js
       import { useRouter } from "vue-router"
-      
+
       const router = useRouter()
       router.replace(...)  // 跟push写法一样，可以对象可以字符串
       ```
 
-      
+
 
 ### 2.3.3、页面的前进后退
 
@@ -1077,11 +1077,11 @@ title: '十、Composition API 基本语法'
 * ##### 步骤：
 
   * 创建路由需要映射的组件；
-  * 通过createRouter创建路由对象，并且传入history模式和routes； 
+  * 通过createRouter创建路由对象，并且传入history模式和routes；
     * 创建基于hash或者history的模式；
-    * 配置路由映射: 组件和路径映射关系的routes数组； 
-  * 使用app注册路由对象（use方法）； 
-  * 路由使用: 通过`<router-link>`和`<router-view>`； 
+    * 配置路由映射: 组件和路径映射关系的routes数组；
+  * 使用app注册路由对象（use方法）；
+  * 路由使用: 通过`<router-link>`和`<router-view>`；
 
 * ##### 示例：
 
@@ -1089,7 +1089,7 @@ title: '十、Composition API 基本语法'
 
     * ```js
       import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-      
+
       // 创建一个路由: 映射关系
       const router = createRouter({
         // 指定采用的模式: hash,
@@ -1097,13 +1097,13 @@ title: '十、Composition API 基本语法'
         history: createWebHashHistory(),
         // history: createWebHistory(),
         routes: [
-          { 
-            path: "/", 
+          {
+            path: "/",
             redirect: "/home"  //重定向
           },
-          { 
+          {
             name: "home",
-            path: "/home", 
+            path: "/home",
             component: () => import("../Views/Home.vue"),  //路由懒加载
             //自定义数据
             meta: {
@@ -1126,10 +1126,10 @@ title: '十、Composition API 基本语法'
               },
             ]
           },
-          { 
+          {
             name: "about",
-            path: "/about", 
-            component: () => import("../Views/About.vue") 
+            path: "/about",
+            component: () => import("../Views/About.vue")
           },
           {
             path: "/user/:id",
@@ -1142,7 +1142,7 @@ title: '十、Composition API 基本语法'
           }
         ]
       })
-      
+
       export default router
       ```
 
@@ -1152,13 +1152,13 @@ title: '十、Composition API 基本语法'
       <div class="nav">
           <router-link to="/home" replace>首页</router-link>
           <!-- <router-link :to="{ path: '/home' }" replace>首页</router-link> -->
-          
+
           <router-link to="/about" replace active-class="active">关于</router-link>
           <router-link to="/user/123">用户123</router-link>
       </div>
-      
+
       <!-- 占位组件 -->
-      <router-view></router-view>  
+      <router-view></router-view>
       ```
 
   * ##### Home.vue：(路由组件)
@@ -1167,7 +1167,7 @@ title: '十、Composition API 基本语法'
       <div class="home-nav">
           <router-link to="/home/recommend">推荐</router-link>
       </div>
-      
+
       <!-- 占位组件 -->
       <router-view></router-view>
       ```
@@ -1192,7 +1192,7 @@ title: '十、Composition API 基本语法'
           path: "/admin",
           component: () => import("../Views/Admin.vue")
       })
-      
+
       //二级路由，第一个参数为已知路由的name属性值
       router.addRoute("home", {
           path: "vip",
@@ -1204,7 +1204,7 @@ title: '十、Composition API 基本语法'
 
   * ##### 删除路由的三种方式：
 
-    * 添加一个name相同的路由； 
+    * 添加一个name相同的路由；
 
       * ```js
         router.addRoute({
@@ -1229,7 +1229,7 @@ title: '十、Composition API 基本语法'
 
   * ##### 路由的其他方法补充：
 
-    * router.hasRoute()：检查路由是否存在。 
+    * router.hasRoute()：检查路由是否存在。
     * router.getRoutes()：获取一个包含所有路由记录的数组。
 
 
@@ -1238,7 +1238,7 @@ title: '十、Composition API 基本语法'
 
 * ##### 导航守卫主要用来通过跳转或取消的方式守卫导航。
 
-  
+
 
 ### 2.6.1、全局的前置守卫 beforeEach
 
@@ -1246,15 +1246,15 @@ title: '十、Composition API 基本语法'
 
 * ##### 它有两个参数：
 
-  * `to`：即将进入的路由 `Route` 对象； 
-  * `from`：即将离开的路由 `Route` 对象； 
+  * `to`：即将进入的路由 `Route` 对象；
+  * `from`：即将离开的路由 `Route` 对象；
 
 * ##### 返回值：
 
-  * `false`：取消当前导航； 
-  * 不返回或者 `undefined`：进行默认导航； 
-  * 返回一个路由地址： 
-    * 可以是一个 `string` 类型的路径； 
+  * `false`：取消当前导航；
+  * 不返回或者 `undefined`：进行默认导航；
+  * 返回一个路由地址：
+    * 可以是一个 `string` 类型的路径；
     * 可以是一个对象，对象中包含 `path`、`query`、`params` 等信息；
 
 * ##### 可选的第三个参数：next：
@@ -1291,7 +1291,7 @@ title: '十、Composition API 基本语法'
 
 
 
-#####  
+#####
 
 # 十三、FAQ
 
@@ -1299,7 +1299,7 @@ title: '十、Composition API 基本语法'
 
 ### 1、vite-plugin-vue-setup-extend
 
-可以在 `<script setup name="Config">`设置组件的name属性 
+可以在 `<script setup name="Config">`设置组件的name属性
 
 
 

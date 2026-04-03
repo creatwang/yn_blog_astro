@@ -28,7 +28,7 @@ title: '第一节、前端路由 react-router介绍'
   npm i react-router-dom
   ~~~
 
-  
+
 
 ## 二、React-router5 的使用区别
 
@@ -42,14 +42,14 @@ title: '第一节、前端路由 react-router介绍'
 
 - 所以要在类组件当中使用的话，
 
-  >  需要根据相关hooks手动封装一个 withRouter 
+  >  需要根据相关hooks手动封装一个 withRouter
   >
   > 例如： `{ useLocation, useNavigate, useParams, useSearchParams }` ... 一些hooks 对 props 进行扩展
 
-  
-  
+
+
   - 因为 `hooks` 只能在函数组件或者自定义的hooks的顶层中使用
-  
+
 - router5 为什么要使用 withRouter
 
   > 因为当路由跳转到的组件是一个普通渲染(就是非路由跳转的)组件，那么不可以直接获取history、location、match对象
@@ -77,7 +77,7 @@ title: '第一节、前端路由 react-router介绍'
   this.props.history.push("/profile");
   ~~~
 
-  
+
 
 
 
@@ -125,7 +125,7 @@ title: '第一节、前端路由 react-router介绍'
 
 ~~~typescript
 <NavLink to={{
-    pathname: "/detail2", 
+    pathname: "/detail2",
     query: {name: "kobe", age: 30},
     state: {height: 1.98, address: "洛杉矶"},
     search: "?apikey=123"
@@ -146,13 +146,13 @@ title: '第一节、前端路由 react-router介绍'
 
    > 作用排他思想，当有一个路由组件匹配到了，其他的就不要匹配了，从上到下
 
-   
+
 
 2.  `Route` 可以单独使用，
 
    > 不使用 `Switch` 的情况下，也能单独使用，**例**：`/about` 和  `/:userid` 这两个组件都会匹配到且都能显示
 
-   
+
 
 3. 抽取配置文件需要额外引入插件
 
@@ -173,7 +173,7 @@ title: '第一节、前端路由 react-router介绍'
 
    > 所有的`Route` 组件都是在同一个层级
 
-   
+
 
 6. exact：boolean 类型，精准匹配，只有精准匹配到完全一致的路径，才会渲染对应的组件；
 
@@ -198,7 +198,7 @@ title: '第一节、前端路由 react-router介绍'
    import Detail from "../pages/detail";
    import Detail2 from "../pages/detail2";
    import NoMatch from "../pages/nomatch";
-   
+
    const routes = [
      {
        path: "/",
@@ -228,13 +228,13 @@ title: '第一节、前端路由 react-router介绍'
        component: NoMatch
      }
    ];
-   
+
    export default routes;
    ~~~
 
-   
 
-#### router6 
+
+#### router6
 
 1. 使用的是 `Routes` 组件
 
@@ -258,7 +258,7 @@ title: '第一节、前端路由 react-router介绍'
 
 
 
-# 第二节、React-Router6 
+# 第二节、React-Router6
 
 - 应用开启路由的功能，需要使用 `react-router-dom` 中指定的组件包裹
 
@@ -268,7 +268,7 @@ title: '第一节、前端路由 react-router介绍'
 
   - `HashRouter`组件包裹 使用`hash`模式；
 
-  
+
 
 ## 一、路由配置
 
@@ -375,14 +375,14 @@ const App = memo(() => {
 
     - 限用于 a 标签属性，太长的话放到一个函数里
 
-      
+
 
   - ##### 支持自定义
 
     > Style 属性可以传入一个函数
 
     ~~~typescript
-    <NavLink to={"/about"} 
+    <NavLink to={"/about"}
         className={
             //传入一个函数，形参是一个对象，形参的isActive 属性，来判断是否选中
             		({isActive} ) => isActive ? "link-active" : ""
@@ -390,8 +390,8 @@ const App = memo(() => {
     >
         about
     </NavLink>
-    
-    <NavLink to={"/message"} 
+
+    <NavLink to={"/message"}
         className={
             		({isActive} )=> isActive ? "link-active" : ""
                   }
@@ -418,7 +418,7 @@ const App = memo(() => {
 
 ~~~typescript
 <div className="content">
-    {flag ? <Navigate to="/message"/> : 
+    {flag ? <Navigate to="/message"/> :
        		<button onClick={e => this.trigger(e)}
             >
         		trigger
@@ -428,7 +428,7 @@ const App = memo(() => {
 </div>
 ~~~
 
-​	
+​
 
 ### 重定向
 
@@ -450,7 +450,7 @@ const App = memo(() => {
 
 
 
-### Router6 
+### Router6
 
 - 所有的嵌套**都在一个 `Routes` 一个组件中**
 
@@ -491,7 +491,7 @@ const App = memo(() => {
   </Switch>
   ~~~
 
-  
+
 
 - 需要在 `Home` 组件中进行嵌套
 
@@ -509,7 +509,7 @@ const App = memo(() => {
   )
   ~~~
 
-  
+
 
 
 
@@ -561,7 +561,7 @@ navigate(path, options)
 - **返回值**：`Object` 对象
 
   > 使用场景：当使用state传惨的时候，获取state
-  
+
 - router5中会有query对象，router6里面没有
 
 ~~~js
@@ -612,13 +612,13 @@ navigate(path, options)
   - **索引`1`**：设置值
 
     > 基本没有使用场景，设置的也是当前url的param
-  
+
   ~~~js
   //组件一：
   const navigate = useNavigate()
   navigate("/home/about?name=zhnagsan&age=15")
-  
-  
+
+
   ~~~
 
 //组件二:
@@ -627,8 +627,8 @@ navigate(path, options)
   const [search] = useSearchParams()
   console.log(Object.fromEntries(search));
   ~~~
-  
-  
+
+
 
 
 
@@ -736,7 +736,7 @@ export const routes = [
 ## 二、懒加载
 
 - 懒加载， Route 也能懒加载
-- 在 `react` 包中 提供了一个 `lazy`  函数 
+- 在 `react` 包中 提供了一个 `lazy`  函数
 - 同样也能应用在组件路由上
 
 ~~~js
@@ -746,7 +746,7 @@ const About = lazy(() => import(/* webpackChunkName: "about" */'../pages/About')
 
 
 
-## 三、Suspense 
+## 三、Suspense
 
 > 撒死笨死，用于异步组件渲染完成前等待过度期间需要展示等待页面
 
@@ -773,7 +773,7 @@ const About = lazy(() => import(/* webpackChunkName: "about" */'../pages/About')
   </Suspense>
   ~~~
 
-  
+
 
 
 

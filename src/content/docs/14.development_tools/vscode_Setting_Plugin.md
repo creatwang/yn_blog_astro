@@ -10,14 +10,14 @@ title: '第一节、开发工具配置'
 
 VSCode编辑器下载-安装：https://code.visualstudio.com/
 
--  安装插件（增加功能）：右侧图标最后一项，Extensions，查找需要的插件（联网） 
+-  安装插件（增加功能）：右侧图标最后一项，Extensions，查找需要的插件（联网）
 
-1. 中文插件：`Chinese` 
+1. 中文插件：`Chinese`
 2. 颜色主题：`atom one dark `，`Webstorm IntelliJ Darcula Theme`
 3. 文件夹图标：`vscode-icons `
 4. 在浏览器中打开网页：o`pen in browser`、`Live Sever `
-5. 自动重命名/自动结尾标签：`auto rename tag `、`Auto Close Tag` 
-6. `px to rem & rpx` 需要设置html 中的fontsize 
+5. 自动重命名/自动结尾标签：`auto rename tag `、`Auto Close Tag`
+6. `px to rem & rpx` 需要设置html 中的fontsize
 7. `ES7+ React/Redux/React-Native snippets `
 
    - 这个插件是在react开发中会使用到的，但是我经常用到它里面的打印语句；
@@ -37,11 +37,11 @@ VSCode编辑器下载-安装：https://code.visualstudio.com/
 
 10. VSCode对SFC的支持：单页面组件 .vue 文件
     插件一：`Vetur`，从Vue2开发就一直在使用的VSCode支持Vue的插件；
-    插件二：`Volar`，官方推荐的插件；vue3 用这个就可以了 
+    插件二：`Volar`，官方推荐的插件；vue3 用这个就可以了
 
-11. `Path interllisense `路径提示 
+11. `Path interllisense `路径提示
 
-12. 小程序需要的插件 
+12. 小程序需要的插件
 
 - WXML-Language Service
 
@@ -51,7 +51,7 @@ VSCode编辑器下载-安装：https://code.visualstudio.com/
 
 - wechat-snippet
 
-13. react 插件 `es7+React/Redux`, rcc 
+13. react 插件 `es7+React/Redux`, rcc
 
 - webstorm 默认就有快捷方式
 - `vscode-styled-components` ：css in js插件
@@ -72,40 +72,40 @@ VSCode编辑器下载-安装：https://code.visualstudio.com/
 
 
 
-1.  Auto Save 自动保存 
+1.  Auto Save 自动保存
 
-1.  Font Size 修改代码字体大小 
+1.  Font Size 修改代码字体大小
 
-1.  Word Wrap 代码自动换行 
+1.  Word Wrap 代码自动换行
 
-1.  Render Whitespace 空格的渲染方式(个人推荐) 
+1.  Render Whitespace 空格的渲染方式(个人推荐)
 
-1.  Tab Size 代码缩进 
+1.  Tab Size 代码缩进
 
-1.  推荐2个空格（公司开发项目基本都是2个空格） 
+1.  推荐2个空格（公司开发项目基本都是2个空格）
 
-1.  Bracket Pair Colorizer 2`彩色括号插件`，但是该插件已经内置了 
+1.  Bracket Pair Colorizer 2`彩色括号插件`，但是该插件已经内置了
 
-- -  我们可以直接通过VSCode的配置来达到插件的效果； 
+- -  我们可以直接通过VSCode的配置来达到插件的效果；
 
-- -  设置右上角图标点击 打开设置(json) 添加下面的配置json 
+- -  设置右上角图标点击 打开设置(json) 添加下面的配置json
 
 ```json
 "editor.bracketPairColorization.enabled": true,
 "editor.guides.bracketPairs":"active"
 ```
 
- 
-
-1.  vscode 打开新文件覆盖旧文件解决办法 
-
-- -  vscode 中默认开启了preview，此时临时单击打开的文件在打开新文件时会被覆盖，若需要保留新打开的文件，则可双击文件（在资源管理器栏或者文件标题）或者修改文件，文件就不会被覆盖。 
-
-- -  若要关闭此功能，则可在左下角单击设置，settings-> Workbench->Editor Management 里去掉Enable Preview 的勾选项，此时单击的文件都会被保留。 
 
 
+1.  vscode 打开新文件覆盖旧文件解决办法
 
-1.  snip 设置自定义的函数或者变量自动提示 
+- -  vscode 中默认开启了preview，此时临时单击打开的文件在打开新文件时会被覆盖，若需要保留新打开的文件，则可双击文件（在资源管理器栏或者文件标题）或者修改文件，文件就不会被覆盖。
+
+- -  若要关闭此功能，则可在左下角单击设置，settings-> Workbench->Editor Management 里去掉Enable Preview 的勾选项，此时单击的文件都会被保留。
+
+
+
+1.  snip 设置自定义的函数或者变量自动提示
 
 1. 1. 在setting 输入 snip
    2. 取消 `JavaScript>suggest>Class Member Snippets: Enabled` 选项
@@ -137,7 +137,7 @@ VSCode编辑器下载-安装：https://code.visualstudio.com/
 
 
 ```js
-/*vscode 快捷键 
+/*vscode 快捷键
 ctrl+shift+e 聚焦到页面文件所在的列表的位置
 ctrl+shift+c 打开cmd
 ctrl+反引号 打开终端
@@ -203,7 +203,7 @@ setting>Editor>Code Style>JavaScript
 ~~~javascript
 /**
  * @param {$TYPE$} $NAME$ - 加法第一位
- * @Description $DESC$ 
+ * @Description $DESC$
  * @date $date$
  * returns: {RERUEN}
  */
@@ -213,7 +213,7 @@ setting>Editor>Code Style>JavaScript
 
 ```js
 /**
- * @Description $DESC$ 
+ * @Description $DESC$
  * @date $date$
  */
 ```
@@ -223,12 +223,12 @@ setting>Editor>Code Style>JavaScript
 
 ~~~
 {
-	
-	// Place your 全局 snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+
+	// Place your 全局 snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
 	// Placeholders with the same ids are connected.
 	// Example:
 	"Print to console": {
@@ -302,7 +302,7 @@ setting>Editor>Code Style>JavaScript
 ### 3、快捷键
 
 ```js
-idea 快捷键 
+idea 快捷键
 chtrl+alt+left/right :返回光标上一次所在的地方
 ctrl+f12: structure 查看代码结构 方法
 alt+反引号:  vcs(版本控制系统) 操作界面-history
@@ -332,10 +332,10 @@ shift+ctrl+- 关闭所有元素标签
 最近更改的具体时间和位置	alt+shift+c	要查 被改文件的时间和位置，这个很方便。（跟复制的区别是，都是搭配 c ，但使用了 另外两个键。）
 最后编辑位置	ctrl+shift+backspace	能快速跳转到 上一个编辑过的位置。
 ctrl+[ || ctrl+]	能快速跳转到当前括号区域内开始||结束的位置
-      
+
 mac
    coomond+alt+u 查看当前文件引用组件和方法的结构分布图
-      
+
       ctrl+alt+o 格式化代码
             ctrl+alt+t 包围代码
       vsc git alt+反引号
@@ -472,7 +472,7 @@ Vue 3 专用：`vref` (最快)
             "panel_name": "Terminus"
         }
     }
-] 
+]
 ```
 
 
@@ -493,7 +493,7 @@ Vue 3 专用：`vref` (最快)
 
 external libraries 外部链接，有时候会自动下载一些过时的依赖导致框架在使用时老是有错误的语法提示
 
- 
+
 
 解决：help》find action》搜索 Registry  》打开注册表之后搜索 `typescript.external.type.definitions.packages` 删除不需要的外部依赖，之后删除 external libraries 下面的所有文件夹
 
@@ -523,14 +523,14 @@ win+ g
 
 
 
-1.  创建项目 
+1.  创建项目
 
-1.  搭建目录结构 
+1.  搭建目录结构
 
-1.  链接远程 `git` 仓库，及 `.gitignore` 文件 
+1.  链接远程 `git` 仓库，及 `.gitignore` 文件
 
 4. 修改git用户名和邮箱
-5. 生成`jsong.config.js` 文件 
+5. 生成`jsong.config.js` 文件
 6. 配置`webpack` 集成ts，或者别名，扩展名一些配置
 7. 整合中间件 router、redux、pinia、vuex
 8. css 样式调整重置，设计整体架构样式风格。
@@ -915,9 +915,9 @@ textarea {
 }
 ```
 
- 
 
-1.  封装网络请求 
+
+1.  封装网络请求
 
 ```js
 import axios from "axios"
@@ -935,7 +935,7 @@ class Request {
 
     this.instance.interceptors.request.use(
       (config) => {
-          
+
         return config
       },
       (err) => {
@@ -1026,15 +1026,15 @@ trim_trailing_whitespace = false
 /.
 
 
--  在使用 `.vue` 单文件开发的时候使用 `template` 模板进行报错 
+-  在使用 `.vue` 单文件开发的时候使用 `template` 模板进行报错
 
 解决：在 `jsconfig.json` 中配置下面选项
 
-  
 
--  如果是tsconfig的时候，需要在项目中添加一个.ts文件否则报错 
 
--  `jsconfig.json` 
+-  如果是tsconfig的时候，需要在项目中添加一个.ts文件否则报错
+
+-  `jsconfig.json`
 
 可以提供一些有效的语法提示，没有jsconfing的情况下，每一个js都是独立的单元，没有import其他的依赖的时候，没有提示的
 
@@ -1107,7 +1107,7 @@ npm install prettier -D
 
 
 
-1.  创建 `.prettierignore` 忽略文件 
+1.  创建 `.prettierignore` 忽略文件
 
 ```plain
 /dist/*
@@ -1121,9 +1121,9 @@ npm install prettier -D
 /public/*
 ```
 
- 
 
-1.  vscode 下载插件 Prettier-code formatter 
+
+1.  vscode 下载插件 Prettier-code formatter
 
 测试文件修改之后，ctrl+s 保存是否会自动格式化
 
@@ -1133,11 +1133,11 @@ setting 搜索format on save，点击选中 Format on save 即可
 
 
 
-1.  配置 npm prettier 工具执行命令 
+1.  配置 npm prettier 工具执行命令
 
 在package.json中配置一个scripts：着这样的话执行完该命令之后哪怕在其他的编辑器下，也可以将所有的文件根据，`.prettierrc` 配置进行格式化
 
- 
+
 
 ```json
     "prettier": "prettier --write ."
@@ -1155,7 +1155,7 @@ setting 搜索format on save，点击选中 Format on save 即可
 
 
 
--  安装插件：（vue在创建项目时，如果选择prettier，那么这两个插件会自动安装） 
+-  安装插件：（vue在创建项目时，如果选择prettier，那么这两个插件会自动安装）
 - eslint-config-prettier：选中eslint会默认安装
 - eslint-plugin-prettier ：有的并不会默认安装，用来帮助prettier结合eslint规范的
 
@@ -1163,9 +1163,9 @@ setting 搜索format on save，点击选中 Format on save 即可
 npm i eslint-plugin-prettier eslint-config-prettier -D
 ```
 
- 
 
--  之后在进行配置 eslint 文件 
+
+-  之后在进行配置 eslint 文件
 
 - - 这样的话，eslint 规范会以prettier 为准
 
@@ -1183,7 +1183,7 @@ npm i eslint-plugin-prettier eslint-config-prettier -D
   ],
 ```
 
--  注意：eslint 对vue组件会有命名规范，可以在`.eslintrc.cjs`文件中手动关闭 
+-  注意：eslint 对vue组件会有命名规范，可以在`.eslintrc.cjs`文件中手动关闭
 
 ```js
   rules: {
@@ -1194,7 +1194,7 @@ npm i eslint-plugin-prettier eslint-config-prettier -D
   }
 ```
 
- 
+
 
 #### 2、eslint
 
@@ -1309,8 +1309,8 @@ stats.html
 
 
 
--  husky是一个git hook工具，可以帮助我们触发git提交的各个阶段：pre-commit、commit-msg、pre-push 
--  husky 自动配置命令 
+-  husky是一个git hook工具，可以帮助我们触发git提交的各个阶段：pre-commit、commit-msg、pre-push
+-  husky 自动配置命令
 
 ```bash
 npx husky-init && npm install
@@ -1320,16 +1320,16 @@ npx husky-init && npm install
 
 上面的命令会做三件事：
 
-1.  安装husky相关依赖 
-2. .在项目目录下创建 `.husky` 文件夹： 
+1.  安装husky相关依赖
+2. .在项目目录下创建 `.husky` 文件夹：
 
 ```bash
 npx huksy install
 ```
 
- 
 
-1. 在package.json中添加一个脚本： 
+
+1. 在package.json中添加一个脚本：
 
 ```bash
 #!/usr/bin/env sh
@@ -1527,7 +1527,7 @@ $sidebar--text-color-dark: #8a979e;
 $sidebar--menu-item-height: 48px;
 
 // Content
-$content--padding: 15px; 
+$content--padding: 15px;
 $content--background-color: #f1f4f5;
 $content--card-header-height: 60px;
 $content--tabs-header-height: 38px;

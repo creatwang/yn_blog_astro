@@ -12,11 +12,11 @@ title: '06_oppo_shopping_api'
 
 说明 : 调用此接口 , 获取首页商品信息
 
-**请求方法 :** GET 
+**请求方法 :** GET
 
 **接口地址 :** `/home/info`
 
-**必选参数 :** 
+**必选参数 :**
 
 ```
 type: 商品类型，支持： oppo 、onePlus、intelligent, 默认是oppo
@@ -31,13 +31,13 @@ type: 商品类型，支持： oppo 、onePlus、intelligent, 默认是oppo
     "code": 200,
     "data": {
         "navbars": [
-            
+
         ],
         "banners":[
-            
+
         ],
         "categorys":[
-            
+
         ]
     }
 }
@@ -49,7 +49,7 @@ type: 商品类型，支持： oppo 、onePlus、intelligent, 默认是oppo
 
 说明 : 调用此接口 , 获取商品详情信息
 
-**请求方法 :** GET 
+**请求方法 :** GET
 
 **接口地址 :** `/oppoDetail`
 

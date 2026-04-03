@@ -176,7 +176,7 @@ export const onRequest = async (context, next) => {
   if (!tenant) return new Response("Not Found", { status: 404 });
 
   // 关键：将租户选定的主题（如 'theme-minimal'）存入 locals
-  context.locals.theme = tenant.theme_name; 
+  context.locals.theme = tenant.theme_name;
   context.locals.tenantId = tenant.id;
 
   return next();
@@ -226,7 +226,7 @@ const { tenant } = Astro.locals; // 中间件拿到的商户信息
 const product = await getProductById(id, tenant.id);
 
 // 2. 从数据库或缓存中读取该商户上传的原始 Liquid 字符串
-const rawTemplate = tenant.custom_product_template; 
+const rawTemplate = tenant.custom_product_template;
 
 // 3. 运行时渲染
 const engine = new Liquid();
@@ -306,7 +306,7 @@ const html = await engine.parseAndRender(rawTemplate, { product, tenant });
 
   请谨慎使用此类代码。
 
-  
+
 
 - **生成的 HTML**：
 
@@ -318,7 +318,7 @@ const html = await engine.parseAndRender(rawTemplate, { product, tenant });
 
   请谨慎使用此类代码。
 
-  
+
 
 - **JS 读取**：浏览器会自动还原。
 
@@ -330,9 +330,9 @@ const html = await engine.parseAndRender(rawTemplate, { product, tenant });
 
   请谨慎使用此类代码。
 
-  
 
-  
+
+
 
 - 使用 `<script type="application/json">`（结构最清晰）
 
@@ -353,7 +353,7 @@ const html = await engine.parseAndRender(rawTemplate, { product, tenant });
 
   请谨慎使用此类代码。
 
-  
+
 
 - **JS 读取**：
 
@@ -366,7 +366,7 @@ const html = await engine.parseAndRender(rawTemplate, { product, tenant });
 
   请谨慎使用此类代码。
 
-  
+
 
 - **优点**：不需要担心引号冲突，代码可读性极高。
 
@@ -392,7 +392,7 @@ packages/theme-engine/
 
 1. render 解析page/home页面
 
-~~~html 
+~~~html
 文件路径：/section/product/这里面会有index.html [拼到这个标签的所在位置],index.js[下面js隔离方案导出的函数，],index.json[c端保存的死配置数据]
 <SectionProduct></SectionProduct>
 <BlockProduct></BlockProduct>
@@ -459,7 +459,7 @@ export function initAllSections(container = document) {
 
     if (Component && !el._instance) {
       // 【关键】直接实例化对应的类，互不干扰
-      el._instance = new Component(el); 
+      el._instance = new Component(el);
     }
   });
 }
@@ -469,10 +469,10 @@ class ProductGallery {
   constructor(container) {
     this.container = container;
     this.btn = container.querySelector('.btn');
-    
+
     // 【关键】将函数绑定到 this，并存为一个属性，确保引用唯一
     this.handleClick = this.handleClick.bind(this);
-    
+
     this.init();
   }
 
@@ -489,11 +489,11 @@ class ProductGallery {
   destroy() {
     // 移除监听（引用必须与 add 时完全一致）
     this.btn.removeEventListener('click', this.handleClick);
-    
+
     // 清空 DOM 引用，释放内存
     this.container = null;
     this.btn = null;
-    
+
     console.log('组件已卸载，内存已释放');
   }
 }
@@ -528,7 +528,7 @@ export function initAllSections(container = document) {
 
     if (Component && !el._instance) {
       // 【关键】直接实例化对应的类，互不干扰
-      el._instance = new Component(el); 
+      el._instance = new Component(el);
     }
   });
 }

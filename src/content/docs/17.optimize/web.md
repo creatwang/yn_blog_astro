@@ -54,7 +54,7 @@ title: '🚀 前端性能优化与技术方案手册 (2025版)'
   If-Modified-Since: Sat, 29 Oct 2022 19:43:31 GMT
   ~~~
 
-  
+
 
 2、If-None-Match
 
@@ -139,21 +139,21 @@ title: '🚀 前端性能优化与技术方案手册 (2025版)'
 
 
 
-### 4.2、http2	
+### 4.2、http2
 
 1. h2是基于2进制字节码传输，h1是文本传输，会更快，会将传输的信息，分割为更小的消息(一些**头部信息**)，采用**二进制格式对它们编码**，这些帧对应着特定数据流中的消息，他们都在一个**TCP连接内复用**。
 
-   > 2进制解析更高效 
+   > 2进制解析更高效
 
 2. 多路复用，通过一个tcp链接并行传输多个请求和响应，大大提高并发量
 
    > 可以实现多路复用的原因，在HTTP/2中，流是一个单独的请求/响应的序列。每个流都有**唯一的标识符**，所以多个流可以在同一个连接上并行进行，互不干扰
    >
-   > 
+   >
    >
    > 帧：每一帧都包含几个字段，有**length、type、flags、stream identifier、frame playload**等，其中type 代表帧的类型，在 HTTP/2 的标准中定义了 10 种不同的类型，包括上面所说的 HEADERS frame 和 DATA frame。此外还有： `PRIORITY`（设置流的优先级） `RST_STREAM`（终止流） `SETTINGS`（设置此连接的参数） `PUSH_PROMISE`（服务器推送） `PING`（测量 RTT） `GOAWAY`（终止连接） `WINDOW_UPDATE`（流量控制） `CONTINUATION`（继续传输头部数据）
    >
-   > 
+   >
    >
    > h1没有，是串行的没有标识，就只能等待之后在处理
 
@@ -173,9 +173,9 @@ title: '🚀 前端性能优化与技术方案手册 (2025版)'
 
 
 
-6. 
+6.
 
-   
+
 
 
 
@@ -229,7 +229,7 @@ title: '🚀 前端性能优化与技术方案手册 (2025版)'
     // 重启心跳
     start();
   };
-  
+
   ws.onopen = (event) => {
       onOpenRef.current?.(event, ws);
       reconnectTimesRef.current = 0;
@@ -238,7 +238,7 @@ title: '🚀 前端性能优化与技术方案手册 (2025版)'
     };
     ws.onmessage = (message: WebSocketEventMap['message']) => {
       const { data } = message;
-     
+
       if (data === '收到，hello') {
         reset();
         return;
@@ -318,7 +318,7 @@ title: '🚀 前端性能优化与技术方案手册 (2025版)'
 
   而且，如果你在一个组件内部引入了某个工具类函数，但只用了其中一个方法，这时候依然需要 **Tree Shaking** 来剔除该文件中剩余的其他方法。
 
-  
+
 
 - **使用 CDN 引入大库**：
 

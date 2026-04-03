@@ -4,7 +4,7 @@ title: '第一节、Vuex状态管理'
 
 # 第一节、Vuex状态管理
 
-> 在应用当中的对于数据在不同的逻辑下会有不同的改变状态，这样的数据就称之为状态，在一个应用程序中**对于其数据的管理**就称之为是 **状态管理。** 
+> 在应用当中的对于数据在不同的逻辑下会有不同的改变状态，这样的数据就称之为状态，在一个应用程序中**对于其数据的管理**就称之为是 **状态管理。**
 
 - 在vue 开发的应用程序中，会使用 vuex 进行管理这些数据，通过单一状态树的模式**统一存储**，并且**针对这些数据进行统一的管理**
 
@@ -28,7 +28,7 @@ title: '第一节、Vuex状态管理'
 
 
 
-- 目前推荐pinia	
+- 目前推荐pinia
 
 
 
@@ -40,7 +40,7 @@ title: '第一节、Vuex状态管理'
 
 ## 基本使用
 
-1. `npm install vuex` 
+1. `npm install vuex`
 
 2. 导入构造函数 `import {createStore} from "vuex"`。
 
@@ -51,7 +51,7 @@ title: '第一节、Vuex状态管理'
    export const store = createStore({
      state() {
        return {
-   
+
        }
      },
      mutations: {
@@ -73,7 +73,7 @@ title: '第一节、Vuex状态管理'
    app.use(store)
    ~~~
 
-   
+
 
 
 
@@ -128,7 +128,7 @@ title: '第一节、Vuex状态管理'
 - **在 state 保存的数据都是响应式的**
 
   ~~~js
-  
+
   import { createStore } from "vuex"
   export const store = createStore({
     state() {
@@ -138,11 +138,11 @@ title: '第一节、Vuex状态管理'
       }
     }
   })
-  
+
   ~~~
 
-  
-  
+
+
 - ##### 赋值的数据不是响应式的，同理只是响应页面
 
 
@@ -190,13 +190,13 @@ title: '第一节、Vuex状态管理'
 
   > 关键在与 `data` 的执行时机，是在组件创建前，调用的且调用一次，之后的 state 变化的话就不会更新data属性了，computed 会根据依赖的改变而重新计算
 
-  
+
 
 - 这个时候可以使用 `mapState` 函数。
 
   > 可以**一次性和 state 建立多条映射关系。**批量获取 `state`
 
-  
+
 
 - 参数
 
@@ -209,18 +209,18 @@ title: '第一节、Vuex状态管理'
         a: state => state.some.nested.module.a,
         b: state => state.some.nested.module.b
       }),
-      //多个模块的时候添加命名空间 
+      //多个模块的时候添加命名空间
       ...mapState('some/nested/module', {
         a: state => state.a,
         b: state => state.b
       }),
     ~~~
 
-    
-  
+
+
   - **第二个参数**：参数类型：`Array|Object`
-  
-  
+
+
 
 - 返回值：包含 `function` 的对象类型。
 
@@ -229,14 +229,14 @@ title: '第一节、Vuex状态管理'
   ~~~html
   <template>
   <div>
-      
+
     <div>{{name}}</div>
     <div>{{age}}</div>
     <div>{{firends}}</div>
-      
+
   </div>
   </template>
-  
+
   <script>
       //导入 mapState
   	import { mapState } from "vuex";
@@ -257,14 +257,14 @@ title: '第一节、Vuex状态管理'
         }
       }
   </script>
-  
+
   ~~~
 
-  
 
-  
 
-## 三、Composition Api 
+
+
+## 三、Composition Api
 
 > 需要先导入对应的 useStore hook 执行之后返回 store实例对象。
 
@@ -280,7 +280,7 @@ title: '第一节、Vuex状态管理'
   <script setup>
   import {useStore} from "vuex";
   const addr = useStore().state.addr
-  
+
   //这里解构的数据不会是响应式的
   // let { name } = store.state
   //需要使用
@@ -292,7 +292,7 @@ title: '第一节、Vuex状态管理'
   </script>
   ~~~
 
-  
+
 
 - **在 `template` 模板上使用的方式都是相同的。**
 
@@ -315,7 +315,7 @@ title: '第一节、Vuex状态管理'
   const  ss = computed(() => firends.call({$state: store}))
   ~~~
 
-  
+
 
 
 
@@ -356,14 +356,14 @@ let { name } = toRefs(store.state)
 
 - **响应式**：默认 `getters` 对象当中的属性都是**响应式**的，但是同方法一样，**当多个标签绑定相同的getters 的时候会调用多次**
 
-  
+
 
   - 这样在，**响应式修改**的时候，**又会重复调用多次**。
 
     > 因此：`mapGetters` 会**批量返回多个函数，放到 `computed` 当中，可以添加缓存，避免重复调用**。
-  
-    
-  
+
+
+
   - 所以在使用过程中，使用**频率过高**的 `getters` 可以用计算属性进行处理
 
 
@@ -397,7 +397,7 @@ let { name } = toRefs(store.state)
 
   > 在局部 `module` 的 `getters` 中还会有 `rootState` 和 `rootGetters`，参数。
 
-  
+
 
 - 在调用的时候是**通过属性的方式**获取值的，不需要添加小括号，
 
@@ -408,17 +408,17 @@ let { name } = toRefs(store.state)
       //通过 state 获取需要的状态
       getListTotal(state, getters) {
       const total = state.list.reduce((prval, currentVal, index, arr) => {
-  
+
           return  prval + currentVal.price
         }, 0)
         return total
       },
-      
+
       //两个参数，getters 可以调用其他的getter，在调用不需要使用()调用，想计算属性一样
       getDetal(store, getters) {
         return `${store.name} 查看全部的电影 全部看完需要 ${getters.getListTotal} 人民币`
       },
-  
+
       //getters 支持返回函数方式的写法
       findMovie(state, getters)  {
         //这样在调用的时候可以使用函数的方式进行调用，name是传入的参数
@@ -428,7 +428,7 @@ let { name } = toRefs(store.state)
           })
         }
       },
-  
+
     }
   ~~~
 
@@ -466,10 +466,10 @@ let { name } = toRefs(store.state)
       //这样每次获取命名空间的时候太过于繁琐
       ...mapGetters([
          'some/nested/module/someGetter', // -> this['some/nested/module/someGetter']
-         'some/nested/module/someOtherGetter', 
+         'some/nested/module/someOtherGetter',
       ])
-    
-    
+
+
       //简化命名空间写法
       ...mapGetters('some/nested/module', [
         'someGetter', // -> this.someGetter
@@ -477,7 +477,7 @@ let { name } = toRefs(store.state)
       ])
     ~~~
 
-    
+
 
   - **参数二**：**Array|Object**
 
@@ -498,7 +498,7 @@ let { name } = toRefs(store.state)
       }
     ~~~
 
-    
+
 
 
 
@@ -507,7 +507,7 @@ let { name } = toRefs(store.state)
 #### useStore基本使用
 
 ~~~js
-//导入useStore hook 
+//导入useStore hook
 import {mapGetters, useStore} from "vuex";
 //返回一个store 存储对象
 const store = useStore()
@@ -570,7 +570,7 @@ const { getListTotal, findMovie } = toRefs(reactive(store.getters))
 
 > 在 store 配置对象中添加 `mutations` 选项
 
-- **参数一**：**state 对象**	
+- **参数一**：**state 对象**
 
   > 在`mutation` 中也可以通过 `this.state` 但是**不规范。**
 
@@ -613,7 +613,7 @@ const { getListTotal, findMovie } = toRefs(reactive(store.getters))
   })
   ~~~
 
-  
+
 
 ### Mutation常量类型(重要规范)
 
@@ -657,7 +657,7 @@ export default {
     ...mapMutations([EDIT, PUSH_LIST])
       //命名冲突的话也有对象的形式
     ...mapMutations({newExit: EDIT})
-      
+
   }
 
 }
@@ -707,7 +707,7 @@ function  mapAuxGetters (arguArr) {
 
   > 就是需要共享的数据，可以直接塞入state中
 
-  
+
 
 - **提示**：提示一下action 修改state ，要通过mutations
 
@@ -748,7 +748,7 @@ function  mapAuxGetters (arguArr) {
         return data
       }
     }
-  
+
   //调用的时候就可以监听了
    store.dispatch("findMultidata").then(data => console.log(data))
   ~~~
@@ -840,7 +840,7 @@ function  mapAuxGetters (arguArr) {
   }
   ~~~
 
-  
+
 
 - **配置：**
 
@@ -852,7 +852,7 @@ function  mapAuxGetters (arguArr) {
     }
   ~~~
 
-  
+
 
 
 
@@ -868,7 +868,7 @@ function  mapAuxGetters (arguArr) {
   this.$store.state.base.recommend
   ~~~
 
-  
+
 
 - **注意（冲突）**：因此造成的原因，**模块声明** 会和 **state 的声明**，**造成冲突会报警告**
 
@@ -900,7 +900,7 @@ function  mapAuxGetters (arguArr) {
 
   > 在**子模块**当中添加 `namespaced: true` 选项和 state 同级
 
-  
+
 
 - 同时  `getters` 、`mutations`、`actions` 这些选项在**调用方式也会改变。**
 

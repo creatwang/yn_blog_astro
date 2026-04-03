@@ -102,7 +102,7 @@ mongo
   db.dropDatabase()
   ```
 
-  
+
 
 ### 2、集合命令
 
@@ -126,22 +126,22 @@ mongo
   db.getCollection("account");
   ```
 
-  
+
 
 - **(3)**得到当前db的**所有集合**
   `db.getCollectionNames();`
 
-  
+
 
 - **(4)**显示当前db所有集合的状态
   `db.printCollectionStats();`
 
-  
+
 
 - **(5)**删除集合、数据库
   `db.users.drop();`
 
-  
+
 
 ### 3、crud方法
 
@@ -160,8 +160,8 @@ mongo
 2. 区别二：
        insert() 可以直接插入一个列表，无需遍历，效率高。
        save() 不能直接插入列表，需要遍历列表，逐一插入。
-   
-   
+
+
 
 ```sql
 --添加一条
@@ -237,7 +237,7 @@ db.users.remove()
   db.user.find({}, {name: 1})
   ```
 
-  
+
 
 
 

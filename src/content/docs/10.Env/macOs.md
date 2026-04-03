@@ -8,7 +8,7 @@ title: 'macOs'
    	sudo chown -R $USER ./
    ```
 
-   
+
 
 fit-content
 

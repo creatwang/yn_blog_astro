@@ -46,12 +46,12 @@ title: '第一节、TypeScript 介绍'
 1. 在 `javaScript` 中，**无法在代码编辑期间发现代码的错误**
    - 这样的话只有在代码运行的时候才能发现错误
    - 一个错误产生后，整个项目都**因为一个小小的错误而陷入崩溃；**
-   
+
 2. `javaScript` 对数据类型也是没有限制的
    - 一个形参可以接收不同类型的数据。需要**手动进行类型的判断**，也同样不能根据传入的类型判断潜在的问题
    - 很多错误都是在运行期间才能发现
    - `javaScript` 的语法是很松散的**项目一旦庞大起来**，这种宽松的类型约束会带来非常多的安全隐患
-   
+
 3. 类型思维的缺失(不重要)：从其他方向转到前端的人员，也会因为没有类型约束，而总是担心自己的代码不安全，不够健壮；
 
 4. ##### ts带来的最大的改变就是安全，让代码更加严谨，在大型项目中可以保证代码的开发效率、更加安全严谨的类型验证
@@ -85,13 +85,13 @@ title: '第一节、TypeScript 介绍'
 
    - TypeScript可以编译出纯净、 简洁的JavaScript代码，并且可以运行在任何浏览器上、Node.js环境中和任何**支持`ECMAScript 3`（或更高版本）**的JavaScript引擎中；
 
-     
+
 
 2. `TypeScript`是一个强大的工具，用于构建大型项目
 
-   
 
-3. ##### 拥有先进的 JavaScript 
+
+3. ##### 拥有先进的 JavaScript
 
    - TypeScript提供最新的和不断发展的JavaScript特性，包括那些来自2015年的ECMAScript和未来的提案中的特性，比如**异步功能**和**`Decorators`**，以帮助**建立健壮的组件**；
    - 这些特性为**高可信应用程序开发时是可用的**，但是会被编译成简洁的ECMAScript3（或更新版本）的 JavaScript；
@@ -171,8 +171,8 @@ title: '第一节、TypeScript 介绍'
   #在存在tsconfing的时候，可以使用该命令监听所有的ts文件
   tsc -w
   ~~~
-  
-  
+
+
 
 
 
@@ -213,7 +213,7 @@ module.exports = {
     filename: "zhangsan.js"
   },
   resolve: {
-    extensions: [".ts", ".js", ".cjs", ".json"], 
+    extensions: [".ts", ".js", ".cjs", ".json"],
   },
   module: {
     rules: [
@@ -258,7 +258,7 @@ module.exports = {
 
   ~~~js
   var/let/const 标识符: 数据类型(类型注解) = 赋值;
-  
+
   function foo(argu: string) {
      console.log(argu)
   }
@@ -306,7 +306,7 @@ var num2 = 0o123123 //8进制
   const nl: null = null
   const name: string = null // 仅在关闭 strictNullChecks 时成立
   ~~~
-  
+
 - `undefined` 的声明
 
   ~~~typescript
@@ -400,9 +400,9 @@ findPostion({x:"1", y:"2", z: "123"})
 
    - **(重点*)不要在ts中使用任何包装类声明对象**，因为是不具体的类型，可以理解为java中的包装类**基本数据类型的引用类型**，String类型可以是null类型，
 
-   
 
-2. object 
+
+2. object
 
    > object 的引入就是为了解决对 Object 类型的错误使用
 
@@ -421,9 +421,9 @@ findPostion({x:"1", y:"2", z: "123"})
      console.log(obj);
      ~~~
 
-     
 
-   
+
+
 
 3. {}：它意味着任何**非 null / undefined 的值**，同object一样，如果接收的是引用类型的话，是无法对这个变量进行任何的赋值修改操作的
 
@@ -491,10 +491,10 @@ obj.author = 'jiyik';
   } else {
      result = foo()
   }
-  
+
   ~~~
 
-  
+
 
 - ##### 特点
 
@@ -583,7 +583,7 @@ function func3() { //返回值类型默认推导为 undefined
   }
   ~~~
 
-  
+
 
 #### 9、tuple 元组类型
 
@@ -600,7 +600,7 @@ function func3() { //返回值类型默认推导为 undefined
 - **注意**：有多少个元素，就要设置多少个类型，直接限制了长度，否则在**编写时**会**直接报错**
 
   ~~~typescript
-  const names: [string, number] = ["zhangasn", 123] 
+  const names: [string, number] = ["zhangasn", 123]
   ~~~
 
 - **使用场景**： 例如 `react`  中 `useState()` 函数会返回一个**含**有**不同类型的元素 ”的“ 数组**。
@@ -642,17 +642,17 @@ const arr7: [name: string, age: number, male?: boolean] = ['linbudu', 599, true]
 
   ~~~typescript
   function foo(): void {}
-  
+
   const result = foo;
   // 下面这段代码会报错
   // 因为 “调用者也不应该依赖于器返回值**进行**任何操作”
   if(result) {
-      
+
   }
-     
+
   ~~~
-  
-  
+
+
 
 ##### 10.2、参数类型
 
@@ -713,7 +713,7 @@ type calcType = (arg1: string, arg2: number) => void
 function calc(calctype: calcType) {}
 //这里传入的参数函数是不进行类型校验的,意思就是函数类型就可以
 calc(function() {
-    
+
 })
 ~~~
 
@@ -777,7 +777,7 @@ function foo( fn: IBase) {
   }
   ```
 
-  
+
 
 - 因此，当设置可选类型没有默认值的情况下，**相当于 `“规定类型”|undefined` 类型**的**联合类型**，也可以表示为
 
@@ -829,7 +829,7 @@ function foo(argu: string|boolean|number){
       argu.toFixed(2)
       break
   }
-    
+
 }
 ~~~
 
@@ -848,7 +848,7 @@ function bar(...argu any[]) {}
 
 1. 属性描述符和操作性修饰符
 
-   1. `public`：开放属性 
+   1. `public`：开放属性
 
    2. `private`: 私有属性，只能在当前类中访问 `js 中使用#来修饰`
 
@@ -856,36 +856,36 @@ function bar(...argu any[]) {}
 
    4. `readonly` ：（不算 属性描述符）操作性修饰符，和 `interface` 中的 `readonly` 一致
 
-      
+
 
 2. `static` 静态描述符
 
    > 添加到函"数对象"上的方法，`static` 修饰的变量和方法"不会添加到原型"上，**因此**在类的内部静态成员**无法通过 `this` 来访问**，可以在内部通过类名访问
 
-   
+
 
    ~~~typescript
    class Utils {
      public static identifier = "linbudu";
-   
+
      public static makeUHappy() {
        Utils.studyWithU();
        // ...
      }
-   
+
      public static studyWithU() { }
    }
-   
+
    Utils.makeUHappy();
    ~~~
 
-   
+
 
 3. `override` 重写
 
    `TypeScript 4.3` 新增了 `override` 关键字，来确保"派生类"**尝试覆盖**的方法**一定**在"基类"中"存在定义"
 
-   
+
 
 4. `setter` 方法**不允许进行返回值的类型标注**，是一个只关注过程的函数。类的方法同样可以进行函数那样的重载，且语法基本一致，这里我们不再赘述。
 
@@ -901,7 +901,7 @@ function bar(...argu any[]) {}
 - `js` 中使用的是 `implements` 来实现抽象类的，所有抽象成员都要实现
 - 在 `TypeScript` 中**无法声明 "静态" 的抽象成员**。
 
- 
+
 
 ### 面向对象的 SOLID 原则
 
@@ -981,13 +981,13 @@ imgEl.src
 
   ~~~typescript
   class Person {}
-  
+
   class Student extends Person {
     foo() {
       console.log("zhangsan")
     }
   }
-  
+
   function baz(a: Person) {
     //类似于java中的类型强转，通过 as 将 a 变量进行类型转化
     (a as Student).foo()
@@ -1003,7 +1003,7 @@ imgEl.src
 ~~~typescript
 //先转化为 any 或者 unknown 类型，在转化成number类型
 const firend: string = "zhangsan"
-const num: number = (firend as any) as number	
+const num: number = (firend as any) as number
 ~~~
 
 - 只是打印的类型变了，本质上还是原有类型不能赋值
@@ -1032,7 +1032,7 @@ const num: number = (firend as any) as number
   let msg = "lisi";
   ~~~
 
-  
+
 
 - **“字面量类型”** 要和 **“联合类型”** 在一起使用，才会更具有意义——用于限制只能输入的值
 
@@ -1041,28 +1041,28 @@ const num: number = (firend as any) as number
   const method: "get"|"post" = "post"
   ~~~
 
-  
+
 
 - 也会**结合断言**进行使用
 
   ~~~typescript
   type mm = "get"|"post"
-  
+
   function foo(parm: {url:string, method: "get"|"post"}) {
     console.log(parm.url, parm.method)
   }
   //参数类型解决方案一
        const temp: {url:string, method:mm} = {
          url: "/home",
-         method: "post" 
+         method: "post"
        }
-  
+
   //方案二 使用断言，具体下属性的类型，可以使用 type 防止重复的声明类型
       const temp = {
         url: "/home",
         method: "post" as mm
-      } 
-  
+      }
+
   ~~~
 
 
@@ -1076,11 +1076,11 @@ const num: number = (firend as any) as number
     url: "/home",
     method: "post" as "get"|"post"
   } as const
-  
+
   foo(temp)
   ~~~
 
-  
+
 
 ### 3、类型缩小
 
@@ -1161,13 +1161,13 @@ function prinMessage(argu: position): void {
       console.log("开始执行")
     }
   }
-  
+
   class Product {
     exe() {
       console.log("这里是产品")
     }
   }
-  
+
   function foo( temp: Student| Product) : void {
     if(temp instanceof Student) {
       temp.action
@@ -1175,7 +1175,7 @@ function prinMessage(argu: position): void {
   }
   ~~~
 
-  
+
 
 
 
@@ -1184,14 +1184,14 @@ function prinMessage(argu: position): void {
   > 通常用于 **自定义类型**，或者确定某一个实例对象中是否包含该方法
 
   ~~~typescript
-  
+
   type Cart = {
     runing: () => void
   }
   type Dog = {
     eating: () => void
   }
-  
+
   function bar(argu: Cart | Dog):void {
     if("runing" in argu) {
       argu.runing()
@@ -1199,7 +1199,7 @@ function prinMessage(argu: position): void {
   }
   ~~~
 
-  
+
 
 ## 六、Ts中的 this 的使用
 
@@ -1407,7 +1407,7 @@ abstract class Share {
 
 ### 5、接口
 
-**特点**： 
+**特点**：
 
 1. 接口也可以继承接口的支持**多继承**的，既可以**限制变量类型**也可以**限制类**
 2. 会自动合并，一般用于扩展第三方库
@@ -1436,7 +1436,7 @@ abstract class Share {
   }
   ~~~
 
-  
+
 
 - 索引类型- key-value 类型
 
@@ -1449,27 +1449,27 @@ abstract class Share {
   type indexType = {
     [index: number]: string
   }
-  
+
   // 限定对象中的key，要是一个可以转换为number类型的值
   const arr: indexType = {
     "123": "zhangsan",
     34: "lisi"
   }
   console.log(arr)
-  
-  
+
+
   //用于限定对象key-value 的类型
   interface objType {
     [name: string]: string
   }
-  
+
   const obj: objType = {
-    "name": "lisi" 
+    "name": "lisi"
   }
   console.log(obj)
   ~~~
 
-  
+
 
 
 
@@ -1491,7 +1491,7 @@ class Dog implements Ainmal ,Person {
   getBaseInfo() {
 
   }
-  
+
   learn() {
 
   }
@@ -1612,14 +1612,14 @@ function foo(o: ObjType) {}
   interface Windows {
   	age: string
   }
-  
+
   windows.age = "5t"
   ~~~
 
-  
 
 
-#### 
+
+####
 
 ### 7、枚举类型enum
 
@@ -1643,7 +1643,7 @@ function foo(o: ObjType) {}
     TOP,
     BOTTOM
   }
-  
+
   //默认打印格式，当以数组的方式获取的时候是 string 字符串类型
   //是key 对象的方式获取enum 的时候返回的是number类型
   {
@@ -1656,21 +1656,21 @@ function foo(o: ObjType) {}
     TOP: 2,
     BOTTOM: 3
   }
-  
+
   console.log(Direction[0])
   trunDirection(Direction.LEFT)
   function trunDirection(dir: Direction) {
-  
+
     switch(dir) {
       case Direction.LEFT:
          //因此这里打印的是 number
         console.log(typeof dir)
     }
-  
+
   }
   ~~~
 
-  
+
 
 
 
@@ -1699,7 +1699,7 @@ function foo(o: ObjType) {}
   > K、V：key和value的缩写，键值对
   > E：Element的缩写，元素
   > O：Object的缩写，对象
-  
+
 - 设置默认类型
 
   ~~~typescript
@@ -1782,16 +1782,16 @@ type Stringify<T> = {
   interface ILength {
     length: number
   }
-  
+
   function getLength<T extends ILength>(arg: T) {
     return arg.length
   }
-  
+
   getLength("abc")
   getLength(["abc", "cba"])
   getLength({length: 100})
   ~~~
-  
+
 - `keyof`  修饰符的使用
 
   > `keyof` 是将目标对象中的所有**属性【注意：这里是属性并不是属性的类型，相当于是一个字面量的联合类型	】**取出来组成一个联合类型
@@ -1801,13 +1801,13 @@ type Stringify<T> = {
   function foo<K, O extends keyof K>() {}
   //映射类型
   type Maptype<T> = {
-  //这里相当于遍历 keyof T 字面量联合类型，依次赋值给porperty 
-  [porperty in keyof T]: T[porperty]    
+  //这里相当于遍历 keyof T 字面量联合类型，依次赋值给porperty
+  [porperty in keyof T]: T[porperty]
   }
-  
+
   ~~~
 
-  
+
 
 - **老师的理解**：案例二：泛型只能够传入 number 类型和 string 类型的写法
 
@@ -1815,7 +1815,7 @@ type Stringify<T> = {
 
   ~~~typescript
   function sum<T extends number | string>
-  
+
   // 分发类型number[]|string[] 而不是 (number|string)[]
   type NumAndStrArray = toArray<number|string>
   ~~~
@@ -1919,11 +1919,11 @@ const names2: Array<string> = ["abc", "cba", "nba"] // 不推荐(react jsx <>)
       address: string
   }
   type Zhangsan2 = Partial<Zhangsan>
-  
+
   type Partial<T> = {
       [P in keyof T]?: T[P];
   };
-  
+
   //其实 Partial 也可以使用 +? 来显式的表示添加可选标记：
   type Partial<T> = {
       [P in keyof T]+?: T[P];
@@ -1937,12 +1937,12 @@ const names2: Array<string> = ["abc", "cba", "nba"] // 不推荐(react jsx <>)
   ~~~typescript
   // IKun都变成必填的
   type IKun2 = Required<IKun>
-  
-  
+
+
   type Required<T> = {
       [P in keyof T]-?: T[P];
   };
-  
+
   ~~~
 
 
@@ -1988,7 +1988,7 @@ type Mutable<T> = {
   type ikun = Pick(Zhangsan,"name|age")
   ~~~
 
-  
+
 
 - `ReturnType<Type>` 和 `Awaited`
 
@@ -2003,7 +2003,7 @@ type Mutable<T> = {
   ~~~typescript
   // 结果是 { id: number; name: string }
   type DataType = Awaited<ReturnType<typeof fetchData>>;
-  
+
   // 这样你就可以直接定义变量了
   const user: DataType = {
     id: 2,
@@ -2011,7 +2011,7 @@ type Mutable<T> = {
   };
   ~~~
 
-  
+
 
 - `instanceType<Type>`
 
@@ -2032,13 +2032,13 @@ type Mutable<T> = {
    type Record<K extends keyof any, T> = {
       [P in K]: T;
   };
-  
+
   const obj: Record<string, string|number> = {};
    obj.name = "zhangsan";
    obj.age = 123
   ~~~
 
-  
+
 
 ### 7、infer
 
@@ -2303,7 +2303,7 @@ time.foo()
 
 -  注意：声明文件是不会转换成js的，所以声明文件是不用赋值的
 
-  
+
 
 
 
@@ -2408,7 +2408,7 @@ tsconfing 给 tsc编译整个ts文件的时候给它一些对应的配置
 
 ## 十二、装饰器
 
-> 简单记：装饰器本质就是函数，只能用于class，用于装饰类成员(理解：对类成员添加额外的功能) 
+> 简单记：装饰器本质就是函数，只能用于class，用于装饰类成员(理解：对类成员添加额外的功能)
 
 - 参数：所有的装饰器都又两个参数
   1. 参数一：代表装饰的类成员 `value`
@@ -2481,7 +2481,7 @@ tsconfing 给 tsc编译整个ts文件的时候给它一些对应的配置
 >
 > 2023-11-10 补充，现在好像都会去检测了
 
-例： 
+例：
 
 ~~~typescript
 

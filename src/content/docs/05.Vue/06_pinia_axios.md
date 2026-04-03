@@ -29,7 +29,7 @@ title: 'Pinia 介绍'
 
    - 通过对象语法获取修改，在很大程度上降低了，使用难度和复杂度
 
-     
+
 
 2. ##### 更**友好的TypeScript支持**，Vuex之前对TS的支持很不友好，pinia完全是由ts编写的
 
@@ -41,7 +41,7 @@ title: 'Pinia 介绍'
 
    - 同样**不也需要有命名空间的概念**，也不需要记住它们的复杂关系，降低了使用的复杂度。
 
-   
+
 
 5. **getters 的区别**，在返回值不是函数的调用方式多个**标签重复调用的话只会调用一次getter**，同计算属性依赖的**数据发生改变的时候重新计算**
 
@@ -127,7 +127,7 @@ const app = createApp(App)
       })
   ~~~
 
-  
+
 
 ## pinia使用
 
@@ -154,19 +154,19 @@ const store = useHome()
 
   > 直接修改 state ，devTools 也会进行监听的
 
-  
+
 
 - **注意事项**：同样 **解构** 或者 **赋值**的情况下都**不会是响应式**。
 
   > 还是要**结合 `ref` 和 或者 `toRefs` 使用**
-  
-  
-  
+
+
+
 - **提示: `storeToRefs` 和toRefs效果相似**。
 
-  > 创建一个引用对象，其中包含存储的所有状态、**`getter` 和插件添加的状态属性(toRefs也会)**。 类似于toRefs()，但**专门为 Pinia 设计**，所以 **方法 **和 **非 `reative` 对象**属性完全被忽略，**toRefs 不会忽略非 `reactive`属性。** 
+  > 创建一个引用对象，其中包含存储的所有状态、**`getter` 和插件添加的状态属性(toRefs也会)**。 类似于toRefs()，但**专门为 Pinia 设计**，所以 **方法 **和 **非 `reative` 对象**属性完全被忽略，**toRefs 不会忽略非 `reactive`属性。**
 
-  
+
 
 - **直接用 `reactive` 、`ref` 和 `toRefs`。**
 
@@ -180,7 +180,7 @@ const store = useHome()
   }
   ~~~
 
-  
+
 
 ```
 <template>
@@ -615,7 +615,7 @@ const store = useHome()
     }
   ~~~
 
-  
+
 
 
 
@@ -650,7 +650,7 @@ const store = useHome()
 - 定义：同 `vuex` 一样，配置`getters` 选项
 
   > **提示：**如果需要其他的 `store` **直接导入即可**
-  
+
   ~~~js
     getters: {
       getTatol(state) {
@@ -676,7 +676,7 @@ const store = useHome()
     <div>{{store.getTatol}}</div>
   ~~~
 
-  
+
 
 - ##### 注意事项
 
@@ -716,7 +716,7 @@ const store = useHome()
 
 ~~~js
   actions: {
-      
+
 	//返回promise
     getInfos() {
       // console.log(this);
@@ -734,7 +734,7 @@ const store = useHome()
     getInfo3(payload) {
       return this.banners
     }
-      
+
   }
 ~~~
 

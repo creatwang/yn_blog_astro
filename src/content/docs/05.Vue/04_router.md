@@ -179,7 +179,7 @@ title: '第一节、前端路由的发展历程'
 
    ~~~js
    import {createRouter, createWebHistory, createWebHashHistory} from "vue-router";
-   
+
    export  const router = createRouter({
      history: createWebHistory(),
      routes: [
@@ -191,7 +191,7 @@ title: '第一节、前端路由的发展历程'
    })
    ~~~
 
-   
+
 
 4. 在 `main.js` 主文件当中**进行注册**使用
 
@@ -205,7 +205,7 @@ title: '第一节、前端路由的发展历程'
    app.mount('#app')
    ~~~
 
-   
+
 
 5. 通过 `<router-link>` 和 `<router-view>` 组件进行展示
 
@@ -235,17 +235,17 @@ title: '第一节、前端路由的发展历程'
 
      > 注意：这时还没有path ，url为 `http://loaclhost: port`
 
-   
+
 
    - (**重点**)那么在**根组件下的所有后代组件中根据level级别查找最先** 出现 `router-view` 标签，所要显示的组件，由 `routes` 中的**一级path**来**决定**要显示那些组件
 
      > 根组件出现了 `router-view` ，哪么就是 `path` 的一级
 
-   
+
 
    - 之后其他组件，需要 router-view 标签显示组件，哪便由二级 path ，来决定要显示的组件
 
-   
+
 
    - **总结(重点)**：  **树结构组件自上置下，包含 router-view 标签的组件开始**，一直到最后一个 包含router-view的组件，形成的树结构，与**path路径是一一对应的**
 
@@ -271,7 +271,7 @@ title: '第一节、前端路由的发展历程'
     <router-link :to="'/home'">Home</router-link>
     ~~~
 
-    
+
 
   - **对象类型**
 
@@ -292,7 +292,7 @@ title: '第一节、前端路由的发展历程'
     </router-link>
     ~~~
 
-    
+
 
 
 
@@ -309,7 +309,7 @@ title: '第一节、前端路由的发展历程'
   <router-link to="/abc" replace></router-link>
   ~~~
 
-  
+
 
 
 
@@ -396,7 +396,7 @@ title: '第一节、前端路由的发展历程'
       }
   ~~~
 
-  
+
 
 
 
@@ -428,7 +428,7 @@ title: '第一节、前端路由的发展历程'
 
   - 一级path 要添加name 属性，name是该path的唯一id，不可以重复
 
-    
+
 
   - （**重点**）在配置 **children 属性对象的时候**，path 前面**不要添加 "/"**
 
@@ -446,7 +446,7 @@ title: '第一节、前端路由的发展历程'
             component: () => import("../views/home.vue"),
             children: [
               {
-               //这里添加 "/" 
+               //这里添加 "/"
                 path: "/profile",
                 component: () => import("../views/home-profile.vue")
               }
@@ -473,10 +473,10 @@ title: '第一节、前端路由的发展历程'
 
 - 使用二：可以通过 `$route.name` 获取这个**路径的唯一标识**
 
-- 使用三：如果通过`to` 或者 `push` **传入 `path` 对象进行跳转的时候有定义 params 属性**，那么要**确保传入的path对象和routes中path对象要有对应的name**  
+- 使用三：如果通过`to` 或者 `push` **传入 `path` 对象进行跳转的时候有定义 params 属性**，那么要**确保传入的path对象和routes中path对象要有对应的name**
 
   ~~~js
-  //如果传入的 path 对象中有定义params 属性，那么要确保传入的path对象和routes中path对象要有对应的name  
+  //如果传入的 path 对象中有定义params 属性，那么要确保传入的path对象和routes中path对象要有对应的name
   router.push({path:`/home/profile`,name: 'profile',params: {userId: 123}})
   ~~~
 
@@ -492,7 +492,7 @@ title: '第一节、前端路由的发展历程'
 
 - 它可以在**路由地址**和**导航守卫上都被访问到**。
 
-  
+
 
 - **属性值**：对象类型
 
@@ -507,9 +507,9 @@ title: '第一节、前端路由的发展历程'
    },
   ~~~
 
-  
 
-  
+
+
 
 - js中获取：
 
@@ -549,27 +549,27 @@ title: '第一节、前端路由的发展历程'
 
   ~~~html
   <!--可以通过 $route.params 进行获取 -->
-  <router-link 
+  <router-link
   :to="{path:`/home/profile`,name: 'profile',params: {userId: 123}}"
                >
       		显示profile
   </router-link>
-  
+
   <script>
      //js写法
       $router.push({path:`/home/profile`,name: 'profile',params: {userId: 123}})
   </script>
-  
+
   ~~~
 
-  
+
 
 - **query属性**：携带查询字符串，
 
   > `path` 和 `name` 有一个就可以带入，这个不必须指定 `name` 属性
 
   ~~~html
-  <router-link 
+  <router-link
               :to="{path:`/list`, query: {name: 'zhangsan', age: '34'}}"
               >list
   </router-link>
@@ -579,7 +579,7 @@ title: '第一节、前端路由的发展历程'
   </script>
   ~~~
 
-  
+
 
 ### 二、name-params
 
@@ -587,7 +587,7 @@ title: '第一节、前端路由的发展历程'
 
 - **注意**：**`Params`  搭配 `name` 进行使用。否则无效**
 
-  
+
 
 - **使用路径参数和不使用路径参数的区别**：
 
@@ -711,7 +711,7 @@ $router.push({path: `/test/${id}/${variable}` })
       }
   ~~~
 
-  
+
 
 - 可以通过 `$route.params.变量名` **将错误路径显示到页面上**
 
@@ -721,7 +721,7 @@ $router.push({path: `/test/${id}/${variable}` })
   </template>
   ~~~
 
-  
+
 
 
 
@@ -751,7 +751,7 @@ $router.push({path: `/test/${id}/${variable}` })
 
 
 
-### 2、$router 
+### 2、$router
 
 #### 2.1、路由跳转 api
 
@@ -803,7 +803,7 @@ $router.push({path: `/test/${id}/${variable}` })
     > 注意：相同 name 的路由会进行**覆盖**，确保name是**唯一的。**
 
   - 参数二：path对象
-  
+
   - 返回值：函数类型，用于删除创建的路由
 
 
@@ -841,7 +841,7 @@ function addChild() {
 
 1. 函数：通过 `addRoute()`方法，可以**覆盖**相同 `name` 的 `route`。
 
-2. 覆盖：`addRoute()` 方法会返回一个函数，**调用该函数会删除创建的 `route`** 
+2. 覆盖：`addRoute()` 方法会返回一个函数，**调用该函数会删除创建的 `route`**
 
    ~~~js
     const  removePath = router.addRoute("newHome",{
@@ -853,7 +853,7 @@ function addChild() {
     removePath()
    ~~~
 
-   
+
 
 3. api删除：使用 `router.removeRoute()` 方法进行删除指定 `name` 的路由
 
@@ -867,7 +867,7 @@ function addChild() {
      }
      ~~~
 
-     
+
 
 
 
@@ -942,7 +942,7 @@ function addChild() {
   })
   ~~~
 
-  
+
 
 - ~~~js
   router.beforeEach((to, from) => {
@@ -950,7 +950,7 @@ function addChild() {
   })
   ~~~
 
-  
+
 
 
 
@@ -980,7 +980,7 @@ function addChild() {
     },
   ~~~
 
-  
+
 
 
 

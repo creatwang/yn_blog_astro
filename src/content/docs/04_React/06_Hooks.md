@@ -150,7 +150,7 @@ title: '第一节、hooks 的出现'
       // }
       // eventBus.on("why", foo)
       console.log("监听redux中数据变化, 监听eventBus中的why事件")
-  
+
       // 返回值: 回调函数 => 组件被重新渲染或者组件卸载的时候执行
       return () => {
         console.log("取消监听redux中数据变化, 取消监听eventBus中的why事件")
@@ -158,7 +158,7 @@ title: '第一节、hooks 的出现'
     })
   ~~~
 
-  
+
 
 - **参数二**：`Array` 类型，参数一函数所依赖的值。
 
@@ -166,20 +166,20 @@ title: '第一节、hooks 的出现'
 
   > `useEffect/useLayoutEffect` 都会重复调用
 
-  
+
 
   2. 参数依赖为**空数组**的话，参数函数只会在，组件**绘制(没有渲染)完成之后执行一次**
 
   > **传入空数组**的情况下，相当于 `mount` 和 `unmount`
 
   - `useEffect` 同  `mount` 挂载之后 执行时机一致
-  
+
   - `useLayoutEffect ` 同  `unmount` 挂载前 执行时机一致
-  
+
   3. 而参数二不传值的情况下，**”每次“ 当前组件重新 `render` 的时候都会执行**
-  
+
      - 注意：重点，如果useEffect中更新了组件会出现出现了**无限循环**
-  
+
        > 因为本身就是每次渲染的时候执行，在里面有放入更新代码的逻辑所以会出现无限循环
 
 
@@ -194,7 +194,7 @@ title: '第一节、hooks 的出现'
 
   - 当前组件卸载的时候，`useEffect/useLayoutEffect` 的返回致函数都会执行
 
-    
+
 
 
 
@@ -211,7 +211,7 @@ const About = memo(() => {
 
   useEffect(() => {
       console.log("first")
-      dispatch(findHouseInfo()) 
+      dispatch(findHouseInfo())
       //防止出现警告
   }, [dispatch])
 
@@ -246,16 +246,16 @@ const About = memo(() => {
 
   ~~~typescript
   import React, { memo, useRef } from 'react'
-  
+
   const App = memo(() => {
     const titleRef = useRef()
     const inputRef = useRef()
-    
+
     function showTitleDom() {
       console.log(titleRef.current)
       inputRef.current.focus()
     }
-  
+
     return (
       <div>
         <h2 ref={titleRef}>Hello World</h2>
@@ -264,11 +264,11 @@ const About = memo(() => {
       </div>
     )
   })
-  
+
   export default App
   ~~~
 
-  
+
 
 - **用法二**：保存一个数据，这个对象**在整个生命周期中可以保存不变**；
 
@@ -284,7 +284,7 @@ const About = memo(() => {
 
 - **重点（主要的作用）**：当需要将一个函数传递给子组件时, 最好使用`useCallback`进行优化, 将优化之后的函数, 传递给子组件。避免重复渲染，但是会有问题，下面就解决方案
 
-- **特性**：`useCallback`  接收一个函数，会返回一个**优化后**的函数的 `memoized`（**有记忆的值**） 
+- **特性**：`useCallback`  接收一个函数，会返回一个**优化后**的函数的 `memoized`（**有记忆的值**）
 
   > **重点**理解：简单来说就是，当 **`useCallback` 执行多次**的时候，**只会** 根据 **第一次** 传入参数**创建一个函数对象**。
   >
@@ -298,11 +298,11 @@ const About = memo(() => {
 - ##### 知识点
 
   - 如果**没有传**第二个参数的话，和**正常的函数没有区别**
-  
+
   - 当第二个参数**存在依赖**的话，当**依赖被改变**的时候，**更新参数一函数**
-  
+
   - 当第二个参数为**空数组**的情况下，会形成闭包**多次重复执行**的话都是**参数一函数**
-  
+
     > 就是没有依赖需要监听改变，返回的函数也不会改变
 
 
@@ -317,16 +317,16 @@ const About = memo(() => {
 
   ~~~typescript
   const Counter = memo(() => {
-  
+
     const [counter, setCounter] = useState(0)
-      
+
     const trigger = useCallback((num) => {
       setCounter(counter + num)
-        
+
        //只有参数二，数组中包含的依赖值发生了变化的时候，才会更新闭包函数
     }, [counter])
     	//如果是空数组的话，多次执行返回的函数，都会是第一次记忆的函数
-  
+
     return (
       <div>
         <h4>Counter</h4>
@@ -340,7 +340,7 @@ const About = memo(() => {
         </div>
       </div>
     )
-  
+
   })
   ~~~
 
@@ -366,7 +366,7 @@ const About = memo(() => {
 
   ~~~typescript
   const Counter = memo(() => {
-  
+
     const [counter, setCounter] = useState(0)
     const counterRef = useRef()
     //将counter 保存引用
@@ -375,7 +375,7 @@ const About = memo(() => {
       //这里重新set 的时候，上面 counterRef 会一直递增
       setCounter(counterRef.current + num)
     }, [])
-  
+
     return (
       <div>
         <h4>Counter</h4>
@@ -392,7 +392,7 @@ const About = memo(() => {
   })
   ~~~
 
-  
+
 
 
 
@@ -465,7 +465,7 @@ function numCalc(num) {
 
 
 const Counter = memo(() => {
-    
+
     /*
     const result = numCalc(100)
     */
@@ -584,7 +584,7 @@ import { useContext } from 'react'
 import {CounterCtx} from '../context/counterCtx'
 
 const Counter = memo(() => {
-  
+
   const counter = useContext(CounterCtx)
   console.log(counter)
 
@@ -656,7 +656,7 @@ export default About
 
 ### 1、获取windows 的滚动位置
 
-> 原理，每次滚动的时候都会 进行 setState(), 
+> 原理，每次滚动的时候都会 进行 setState(),
 >
 > 因此**每次滚动都会重新渲染当前组件**，
 >
@@ -735,11 +735,11 @@ export default useLocalStorage
 
 ## useSelector
 
-> useSelector的作用是将state映射到组件中，代替了 `mapStateToProps` 
+> useSelector的作用是将state映射到组件中，代替了 `mapStateToProps`
 
 - **参数一**：<`function` 类型>( 会将 `state` 赋值给形参)，**通过返回值** 将 `state` 映射到需要的数据中；
 
-  
+
 
 - **参数二**：`shallowEqual` 函数，可以进行比较来决定是否组件重新渲染。
 
@@ -751,11 +751,11 @@ export default useLocalStorage
 
   - ##### 作用到子组件上
 
-  
+
 
 - **返回值**：参数一根据 `state` 返回的值
 
-  
+
 
 ~~~typescript
 import React, { memo } from 'react'
@@ -765,7 +765,7 @@ import { shallowEqual, useSelector } from 'react-redux'
 const About = memo(forwardRef((props, ref) => {
  console.log("开始渲染")
   const { message } = useSelector(state => ({
-    message: state.counter.get("message")	
+    message: state.counter.get("message")
     //添加第二个参数
   }), shallowEqual)
   return (
@@ -845,7 +845,7 @@ export default About
 
   -  执行的目的包括事件绑定等以及其他页面切换时也可以在客户端被渲染；
 
-  
+
 
 ### useId的作用
 
@@ -873,7 +873,7 @@ export default About
 
   > 渲染优先级降低
 
-  
+
 
 - `faker` 使用方法看 `github`
 
@@ -942,19 +942,19 @@ import {arr} from '../utils/faker/fakerCitys'
 export const Home = memo(() => {
     const [val, setVal] = useState("")
     let [names, setNames] = useState(arr)
-    
+
     // deferNames 这个副本的渲染的优先级会降低
     let deferNames = useDeferredValue(names)
-    
+
     function trigger(e) {
         setVal(e.currentTarget.value)
-        
+
         deferNames = arr.filter(res => {
             return res.props.children
                 .toLowerCase()
                 .includes(e.currentTarget.value.toLowerCase())
         })
-        
+
         setNames(deferNames)
     }
 

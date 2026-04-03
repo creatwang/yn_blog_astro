@@ -37,7 +37,7 @@ title: 'chrom插件'
 
   "manifest_version": 2,
 
-  
+
 
   // 推荐
 
@@ -51,7 +51,7 @@ title: 'chrom插件'
 
   },
 
-  
+
 
   // 可选
 

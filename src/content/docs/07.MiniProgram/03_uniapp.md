@@ -89,7 +89,7 @@ export const useMemberStore = defineStore(
       clearProfile,
     }
   },
-  // 网页端配置 presist: true,  
+  // 网页端配置 presist: true,
   // TODO: 持久化 小程序的storage和浏览器的不一样，所以要同一修改一下api
   {
     persist: {
@@ -468,8 +468,8 @@ change() {
 		onHide: function() {
 			console.log('App Hide')
 		},
-        globalData: {  
-            text: 'text'  
+        globalData: {
+            text: 'text'
         }
 	}
 </script>
@@ -648,7 +648,7 @@ src
 
 
 ~~~js
-	
+
 	"pages": [
 		{
 			"path": "pages/my/my",
@@ -935,7 +935,7 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
      },
 		 methods: {
       getUrl(src) {
-          
+
            // #ifdef APP-PLUS
               let url = plus.io.convertLocalFileSystemURL( src )
               return new Promise((resolve,reject)=>{
@@ -1187,8 +1187,8 @@ What is the two-letter country code for this unit?
 [Unknown]: //输入国家/地区代号（两个字母），中国为CN，输入完成回车
 Is CN=XX, OU=XX, O=XX, L=XX, ST=XX, C=XX correct?
 [no]: //确认上面输入的内容是否正确，输入y，回车
-Enter key password for  
-(RETURN if same as keystore password): //确认证书密码与证书文件密码一样（HBuilder|HBuilderX要求这两个密码一致），直接回车就可以  
+Enter key password for
+(RETURN if same as keystore password): //确认证书密码与证书文件密码一样（HBuilder|HBuilderX要求这两个密码一致），直接回车就可以
 以上命令运行完成后就会生成证书，路径为“D:\test.keystore”。
 
 
@@ -1239,8 +1239,8 @@ Enter key password for
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        
+
+
         // 这里是uniapp的入口，这里不能改的，这里的区别后面在研究总之这里是冷启动的开始
         <activity
             android:name="io.dcloud.PandoraEntryActivity"
@@ -1554,8 +1554,8 @@ viewport-fit：cover
    1. ```html
       <meta name="viewport"
               content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-      
-      
+
+
       ```
 
    2. 把页面主体内容限定在安全区内
@@ -1573,8 +1573,8 @@ viewport-fit：cover
           padding-right: constant(safe-area-inset-right);
           padding-right: env(safe-area-inset-right);
       }
-      
-      
+
+
       ```
 
       - 当给按钮增加高度的方式也是一样
@@ -1582,7 +1582,7 @@ viewport-fit：cover
       ```less
       padding-bottom: constant(safe-area-inset-bottom);
       padding-bottom: env(safe-area-inset-bottom);
-      
+
       ```
 
 

@@ -72,17 +72,17 @@ title: '第一节、React的过渡动画'
     return (
       <div>
           <button onClick={e => this.setState({isShow: !isShow})}>trigger</button>
-              <CSSTransition 
+              <CSSTransition
                   //class前缀
-                  classNames="wyn" 
+                  classNames="wyn"
                   //判断是否显示
-                  in={isShow} 
+                  in={isShow}
                   //当被Switch和group包裹的时候 key 会代替in属性的作用
                   //key={isShow ? 1: 2}
                   //首次渲染的是否添加动画
                   appear={true}
                   //是否卸载组件，不使用的话需要添加 done class
-                  // unmountOnExit={true} 
+                  // unmountOnExit={true}
                   //class 切换完成的时间
                   timeout={2000}
                   >
@@ -109,7 +109,7 @@ title: '第一节、React的过渡动画'
 
   > 否则组件不卸载，动画结束后还会回显
 
-  - 如果频繁切换，**不希望组件卸载**的话，可以使用 `enter/exit-done` class 
+  - 如果频繁切换，**不希望组件卸载**的话，可以使用 `enter/exit-done` class
 
 
 
@@ -117,7 +117,7 @@ title: '第一节、React的过渡动画'
 
   - 当 `in` **为 `true` 时**，触发**进入**状态，会添加 `-enter`、`-enter-acitve` 的 `class` 开始执行动画，当动画执行结束后，会移除两个 `class`，并且添加 `-enter-done` 的 `class`；\
 
-    
+
 
   - 当 `in` **为 `false` 时**，触发**退出**状态，会添加 `-exit`、`-exit-active`的`class`开始执行动画，当动画执行结束后，会移除两个`class`，并且添加`-enter-done`的`class`；
 
@@ -138,7 +138,7 @@ title: '第一节、React的过渡动画'
 - ##### 参数：毫秒
 
 - 过渡动画 `class` 的持续实现，在其属性指定的时间内完成 `class` 的切换
-- 区分`Transition` 中的`duration`： 
+- 区分`Transition` 中的`duration`：
   - `timeout`：是在指定的时间内，要完成对应class的切换
   - `duration`：是动画的持续时间，有可能动画结束了，`timeout` 时间常的话可能动画结束一段时间在进行`active`的切换
 
@@ -200,7 +200,7 @@ title: '第一节、React的过渡动画'
 }
 
 .move {
-  
+
   transition: all 2s ease;
 }
 ~~~
@@ -233,7 +233,7 @@ title: '第一节、React的过渡动画'
 
   > `SwitchTransition` 包裹的 `CSSTransition` 组件
 
-  
+
 
 - **`Transition` 中 key属性**：`SwitchTransition` 包裹的 `CSSTransition` 或 `Transition` 组件**不再**像以前那样**接受 `in` 属性来判断**元素是何种状态，**取而代之的是 `key` 属性；**
 
@@ -247,7 +247,7 @@ title: '第一节、React的过渡动画'
         <SwitchTransition mode="in-out">
           <CSSTransition classNames={"wyn"} key={isShow ? 1 : 2} timeout={2000} unmountOnExit={true}>
             {
-              isShow ? <h5>张三</h5> : <h5>李四</h5>  
+              isShow ? <h5>张三</h5> : <h5>李四</h5>
             }
           </CSSTransition>
         </SwitchTransition>
@@ -376,7 +376,7 @@ export class App extends PureComponent {
 > @craco/craco@alpha 内测版本
 
 ~~~shell
-npm install @craco/craco 
+npm install @craco/craco
 ~~~
 
 
@@ -394,13 +394,13 @@ npm install @craco/craco
     },
   ~~~
 
-  
+
 
 - 然后在项目**根目录**创建一个 `craco.config.js` 用于**修改默认配置。**
 
-  
 
-  
+
+
 
 - 配置好就可以直接导入使用了
 
@@ -408,19 +408,19 @@ npm install @craco/craco
 
 ### 2.2、css导入
 
-由于 `React` 框架使用的 `jsx` 
+由于 `React` 框架使用的 `jsx`
 
 - 因此也是**没有`style` 的 `@import` 导入的关键字**
 - 只能使用模块化的导入方式 ，`require`、`import()异步导入`
 - 或者使用 `Portal` 向`header` 标签导入一个 `style` 元素
 
 ~~~typescript
-require("./style.less") 
+require("./style.less")
 //使用Portal
  render() {
    const el = <style >@import("./style.less")</style>
    const dom = document.querySelector("head")
-   return createPortal(el, dom) 
+   return createPortal(el, dom)
  }
 ~~~
 
@@ -515,7 +515,7 @@ export default App
 
   > vscode-styled-components
 
-  
+
 
 
 
@@ -559,7 +559,7 @@ export default App
     }
   ~~~
 
-  
+
 
 
 
@@ -572,7 +572,7 @@ export default App
    - `props` 属性会包含 `attrs()` 方法初始化的一些对象属性
    - 还会包含，在**组件上自定义的一些属性**
 
-   
+
 
 2. 可以用通过 `attrs()` 方法**初始化一些 `css` 属性值**
 
@@ -590,7 +590,7 @@ export default App
         border: ${props => props.num}px solid red;
       }
     `
-    
+
 //function设置props默认属性
 export const ModuleCss = styled.div.attrs(props => {
         return {
@@ -643,7 +643,7 @@ export const Foo = styled(Bar)``
   ~~~typescript
   import React, { PureComponent } from 'react'
   import classNames from 'classnames'
-  
+
   export class App extends PureComponent {
       return (
         <div>
@@ -654,11 +654,11 @@ export const Foo = styled(Bar)``
       )
     }
   }
-  
+
   export default App
   ~~~
 
-  
+
 
 
 

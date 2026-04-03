@@ -36,12 +36,12 @@ http.createServer((req, res) => {
     age: "lisi"
   }))
   res.end()
-    
+
 /*也可以写在 end 方法当中
   res.end(JSON.stringify({
     name: "lisi"
   }))*/
-    
+
 }).listen(3000)
 
 ~~~
@@ -72,13 +72,13 @@ http.createServer((req, res) => {
 
     `console.log(url.resolve('https://www.baidu.com:443/ad/index/', "zhangsan"));`
 
-    
+
 
   - **第二个参数path**：路径前有 `/` 的情况下会将，域名或端口后面的path **全部替换**
 
     `console.log(url.resolve('url/lisi', "/zhangsan"));`
 
-    
+
 
 ~~~js
 const sss = `/ad/index.html?id=8&name=mouse#tag=110`
@@ -160,7 +160,7 @@ fileURLToPath('file:///C:/path/');       // 正确: C:\path\ (Windows)
 > 将路径转换为 file协议的url
 
 ~~~js
-pathToFileURL('/foo#1');            
+pathToFileURL('/foo#1');
 // 正确: file:///foo%231 (POSIX)
 ~~~
 
@@ -258,12 +258,12 @@ eventBus.off("play", foo)
 
   > 服务器启动时如果需要**读取配置文件**，或者**结束时**需要**写入到**状态文件时，可以使用同步代码，因为这些代码只在**启动**和**结束**时执行一次，不影响服务器正常运行时的异步执行。
 
-  
+
 
 - **异步方法注意**：
 
   - 采用 `err-first` 风格设计的，**通过回调函数返回异常**
-  - 异步方法**支持 `promise`**  
+  - 异步方法**支持 `promise`**
   - **获取promise "属性" 对象** 进行操作，`const fs = require('fs').promise`
 
   > 由于Node环境执行的JavaScript代码是服务器端代码，所以，绝大部分需要在服务器运行期**反复执行**业务逻辑的代码，**必须使用异步代码**，否则，同步代码在执行时期，服务器将停止响应，因为JavaScript只有一个执行线程。
@@ -432,7 +432,7 @@ fs.readFile('./logs/log-0.txt', 'utf-8').then(result => {
 
 ### fs.unlink
 
-> 删除文件 
+> 删除文件
 
 ~~~js
 fs.unlink('./logs/log1.txt', (err) => {
@@ -518,7 +518,7 @@ fs.readdirSync(path,option)
   - **encoding:**它是一个字符串值，该字符串值指定给回调参数指定的文件名使用哪种编码。默认值为“ utf8”。
   - **withFileTypes:**这是一个布尔值，它指定是否将文件作为fs.Dirent对象返回。默认值为“ false”。
 
-  
+
 
 ## 五、stream流模块
 
@@ -621,10 +621,10 @@ hash.update('Hello, world!');
 hash.update('Hello, nodejs!');
 
 //返回16进制格式
-console.log(hash.digest('hex')); 
+console.log(hash.digest('hex'));
 
 //返回base64格式
-//console.log(hash.digest('base64')); 
+//console.log(hash.digest('base64'));
 ~~~
 
 
@@ -799,7 +799,7 @@ var str = window.atob(enc);
             name: "zhangsan",
             address: "天津市"
         })})`)
-      
+
     }).1isten(3000)
 </script>
 
@@ -860,22 +860,22 @@ app.listen(8080, () => {
 
 ## 3、app.all
 
-- Express提供的服务端的CORS服务 
+- Express提供的服务端的CORS服务
 
 ~~~js
 
 
-//设置跨域访问  
-app.all('*', function(req, res, next) {  
-    res.header("Access-Control-Allow-Origin", "*");  
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");  
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");  
-    res.header("X-Powered-By",' 3.2.1')  
-    res.header("Content-Type", "application/json;charset=utf-8");  
-    next();  
-});  
+//设置跨域访问
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1')
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+});
 
- 
+
 ~~~
 
 
@@ -923,12 +923,12 @@ const route = {
   ~~~js
       "/api/login":(req,res)=>{
           const myURL = new URL(req.url, 'http://127.0.0.1:3000');
-          console.log(myURL.searchParams.get("username"))   
+          console.log(myURL.searchParams.get("username"))
           render(res,`{ok:1}`)
       }
   ~~~
 
-  
+
 
 
 
@@ -941,7 +941,7 @@ const route = {
           req.on('data', function (chunk) {
               post += chunk;
           });
-  
+
           // 在end事件触发后，通过querystring.parse将post解析为真正的POST请求格式，然后向客户端返回。
           req.on('end', function () {
               post = JSON.parse(post);
@@ -964,9 +964,9 @@ function readStaticFile(req, res) {
 
   if (fs.existsSync(filePathname)) {
     // console.log(1111)
-      
+
     res.writeHead(200, { "Content-Type": `${mime.getType(path.extname(myURL.pathname))};charset=utf8` })
-      
+
     res.write(fs.readFileSync(filePathname, "utf8"))
     res.end()
     return true
@@ -987,9 +987,9 @@ function readStaticFile(req, res) {
 1. 对于 `write()` 和 `end()` 方法的封装，**在 res 对象中添加 send() 方法**
    - 正常情况下浏览器会根据不同数据格式，进行显示，如果返回的**html格式的字符串**，会对字符串进行解析
    - 但是，包含中文的话，会乱码，send方法会自动在**请求头上添加编码格式**，`"Content-type": "text/html;charset=utf-8"`
-   
-   
-   
+
+
+
 2. 不在需要手动的进行 `JSON.stringify()` 方法手动进行装换 `json` 字符串了，`send()` 会自动将发送的对象装换成 `json` 字符串。
 
 
@@ -1000,7 +1000,7 @@ function readStaticFile(req, res) {
 
      > 只响应`json`，`send()` 都会响应 (遇见`json`也会自动解析)
 
-  2. `res.render()` 
+  2. `res.render()`
 
      > 渲染指定的模板
 
@@ -1057,7 +1057,7 @@ function readStaticFile(req, res) {
 
   > 个人认为，app接收到请求之后，还有从头进行执行**最先匹配前面的路由**，看那个api可以处理该响应，就执行对应的回调
 
-  
+
 
 - ##### 参数一：访问的路径
 
@@ -1070,7 +1070,7 @@ function readStaticFile(req, res) {
     app.get('/a(123)?c', (req, res) => {})
     ~~~
 
-    
+
 
   - 正则表达式
 
@@ -1079,12 +1079,12 @@ function readStaticFile(req, res) {
     app.get(/[1-9]^zhangsan$/, (req, res) => {})
     ~~~
 
-    
+
 
   - 路径占位符 ( vue 中动态路由的占位符 :id，也算是实现了restful风格 )
 
     - 通过 `req.params` 获取
-    
+
     ~~~js
     //占位符只能占一个
     app.get('/zhangsan/:id/:idx', (req, res) => {})
@@ -1104,13 +1104,13 @@ function readStaticFile(req, res) {
 
    > 获取请求体参数
 
-3. `req.params` 
+3. `req.params`
 
    > 获取动态路径参数
 
-   
-   
-   
+
+
+
 
 ### 3、路由回调函数
 
@@ -1135,9 +1135,9 @@ function readStaticFile(req, res) {
   })
   ~~~
 
-  
 
-  
+
+
 
 - ##### 知识点：后面的函数接收前面函数的参数
 
@@ -1154,7 +1154,7 @@ function readStaticFile(req, res) {
   })
   ~~~
 
-  
+
 
 - **注意一**：如果第二个参数是**数组**的话，**后面**可以是**参数列表**
 
@@ -1163,7 +1163,7 @@ function readStaticFile(req, res) {
   app.get('/zhangsan/:id/:idx', [foo], (req, res, next) => {})
   ~~~
 
-  
+
 
 - **注意二**：`app.get()` 的**回调函数中使用 `return`** ，不会有任何的响应，和**不写的效果是一样的**，都会**卡住**
 
@@ -1207,12 +1207,12 @@ app.use("/", (req, res, next) => {
 
   > **相当于拦截指定的路径**，例如链接 `/` 路径 就算是拦截所有路径
 
-  
+
 
   - 访问 `/` 路径**后面**的**所有路径都会**调用这个拦截器
   - 如果要拦截所有的路径，**可以不填**这个参数，只填一个回调函数，默认是全部拦截
 
-  
+
 
 - 因为`use()` 方法和 `app.get()` 方法在执行的顺序上，只会调用声明在前的方法。
 
@@ -1231,23 +1231,23 @@ app.use("/", (req, res, next) => {
 
     > 因为访问前面的 `api`，之后遇见 `send()` 方法直接返回前台了，不会执行到 `use()` 方法
 
-    
+
 
   - **总结**：调用 `use()` 方法**前**，**声明的 `Api` 接口**，**不会触发 `use()` 方法**，要在Api接口前定义 `use()` 方法
 
     > 直接在创建 `app` 之后声明 `use()` 函数
 
-    
+
 
   - ##### 因此 use() 方法的声明一定要注意顺序
-  
+
   - **主要作用**：应用其他中间件，所有请求过来会由中间件处理之后，在做其他的处理
 
 
 
 - **注意**：应用级别的中间件，**声明在所有api 方法的前面**，由于自身的特性**每次**都会调用，如果在 `use()` 方法的回调函数中使用 `send()` 方法响应客户端，那么**其他**的 `Api` 接口永远不会调用。
 
-  
+
 
 #### 1.3、use方法的作用
 
@@ -1263,11 +1263,11 @@ app.use("/", (req, res, next) => {
 
 - app.all其实是和 `app.get` 和 `app.post` 类似，它是 app.get 和 app.post 等的一个**统一函数，可以接收任何的请求**，路径匹配的是完整路径，如果要匹配以某个字符串开头，则后面添加* 即可
 
-  
+
 
 - `app.use((req,res,next)=>{})`效果是相同的。但是在一般情况下，为了好识别和解读程序代码，最好还是让其**按语义来执行**。`app.all`的一个用途是可以处理跨域请求：
 
-  
+
 
 - `app.use` 还用于注册其他中间件
 
@@ -1279,7 +1279,7 @@ app.use("/", (req, res, next) => {
 
 - **注意**的是声明的位置，**一定**要是**所有的路由 `Api` 方法的后面**进行声明。
 
-  > use() 默认是全部路径拦截，放在前面声明的话所有路径都会 404 
+  > use() 默认是全部路径拦截，放在前面声明的话所有路径都会 404
 
 - 这样的话当，前面所有的 `Api` 都没有匹配到的路径，就会自动调用最后的中间件，
 
@@ -1313,7 +1313,7 @@ app.use((req, res) => {
 
    - 路由对象也会有对应的get、post 方法
 
-   
+
 
 2. 在 `app.use()` 方法中定义，父级路径
 
@@ -1321,7 +1321,7 @@ app.use((req, res) => {
    >
    > 如果不访问`/home`，又找不到路由对象.
 
-   
+
 
 3. 这样就会先匹配应用级别的中间件，之后在匹配路由级别的
 
@@ -1332,19 +1332,19 @@ app.use((req, res) => {
    const router = express.Router()
    //注册路由中间件
    app.use("/home", router)
-   
+
    //不需要父级路径的时候可以直接写 app.use(router)
-   
+
    router.get("/zhangsan", (req, res) => {
      res.send("zhnagsan")
    })
-   
+
    app.listen(3000, () => {
     console.log("启动成功");
    })
    ~~~
-   
-   
+
+
 
 ### 4、内置中间件
 
@@ -1360,19 +1360,19 @@ app.use((req, res) => {
 
    > **拼接文件路径**
 
-   
+
 
 2. css文件则不会自动解析，需要**根据不同**的扩展名**手动添加**请求头，需要依赖其他库 mime, 否则不会被浏览器解析.
 
    > **设置请求头**
 
-   
+
 
 3. 当**手动处理静态资源文件**的时候，在访问 `html` 浏览器会根据正确的格式**自动添加请求头**，但是不会自动添加字符编码所以，中文会乱码
 
    > **设置中文乱码**
 
-   
+
 
 4. 获取到文件之后，**通过 fs 文件流进行写出**
 
@@ -1391,7 +1391,7 @@ app.use((req, res) => {
   app.use(express.static('public'))
   ~~~
 
-  
+
 
 - 同手动处理静态文件夹流程相同，前台**访问**的时候**不需要添加**静态资源文件路径
 
@@ -1402,7 +1402,7 @@ app.use((req, res) => {
   app.use("/public", express.static('public'))
   ~~~
 
-  
+
 
 
 
@@ -1410,13 +1410,13 @@ app.use((req, res) => {
 
 - 在处理 get 请求中可以直接获取到查询字符串
 
-  
+
 
 - 但是在要处理post请求需要单独在应用中注册中间件
 
   > 在以前的老版本，4版本之前，需要手动的导入 第三方中间件，但是在**4版本之后内置了**
 
-  
+
 
 - 只需要手动注册即可
 
@@ -1433,7 +1433,7 @@ app.use((req, res) => {
 
 
 
-### 3、`cookie-parser` 中间件 
+### 3、`cookie-parser` 中间件
 
 #### 配置
 
@@ -1486,9 +1486,9 @@ req.cookies.zhangsn
   app.engine("html",require("ejs").renderFile)
   ~~~
 
-  
-  
-  
+
+
+
 
 ### 页面跳转及配置
 
@@ -1496,30 +1496,30 @@ req.cookies.zhangsn
 
   > `req.render()` 会根据**配置的**模板引擎，自动去指定的文件夹中查找该文件
 
-  
+
 
   ~~~js
   const express  = require("express")
   const router = express.Router()
-  
+
   router.get("/home", (req, res) => {
-      
-      
+
+
     //这里的效果，和 render() 中的第二个参数的效果一样，也会在模板中获取到message这个变量
     //res.locals.message = "message";
-  
-    
+
+
     res.render(
         		//配置了模板引擎和页面文件的路径之后不用扩展名就可以找到这个文件
-        		"home", 
+        		"home",
         		//这里的第二个参数，会作为 home.ejs页面的 上下文对象，可以直接<%name%> 获取到
                {name: "zhangsan", addr: "天津市", age: 34}
               )
   })
-  
+
   ~~~
 
-  
+
 
 - `req.redirect()` 重定向 ejs 页面
 
@@ -1530,17 +1530,17 @@ req.cookies.zhangsn
   })
   ~~~
 
-  
+
 
 -  `use.set()` 配置 ejs 模板引擎
 
   ~~~js
   //通过 use.set() 方法
   //设置views 选项，要在那个文件夹中获取页面文件
-  
+
   //render会在这个文件夹下获取文件， 最好要用绝对路径
   app.set("views", path.join(__dirname, "/views"))
-  
+
   //设置需要的模板引擎，render函数会根据配置的扩展名，自动给参数添加扩展名
   app.set("view engine", "ejs")
   ~~~
@@ -1599,7 +1599,7 @@ req.cookies.zhangsn
   mongoose.connect('mongodb://admin:123456@182.92.155.197:27017/zhangsan?authSource=admin')
   ~~~
 
-  
+
 
 ## mongoose创建模型
 
@@ -1609,19 +1609,19 @@ req.cookies.zhangsn
 
   > 和模型不一致的字段是不会添加的。其他字段一致的则会添加，字段全部错误的话也会添加一条只有id字段的文档。
 
-  
+
 
 - **注意**：`import` 导入的时候，是不会遵循 d`require` 的查找规则的
 
   > 需要写完整路径和后缀名
 
-  
+
 
 - 同 `javaBean` 相似，思想一致，**和数据库字段一致**
 
 - **注意**：模型对应的集合也会自动创建的
 
-- ##### mongoose 的模型，相似与 jpa  
+- ##### mongoose 的模型，相似与 jpa
 
 ~~~js
 const mongoose = require("mongoose")
@@ -1697,7 +1697,7 @@ module.exports = UserModel
   req|ctx.session.data = Data.now()
   ~~~
 
-  
+
 
 
 
@@ -1724,11 +1724,11 @@ module.exports = UserModel
     const session = require("express-session");
     const MongoStore = require("connect-mongo");
     const app = express();
-    
+
     app.use(
       session({
         secret: "this is session", // 服务器生成 session 的签名
-        resave: true, 
+        resave: true,
         cookie: {
           maxAge: 1000 * 60 * 10,// 过期时间
         },
@@ -1740,7 +1740,7 @@ module.exports = UserModel
     );
     ~~~
 
-    
+
 
 
 
@@ -1757,16 +1757,16 @@ app.use(
     secret: "this is session", // 服务器生成 session 的签名
     //当重新设置 session 的时候，会更新 cookie 的超时时间 ，所以只是登录的时候会重新更新时间
     //可以每次在接口调用的时候，重新创建一个时间戳
-    resave: true, 
+    resave: true,
     //就是第一次访问的时候，就先生成一个 cookie，强制将为初始化的 session 存储
-    saveUninitialized: true, 
+    saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 10,// 过期时间
      //为 true 时候表示只有 https 协议才能访问cookie，可以省略因为默认就是false
-      secure: false, 
+      secure: false,
     },
-    //为 true(默认就是ture) 表示 超市前页面刷新，cookie 会重新计时； 为 false 表示在超时前刷新多少次，都是按照第一次刷新开始计时。   
-    rolling: true, 
+    //为 true(默认就是ture) 表示 超市前页面刷新，cookie 会重新计时； 为 false 表示在超时前刷新多少次，都是按照第一次刷新开始计时。
+    rolling: true,
     store: MongoStore.create({
       mongoUrl: 'mongodb://127.0.0.1:27017/kerwin_session',
       ttl: 1000 * 60 * 10 // 过期时间
@@ -1826,7 +1826,7 @@ b.com ===>链接 http://a.com?from=aaaa&to=vvv&money=100 chokie
 
 - 因为手动点击不会走 `axios`，只有使用 `axios` 实例发送的请求才会走拦截器，添加请求头
 
-- 验证的时候应该提供两个错误码 
+- 验证的时候应该提供两个错误码
   1. 是 `token` 验证失败，
   2. 是没有 `authorization` 请求头，的情况，来决定是否是回到登录页面，还是请求api接口
 
@@ -1891,7 +1891,7 @@ npm install --save multer
 
   > 上传的文件默认对文件名进行加密没有扩展名，<u>没有扩展名也能访问</u>
 
-  
+
 
 - 如果需要自定义名称可以：看npm文档 -》`DiskStorage`
 
@@ -1936,7 +1936,7 @@ app.post('/photos/uploads', upload.array('avatar', 12), function (req, res, next
 
 5. 根据文档生成 `mock` 数据；
 
-   
+
 
 ~~~shell
 npm install -g apidoc
@@ -2112,14 +2112,14 @@ app.listen(3000)
   ~~~js
   var Koa = require("koa")
   var router = require("./router/index")
-  
+
   var app = new Koa()
   //routers 是router实例的方法
   app.use(router.routes()).use(router.allowedMethods())
   app.listen(3000)
   ~~~
 
-  
+
 
 ### 路由前缀
 
@@ -2141,7 +2141,7 @@ router.prefix('/api')
 router.get("/home",(ctx)=>{
     ctx.body="home页面"
 })
-//写法1 
+//写法1
 router.redirect('/', '/home');
 //写法2
 router.get("/",(ctx)=>{
@@ -2165,7 +2165,7 @@ router.get("/",(ctx)=>{
 
   ~~~js
   const bodyParser = require('koa-bodyparser')
-  
+
   // 使用ctx.body解析中间件
   app.use(bodyParser())
   ~~~
@@ -2188,7 +2188,7 @@ router.get("/",(ctx)=>{
   ~~~shell
   # 安装koa模板使用中间件
   npm install --save koa-views ejs
-  
+
   # 安装ejs模板引擎
   npm install --save ejs
   ~~~
@@ -2200,23 +2200,23 @@ router.get("/",(ctx)=>{
   const views = require('koa-views')
   const path = require('path')
   const app = new Koa()
-  
+
   // 加载模板引擎
   app.use(
       views(path.join(__dirname, './view'), {extension: 'ejs'})
          )
-  
+
   app.use( async ( ctx ) => {
     let title = 'hello koa2'
     await ctx.render('index', {
       title,
     })
   })
-  
+
   app.listen(3000)
   ~~~
 
-  
+
 
 ## 七、cookie&session
 
@@ -2248,7 +2248,7 @@ npm install koa-session-minimal
 
   ~~~js
   const session = require("koa-session-minimal")
-  
+
   //配置session
   app.use(session({
     key: "zhangsan",
@@ -2267,7 +2267,7 @@ npm install koa-session-minimal
           await next()
           return
       }
-  
+
       if (ctx.session.user) {
           //重新设置以下sesssion
           ctx.session.mydate = Date.now()
@@ -2277,7 +2277,7 @@ npm install koa-session-minimal
       }
   })
   ~~~
-  
+
 ### jwt
 
 ~~~js
@@ -2287,13 +2287,13 @@ npm install koa-session-minimal
           await next()
           return
       }
-  
+
       if (ctx.session.user) {
           //重新设置以下sesssion
           ctx.session.mydate = Date.now()
           await next()
       } else {
-  
+
           ctx.redirect("/login")
       }
   })
@@ -2312,7 +2312,7 @@ npm install koa-session-minimal
   ~~~js
   const multer = require('@koa/multer');
   const upload = multer({ dest: 'public/uploads/' })
-  
+
   router.post("/",upload.single('avatar'),
   (ctx,next)=>{
       console.log(ctx.request.body,ctx.file)
@@ -2321,7 +2321,7 @@ npm install koa-session-minimal
           info:"add user success"
       }
   })
-  
+
   ~~~
 
 
@@ -2475,10 +2475,10 @@ WebSocketServer = WebSocket.WebSocketServer
 const server = new WebSocketServer({ port: 8080 });
 //server websocket 服务,也是当前应用的实例，管理所有的 socket 链接
 server.on('connection', function connection(ws, req) {
-    
+
     const myURL = new URL(req.url, 'http://127.0.0.1:3000');
     const payload = JWT.verify(myURL.searchParams.get("token"))
-    
+
     //校验token
     if (payload) {
 		//user 最好要保存每个用户的唯一id，用于私聊判断
@@ -2491,7 +2491,7 @@ server.on('connection', function connection(ws, req) {
         ws.send(createMessage(WebSocketType.Error, null, "token过期"))
 
     }
-    
+
 
     ws.on('message', function message(data, isBinary) {
 
@@ -2504,25 +2504,25 @@ server.on('connection', function connection(ws, req) {
                 break;
             case WebSocketType.GroupChat:
                 server.clients.forEach(function each(client) {
-                    if (client !== ws 
-                        && client.readyState === WebSocket.OPEN) 
+                    if (client !== ws
+                        && client.readyState === WebSocket.OPEN)
                     {
-                        
+
                         client.send(createMessage(WebSocketType.GroupChat
                                                   , ws.user
                                                   , messageObj.data));
-                        
+
                     }
                 });
                 break;
             //私聊
             case WebSocketType.SingleChat:
-                
+
                 //server.clients 所有的链接
                 server.clients.forEach(function each(client) {
                     //遍历所有的链接，判断是否是指定用户，以及当前用户是否还保持链接
-                    if (client.user.username === messageObj.to 
-                        && client.readyState === WebSocket.OPEN) 
+                    if (client.user.username === messageObj.to
+                        && client.readyState === WebSocket.OPEN)
                     {
                       //发送消息
                      client.send(createMessage(WebSocketType.SingleChat
@@ -2530,7 +2530,7 @@ server.on('connection', function connection(ws, req) {
                                                , messageObj.data)
                                 );
                     }
-                    
+
                 });
                 break;
         }
@@ -2598,13 +2598,13 @@ npm install socket.io-client --save
 
 - 当服务器重启的时候，客户端就会断开链接，`socket.io` **默认实现自动断连**的功能
 
-  > 当服务器重启，断开的时候，`socket.io` 会尝试重新链接	
+  > 当服务器重启，断开的时候，`socket.io` 会尝试重新链接
 
 - `socket.io` 当前链接对象的 emmit() 支持直接传入对象，**不用手动转`json`了**
 
 - 缺点就是，**性能并没有 `ws` 高**
 
-  
+
 
 
 
@@ -2626,7 +2626,7 @@ const socket = io("ws://loalhost:8080")
   > 当前链接对象，就是 `socket` 服务中`connention` 事件中的参数一，
   >
   > 参数二：是req对象
-  
+
 - 具体使用方法开socket.io中文文档
 
 - 客户端/服务端示例
@@ -2656,10 +2656,10 @@ const io = new Server(3000);
 io.on("connection", function (socket) {
 	/* 每一个连接上来的用户，都会分配一个socket */
 	console.log("客户端有连接");
-    
+
 	// 给客户端发送消息（发布welcome事件）
 	socket.emit("welcome", "欢迎连接socket");
-    
+
 	/* 监听登录事件 */
 	socket.on('login', data => {
 		console.log('login', data);
@@ -2669,7 +2669,7 @@ io.on("connection", function (socket) {
             console.log("disconnect reason ", reason)
             //userMap.delete(socket.handshake.query.username)
     })
- 
+
 	/* socket实例对象会监听一个特殊函数，关闭连接的函数disconnect */
 	socket.on('disconnect', function () {
 		console.log('用户关闭连接');
@@ -2689,7 +2689,7 @@ io.on("connection", function (socket) {
   });
   ~~~
 
-  
+
 
 
 
@@ -2719,7 +2719,7 @@ VO主要的存在形式就是js里面的对象（也可以简单理解成json）
 
 //VO 可能男性展示名称呼要展示为公子，这样的业务场景就是vo
 {
-    "gender":"公子" 
+    "gender":"公子"
 }
 ~~~
 

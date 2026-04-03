@@ -20,7 +20,7 @@ title: '第一节、vuejs介绍'
 
   > 主张最少，并不强制性的使用 vuejs 中的所有功能。可以自由的选择需要 vuejs 那部分功能，在进行引入使用即可。**可以分步逐渐引入和使用 vuejs。**
 
-  
+
 
 - **声明式编程**
 
@@ -28,12 +28,12 @@ title: '第一节、vuejs介绍'
 
     > **不需要明确的指定需要操作的对象**，只需要声明自己的变量，代码之后按照特殊的语法，**放到指定的位置进行执行来实现特定的功能的一种编程方式。**
 
-    
+
 
   - 命令式编程
 
     > 命令式编程的主要思想是关注计算机执行的步骤，即一步一步告诉计算机先做什么再做什么。
-  
+
 
 
 
@@ -44,7 +44,7 @@ title: '第一节、vuejs介绍'
 
 ### 1、vue2-vue3 区别
 
-> 尤雨溪：直接学vue3即可基础概念是一样的	
+> 尤雨溪：直接学vue3即可基础概念是一样的
 
 > 13年 尤玉溪开发了seed
 >
@@ -155,7 +155,7 @@ title: '第一节、vuejs介绍'
 
   > 因此，这里**不能使用箭头函数**-(箭头函数不绑定this)
 
-  
+
 
 - 实例创建之后，**可以通过 `vm.$data` 访问原始数据对象**。**组件实例** 也 **代理了 data 对象上所有的 property**，因此访问 `vm.a` 等价于访问 `vm.$data.a`。
 
@@ -193,7 +193,7 @@ title: '第一节、vuejs介绍'
 
   - 模板中放入太多的逻辑**会让模板过重和难以维护**，并且如果多个地方都使用到，那么会有**大量重复的代码；**
 
-  
+
 
 - 对于这样的复杂数据就可以用 `computed` 和 `method` ，将逻辑抽离出去进行实现
 
@@ -210,7 +210,7 @@ title: '第一节、vuejs介绍'
 
 ~~~js
     //直接当作属性来用
-	//div class="box">{{reMessage}}</div> 
+	//div class="box">{{reMessage}}</div>
     computed: {
       reMessage() {
         return this.message.split(" ").reverse().join(" ")
@@ -256,7 +256,7 @@ title: '第一节、vuejs介绍'
 > watch主要用于，**在代码逻辑中监听某个数据(例：data, 或者计算属性）的变化**。
 
 - **特点**：当**修改相同数据**的情况下**不会重复执行**
-- 使用场景： 
+- 使用场景：
   - 用户在**input中输入**一个问题；
   - 每当用户输入了最新的内容，**通过监听内容获取到最新的内容**，并且使用该问题去服务器查询答案；
   - 来**实时的去获取最新的数据变化**。
@@ -319,7 +319,7 @@ title: '第一节、vuejs介绍'
 
 - 决定**是否页面加载的时候就触发监听**： `immediate：true`
 
-- 注意：方法是 `handler` 
+- 注意：方法是 `handler`
 
 - **注意：**这里的 `val` 和 `oldval` 都是同一个对象, 因为并没有改变整个对象。
 
@@ -357,7 +357,7 @@ title: '第一节、vuejs介绍'
       }
   ~~~
 
-  
+
 
 ### 4、watch 其他的监听
 
@@ -367,7 +367,7 @@ title: '第一节、vuejs介绍'
 
   > 可以在**数据改变**的时候**更新重复的代码逻辑。**
 
-  
+
 
   ~~~js
       watch: {
@@ -384,7 +384,7 @@ title: '第一节、vuejs介绍'
       },
   ~~~
 
-  
+
 
 - **深度监听写法**
 
@@ -397,7 +397,7 @@ title: '第一节、vuejs介绍'
       },
   ~~~
 
-  
+
 
 - ##### 数组形式（不常用）
 
@@ -426,8 +426,8 @@ title: '第一节、vuejs介绍'
           console.log(val, oldval);
         }
       },
-          
-  
+
+
   ~~~
 
 
@@ -632,7 +632,7 @@ title: '第一节、vuejs介绍'
 
 ##### 对象绑定
 
-> 语法： 
+> 语法：
 >
 > - `key` 可以是字符串也可以不是。
 >
@@ -652,7 +652,7 @@ title: '第一节、vuejs介绍'
    <button :class="toggleStyle()" @click="toggle">toggle</button>
    ~~~
 
-   
+
 
 2. `class` 绑定对象用法
 
@@ -682,7 +682,7 @@ title: '第一节、vuejs介绍'
 
   > 可以省去，**手动添加**一个普通的 `class` 标签属性来**定义其他的class**，**且**还可以将数组中的**其他普通 `class`**属性进行**动态绑定**
 
-  
+
 
 - ##### 可以绑定的值
 
@@ -716,7 +716,7 @@ title: '第一节、vuejs介绍'
    <div class="box" :style="boxStyle"> 这里是box </div>
    ~~~
 
-   
+
 
 ##### 对象语法
 
@@ -806,11 +806,11 @@ this.$emit('update:title', newTitle)
   > 要在当前组件 **挂载** 到 `vue`上之后**才可以获取 dom节点进行操作**，也就是VNode 转换为真实dom显示到页面上的时候
   >
   > `mounted` 之后，进行手动添加事件
-  
-  
-  
+
+
+
   - **注意**：虽然**可以使用原生的 js 的 Api 进行事件绑定**，但是并**不符合**vue **声明式开发规范**，在修改内容的时候**会和动态绑定的数据产生冲突。**
-  
+
     > 在开发中**可以使用原生js** 但是**不要使用 querySelector() 进行修改元素内容，**
 
 
@@ -822,7 +822,7 @@ this.$emit('update:title', newTitle)
   - 所以在vue中**没有必要使用 `querySelector`**，`ref`就够用了
 
     > **提示**：使用 `qureySelector` 添加事件可以，但是不要修改 `mustach` 语法
-  
+
 - ##### 解决方案
 
   - **动态定义**事件类型，在特定的业务逻辑下**修改事件类型**相当于**取消原有的事件**
@@ -845,7 +845,7 @@ this.$emit('update:title', newTitle)
       <button @click="counter++">toggle</button>
   ~~~
 
-  
+
 
 #### 3.2、动态定义事件类型
 
@@ -908,12 +908,12 @@ this.$emit('update:title', newTitle)
 
   ~~~text
   我们在滑动页面的时候触发了touch相关事件，开发者可以通过preventDefault来阻止滑动行为，浏览器需要等待绑定事件执行完（假设耗时200ms），才知道，“哦～原来你没有阻止默认行为，好的，我马上滚”，这样就导致滑动流畅度上有延迟。
-  
+
   而passive作用是开发者可以提前告诉浏览器，我不调用preventDefault阻止事件默认行为，浏览器就可以快速生成事件行为，从而提升页面性能。
-  
+
   在最新的DOM规范中，事件绑定的第三个参数变成了对象：
   target.addEventListener(type, listener[, options]);
-  
+
   options里传入passive:true就是明确告诉浏览器，该事件不会调用preventDefault来阻止默认滑动行为。
   ~~~
 
@@ -1020,7 +1020,7 @@ vue3
 
 
 
-#### 4.5、v-model修饰符 
+#### 4.5、v-model修饰符
 
 ##### 1.lazy
 
@@ -1070,7 +1070,7 @@ vue3
      }
    ~~~
 
-   
+
 
 
 
@@ -1104,7 +1104,7 @@ vue3
 
   ~~~html
   <div id="app">
-  
+
     <div class="box">
         //if
       <div v-if="infoFlag">
@@ -1122,12 +1122,12 @@ vue3
       <div v-else>
         <span>李四</span>
       </div>
-  
+
     </div>
   </div>
   ~~~
 
-  
+
 
 
 
@@ -1168,7 +1168,7 @@ vue3
    <!-- Vue 2.x -->
    <div v-if="condition" key="yes">Yes</div>
    <div v-else key="no">No</div>
-   
+
    <!-- Vue 3.x -->
    <div v-if="condition">Yes</div>
    <div v-else>No</div>
@@ -1184,7 +1184,7 @@ vue3
 
 
 
-- **可以遍历对象，数组，Number类型，可迭代对象** 
+- **可以遍历对象，数组，Number类型，可迭代对象**
 - 语法： `v-for"item in list"`  和 `v-for = "item of list"` 都是一样的效果
 - **多参记得加括号**
 
@@ -1228,7 +1228,7 @@ vue3
 
 
 
-#### 4、虚拟节点VNodes(Virtual Node) 
+#### 4、虚拟节点VNodes(Virtual Node)
 
 > 整个的 app 元素模板会交由vue处理**解析模板语法**，转换成 render 函数，执行render中的h函数，创建 VNode ，在有Vnode转换成真实的dom元素。
 
@@ -1259,13 +1259,13 @@ vue3
           color: "red"
         }
       },
-        //根据children 形成嵌套关系  
+        //根据children 形成嵌套关系
       children: "哈哈哈"
     }
   </script>
   ~~~
 
-  
+
 
 - 最后**根据 VNode 对象的信息**，<u>生成真实的dom然后渲染到页面</u>
 
@@ -1287,7 +1287,7 @@ vue3
 
 
 
-#### 5、diff算法 v-for中key的作用 
+#### 5、diff算法 v-for中key的作用
 
 > `diff` 算法是发生在虚拟 `dom`上的  ——diffing 就是比较的意思；
 
@@ -1299,13 +1299,13 @@ vue3
 
   > 当一个依赖发生变化后，副作用会重新运行，这时候会创建一个更新后的虚拟 DOM 树。运行时渲染器**遍历这棵新树**，将它与旧树进行比较，然后将必要的更新应用到真实 DOM 上去。
 
-  
+
 
 - 方便diff算法对比，只需要将不同的元素内容，进行统一批量修改即可
 
   > 新的`VNode`和老的 `VNode` 进行 `diff` ——精细比较，算出虽小量更新，最后反映到真实的`dom`上。
 
-  
+
 
 - vue会做了优化，如果父组件中的数据变化了，子组件没有变化，那么**只会重新生成父组件的 VNode**，其他的组件不会变化。
 
@@ -1390,7 +1390,7 @@ vue3
      <div :key="item.id">...</div>
      <span :key="item.id">...</span>
    </template>
-   
+
    <!-- Vue 3.x -->
    <template v-for="item in list" :key="item.id">
      <div>...</div>
@@ -1398,7 +1398,7 @@ vue3
    </template>
    ~~~
 
-   
+
 
 ## 五、Scoped
 

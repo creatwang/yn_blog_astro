@@ -41,7 +41,7 @@ title: '第一节、redux 介绍'
 - ##### 但是所有的`reducer`都应该是纯函数，不能产生任何的副作用；
 
   > 还是 SCU 优化浅层比较的原因。
-  
+
 - 要每次都返回新的state， 这个比较和组件中的state
 
 
@@ -125,7 +125,7 @@ function reducer(state = defaultState, action) {
 
 - 在 `redux Toolkit` 底层使用的是 `immerjs` 这个库来保证数据的不可变性的
 
-  
+
 
 ~~~js
 import { Map } from 'immutable';
@@ -202,7 +202,7 @@ const unsubscribe = store.subscribe(() => {
 
    > 用于组装 `reducer` 创建 `store`，`createStore()` 主文件
 
-   
+
 
 2. 创建 `store/reducer.js` 文件：
 
@@ -210,7 +210,7 @@ const unsubscribe = store.subscribe(() => {
 
    - 可以将单独的 `action` 拆分出来
 
-   
+
 
 3. 创建 `store/actionCreators.js` 文件：
 
@@ -220,7 +220,7 @@ const unsubscribe = store.subscribe(() => {
    >
    > 进行拆分的原因是方便统一管理
 
-   
+
 
 4. 创建 `store/constants.js` 文件：
 
@@ -433,19 +433,19 @@ export default connect(mapStateToProps, mapActionToProps)(Counter1)
 
 - `redux` 默认使用 `dispatch` 的时候默认是不能分发函数的。
 
-  
+
 
 - **当然**异步请求也可以写在 `mapActionToProps` 方法中
 
   > 这样的话**逻辑还是在当前组件中**，并没有在 redux 中。当其他组件调用的时候，**无法传入对应请求参数。**
 
-  
+
 
   - 所以要让异步请求的逻辑放到 redux 中，这样不同的组件都可以传入不同的请求参数，来改变数据
 
     > 虽然不太会有这种情况
 
-    
+
 
 - `redux-thunk` 应用之后允许，派发一函数，并将 `dispatch` 传入到分发函数的形参
 
@@ -485,10 +485,10 @@ export default store
     type: actionTypes.findBanner,
     banner
   })
-  
+
   export const findBannerInfo = () => {
     return function (dispatch) {
-  
+
       fetch("http://123.207.32.32:8000/home/multidata").then(res => res.json())
       .then(res => {
            dispatch(findBanner(res.data.banner.list))
@@ -497,7 +497,7 @@ export default store
   }
   ~~~
 
-  
+
 
 - ##### 调用
 
@@ -506,7 +506,7 @@ export default store
     componentDidMount() {
       this.props.findBannerInfos()
     }
-  
+
   //属性 和 函数 都会添加到 props 中
   export default connect(
     state => ({
@@ -520,7 +520,7 @@ export default store
   )(Counter3)
   ~~~
 
-  
+
 
 
 
@@ -546,11 +546,11 @@ function thunk(store) {
     } else if(typeof action === "function") {
        action(store.dispatch)
     }
-      
+
   }
 
   store.dispatch = dispatch
-    
+
 }
 //直接调用，修改逻辑
 thunk(store)
@@ -580,7 +580,7 @@ thunk(store)
   })
   ~~~
 
-  
+
 
 - `dispatch` 的时候，就需要**手动定制规范**，在 `action.type` 前面**添加统一的模块名前缀**
 
@@ -589,7 +589,7 @@ thunk(store)
   const fetchBanner = "COUNTER1_FATCH_BANNER"
   ~~~
 
-  
+
 
 
 
@@ -670,7 +670,7 @@ npm install @reduxjs/toolkit react-redux
 
 4. 自动配置 `redux DevTools`
 
-   
+
 
 
 
@@ -715,14 +715,14 @@ npm install @reduxjs/toolkit react-redux
   ~~~js
   import {configureStore} from '@reduxjs/toolkit'
   import counterReducer from './counter1'
-  
+
   const store = configureStore({
     reducer: {
       conter1: counterReducer
     },
     devTools: true
   })
-  
+
   export default store
   ~~~
 
@@ -743,7 +743,7 @@ import {createSlice} from '@reduxjs/toolkit'
   initialState: {
     counter: 12
   },
-     
+
   //类似与vue options 中的 methods
   reducers: {
     //这里的action 对象同样保存这type类型，但是是会将传入的实参，存放到该对象的payload属性中
@@ -774,7 +774,7 @@ export { addCounter }
 
   - 一般当前模块是什么名字就起什么名字
 
-  
+
 
 - `initialState`：对应 `defaultState`
 
@@ -791,7 +791,7 @@ export { addCounter }
   > - 此步骤省去了，复杂的常量抽取，和多`action`的声明，可以直接导出 `reducers` 的声明直接进行调用
 
   - 参数一：`state`
-  - 参数二：调用这个`action`时，传递的`action`参数；	
+  - 参数二：调用这个`action`时，传递的`action`参数；
     `createSlice`返回值是一个对象，包含所有的`actions`；
 
 
@@ -804,7 +804,7 @@ export { addCounter }
 
 ### 第一种 extraReducers options写法
 
-> 在 `createSlice` 的 `options` 选项种会有一个额外的 `reducer` 选项用来配置异步请求`extraReducers` 
+> 在 `createSlice` 的 `options` 选项种会有一个额外的 `reducer` 选项用来配置异步请求`extraReducers`
 
 - **重点**：发送异步请求，需要使用 `@reduxjs/toolkit` 包中的 `createAsyncThunk` 函数来创建一个异步请求
 - 个人决定，只能使用 `async`
@@ -814,12 +814,12 @@ export { addCounter }
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 //这里的 extraInfo 是调用的findBanner 传入的参数
 const findBanner = createAsyncThunk("zhnagsan", async (extraInfo, {dispatch}) => {
-      
+
  const res = await fetch("http://123.207.32.32:8000/home/multidata").then(res => 	 res.json())
- 
+
  //这里返回成功的话，就会进入 fulfilled 状态，组装action和 “zhnagsan” 组装action传入到，extraReducers options 中该方法的 fulfilled 中
  return res.data.banner.list
-}) 
+})
 
 const reducerSlice = createSlice({
   name: "counter1",
@@ -860,11 +860,11 @@ export default reducerSlice.reducer
 
   > **反正请求方法是要创建**的，修改`state`要么在 `reducers` 中写，要么在 `extraReducers` 中写
 
-  
+
 
 ~~~js
 const findBanner = createAsyncThunk("张三", (extraInfo, {state, dispatch}) => {
-      
+
   fetch("http://123.207.32.32:8000/home/multidata").then(res => res.json()).then(res => {
     //changeBanner这个方法还是要在reducers 中创建的
       dispatch(changeBanner(res.data.banner.list))

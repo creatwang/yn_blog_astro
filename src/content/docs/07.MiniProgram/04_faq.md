@@ -81,8 +81,8 @@ title: '自定义tabbar'
 
 ```js
 windowHeight :窗口高度
-screenHeight :屏幕高度 
-statusBarHeight :设备状态栏高度 
+screenHeight :屏幕高度
+statusBarHeight :设备状态栏高度
 pixelRatio :设备像素比
 ```
 
@@ -92,7 +92,7 @@ pixelRatio :设备像素比
 const tabbarHeight = ( screenHeight - windowHeight - statusBarHeight ) * pixelRatio
 ```
 
-测试机型结果: 
+测试机型结果:
 
 ```js
 iPhone 5:          56px
@@ -166,7 +166,7 @@ Component({
   }
 })
 
-    
+
 ~~~
 
 
@@ -190,7 +190,7 @@ App({
     windowWidth: 0,
     screenHeight: 0,
     screenWidth: 0,
-    mainHeight: 0, 
+    mainHeight: 0,
     statusBarHeight: "20px"
   },
   getSystemInfo() {
@@ -209,7 +209,7 @@ App({
           success: (result) => {
               wx.getTabbarHeight(res => {
                let temp = (result.windowHeight - res.height) + "px"
-                fn(temp) 
+                fn(temp)
               })
           },
       })
@@ -228,9 +228,9 @@ App({
 
 ~~~typescript
  <scroll-view class="warp" style="height: {{mainHeight}};" scroll-y >
- 
 
- 
+
+
  onLoad(options) {
     getApp(). getMainHeight(mainHeight => this.setData({ mainHeight }))
     wx.setNavigationBarTitle({ title: '音乐' })
@@ -246,7 +246,7 @@ App({
 
 - ##### 注意
 
-  - `tabbar` 切换页面**只能**使用  ` wx.switchTab({ url })` 
+  - `tabbar` 切换页面**只能**使用  ` wx.switchTab({ url })`
 
   > 在自定义 `tabbar` 进行 ` wx.switchTab({ url })` 切换，**必须要在 `app.json` 配置相同的 `pagePath` 字段**，否则不能切换
 

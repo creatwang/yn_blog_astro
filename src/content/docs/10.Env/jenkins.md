@@ -60,9 +60,9 @@ title: '项目打包和自动化部署'
 
 
 
--  `dos` 命令行运行命令解压war包：`java –jar Jenkins.war --httpPort=80`　 默认端口 `8080` 
--  注意：不同版本的jenkins 使用的jdk版本也不一样 启动的时候看提示 
--  java环境变量 
+-  `dos` 命令行运行命令解压war包：`java –jar Jenkins.war --httpPort=80`　 默认端口 `8080`
+-  注意：不同版本的jenkins 使用的jdk版本也不一样 启动的时候看提示
+-  java环境变量
 
 ```bash
 vi /etc/profile
@@ -75,7 +75,7 @@ source /etc/profile
 java -version
 ```
 
- 
+
 
 
 
@@ -126,7 +126,7 @@ dnf install java-1.8.0-openjdk.x86_64
 
 # 导入GPG密钥以确保您的软件合法
   sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-  
+
   yum install fontconfig java-11-openjdk
   yum install jenkins
 ```
@@ -142,11 +142,11 @@ dnf install java-1.8.0-openjdk.x86_64
 /etc/init.d/jenkins					#启动文件，里面会指定，使用java环境的路径，默认是在 、如果java安装的不对要修改
 /etc/logrotate.d/jenkins			#日志分割配置，轮转文件
 /etc/sysconfig/jenkins				#主配置文件
-/usr/bin/jenkins					
+/usr/bin/jenkins
 /usr/lib/systemd/system/jenkins.service
 /usr/sbin/rcjenkins
 /usr/share/java/jenkins.war			#war包
-/usr/share/jenkins					
+/usr/share/jenkins
 /usr/share/jenkins/migrate
 /var/cache/jenkins
 /var/lib/jenkins					#工作目录，就是项目目录，git拉取代码的存放目录就是这个了，这个目录可以在配置文件中修改
@@ -266,9 +266,9 @@ systemctl restart jenkins
 
 ##### 2、配置 `git` ，
 
-> 查看 `git` 执行文件的路径 `which git` 
+> 查看 `git` 执行文件的路径 `which git`
 
-![image-20230903190505088](/assets/markdown/assets/jenkins.assets/image-20230903190505088.png) 
+![image-20230903190505088](/assets/markdown/assets/jenkins.assets/image-20230903190505088.png)
 
 
 
@@ -367,7 +367,7 @@ pwd
 node -v
 npm -v
 
-npm install 
+npm install
 npm run build
 
 pwd
@@ -377,7 +377,7 @@ echo '构建成功'
 ls
 
 # 删除/root/mall_cms文件夹里所有的内容
-rm -rf /usr/share/nginx/html/* 
+rm -rf /usr/share/nginx/html/*
 
 cp -rf .vitepress/dist/* /usr/share/nginx/html/
 ~~~

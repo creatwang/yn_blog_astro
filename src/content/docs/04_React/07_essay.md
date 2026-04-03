@@ -77,7 +77,7 @@ class Header extends React.Component {
   render() {
     return (
       <h1>我喜欢的网站是 {this.state.favoritesite}</h1>
-	  
+
     );
   }
 }
@@ -144,7 +144,7 @@ swich切 route可以单独使用
 
 
 
-router6 
+router6
 
 route只能在routes里面
 

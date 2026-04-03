@@ -18,7 +18,7 @@ title: '一、邂逅Vue.js开发'
   * 更好的性能；
   * 更小的包体积； （Tree shaking）
     * 按需打包，只有用到的api才会打包，很大程度地减少了开发中的冗余代码，提升编译速度。
-  * 更好的TypeScript集成； 
+  * 更好的TypeScript集成；
   * 更优秀的API设计：
     * Composition函数式开发，很大程度地提高为了组件、业务逻辑的复用性；高度解耦，提高代码质量、开发效率；减少代码体积。
 
@@ -50,7 +50,7 @@ title: '一、邂逅Vue.js开发'
 
 *  data中返回的对象会被Vue的响应式系统劫持，之后对该对象的修改或者访问都会在劫持中被处理；
 
-  
+
 
 ## 1.5、methods属性
 
@@ -88,7 +88,7 @@ title: '一、邂逅Vue.js开发'
   * ```html
     <h2 v-once>why</h2>
     ```
-  
+
   * 用于指定元素或者组件只渲染一次；
 
   * 当数据发生变化时，元素或者组件以及其所有的子元素将视为静态内容并且跳过；
@@ -144,13 +144,13 @@ title: '一、邂逅Vue.js开发'
       [v-cloak] {
           display: none;
       }
-      
+
       <div id="app">
           <h2 v-cloak>{{message}}</h2>
       </div>
       //避免把未编译的插值语法标签显式出来；
       ```
-  
+
 * ##### v-memo：
 
   * 该指令接收一个固定长度的数组作为依赖值进行记忆比对。如果数组中的每个值都和上次渲染的时候相同，则整个该子树的更新会被跳过。
@@ -178,14 +178,14 @@ title: '一、邂逅Vue.js开发'
   * ```js
     //1.绑定img的src属性
     <img v-bind:src="showImgUrl" alt="">
-    //语法糖: v-bind 
+    //语法糖: v-bind
     <img :src="showImgUrl" alt="">
-    
+
     //2.绑定a的href属性
     <a :href="href">百度一下</a>
     ```
 
-  
+
 
 ## 1.4、v-bind绑定class属性
 
@@ -228,7 +228,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```html
       <button class="abc cba" :class="getDynamicClasses()" @click="btnClick">我是按钮</button>
-      
+
       getDynamicClasses: function() {
           return { active: this.isActive, why: true, kobe: false }
       }
@@ -240,10 +240,10 @@ title: '一、邂逅Vue.js开发'
 
   * ```html
     <h2 :class="['abc', className]">Hello Array</h2>
-    
+
     //可以是三元表达式
     <h2 :class="['abc', className, isActive? 'active': '']">Hello Array</h2>
-    
+
     //跟对象结合使用
     <h2 :class="['abc', className, { active: isActive }]">Hello Array</h2>
     ```
@@ -272,11 +272,11 @@ title: '一、邂逅Vue.js开发'
 
 * ##### style的数组语法：
 
-  * 可以将多个样式对象应用到同一个元素上； 
+  * 可以将多个样式对象应用到同一个元素上；
 
     * ```html
       <h2 :style="[objStyle, { backgroundColor: 'purple' }]">嘿嘿嘿嘿</h2>
-      
+
       data: function() {
       	return {
       		objStyle: {
@@ -286,9 +286,9 @@ title: '一、邂逅Vue.js开发'
       	}
       },
       ```
-  
+
   * 数组元素为字符串写法：
-    
+
     * ```html
       <h2 :style="['color: red; fontSize: 50px']">{{message}}</h2>
       ```
@@ -315,7 +315,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```html
     <h2 :="infos">Hello Bind</h2>
-    
+
     data() {
         return {
             infos: { name: "why", age: 18, height: 1.88, address: "广州市" },
@@ -354,10 +354,10 @@ title: '一、邂逅Vue.js开发'
 * ##### 元素绑定多个事件(掌握)：
 
   * `{ 事件：回调函数 }`；
-  
+
   * ```js
     <div class="box" @click="divClick" @mousemove="divMousemove"></div>
-    
+
     <div class="box" @="{ click: divClick, mousemove: divMousemove }"></div>
     ```
 
@@ -375,7 +375,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```html
     <button @click="btn1Click">按钮1</button>
-    
+
     btn1Click(event) {
     	console.log("btn1Click:", event)
     },
@@ -385,7 +385,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```html
     <button @click="btn3Click('why', age, $event)">
-        
+
     btn3Click(name, age, event) {
         console.log("btn3Click:", name, age, event)
     }
@@ -430,9 +430,9 @@ title: '一、邂逅Vue.js开发'
 
 * ##### v-if的渲染原理：
 
-  * v-if是惰性的； 
-  * 当条件为false时，其判断的内容完全不会被渲染或者会被销毁掉； 
-  * 当条件为true时，才会真正渲染条件块中的内容； 
+  * v-if是惰性的；
+  * 当条件为false时，其判断的内容完全不会被渲染或者会被销毁掉；
+  * 当条件为true时，才会真正渲染条件块中的内容；
 
 * ##### v-show：
 
@@ -446,18 +446,18 @@ title: '一、邂逅Vue.js开发'
 
   * ##### 用法上的区别：
 
-    - v-show是不支持template； 
+    - v-show是不支持template；
     - v-show不可以和v-else一起使用；
 
   * ##### 本质的区别：
 
-    - v-show元素无论是否需要显示到浏览器上，它的DOM实际都是有存在的，只是通过CSS的display属性来进行切换； 
+    - v-show元素无论是否需要显示到浏览器上，它的DOM实际都是有存在的，只是通过CSS的display属性来进行切换；
     - v-if当条件为false时，其对应的DOM元素会被销毁，不会被渲染到页面中；
 
   * #####  如何选择：
 
-    - 如果元素需要在显示和隐藏之间频繁的切换，那么使用v-show； 
-    - 如果不会频繁的发生切换，那么使用v-if； 
+    - 如果元素需要在显示和隐藏之间频繁的切换，那么使用v-show；
+    - 如果不会频繁的发生切换，那么使用v-if；
 
 
 
@@ -493,7 +493,7 @@ title: '一、邂逅Vue.js开发'
     ```
 
   * `(item, index) in 数组`
-  
+
 * ##### 注：vue3开始也可以使用of，跟in的效果一样；
 
 
@@ -538,10 +538,10 @@ title: '一、邂逅Vue.js开发'
               <li>{{value}}</li>
           </template>
       </ul>
-  </template> 
+  </template>
   ```
 
-  
+
 
 ## 1.4、数组更新检测
 
@@ -549,12 +549,12 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 被包裹过的方法包括：
 
-  * push() 
-  * pop() 
-  * shift() 
-  * unshift() 
-  * splice() 
-  * sort() 
+  * push()
+  * pop()
+  * shift()
+  * unshift()
+  * splice()
+  * sort()
   * reverse()
 
 * ##### 注：都是会修改原数组的方法；
@@ -574,9 +574,9 @@ title: '一、邂逅Vue.js开发'
 * ##### 虚拟DOM：
 
   * 多个VNode的嵌套形成VNode Tree，这个VNode Tree就是虚拟DOM；
-  
+
 * ##### 虚拟DOM的作用：
-  
+
   * 方便进行diff算法；
   * 虚拟DOM作用之一：跨平台；
 
@@ -606,7 +606,7 @@ title: '一、邂逅Vue.js开发'
       <!-- key要求是唯一: id -->
       <li v-for="item in letters" :key="item">{{item}}</li>
   </ul>
-  
+
   data() {
       return {
       	letters: ["a", "b", "c", "d", "e"]
@@ -622,13 +622,13 @@ title: '一、邂逅Vue.js开发'
 * ##### 没有key的diff算法：
 
   * 使用diff算法的 patchUnkeyedChildren方法；
-  
+
 * ##### 有key的diff算法如下：
 
   * ##### 第一步的操作是从头开始进行遍历、比较：
 
-    * a和b是一致的会继续进行比较； 
-    * c和f因为key不一致，所以就会break跳出循环； 
+    * a和b是一致的会继续进行比较；
+    * c和f因为key不一致，所以就会break跳出循环；
 
   * ##### 第二步的操作是从尾部开始进行遍历、比较：
 
@@ -644,7 +644,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 总的来说：
 
-  * 在没有key的时候效率是非常低效的； 
+  * 在没有key的时候效率是非常低效的；
   * 在进行插入或者重置顺序的时候，保持相同的key可以让diff算法更加的高效；
 
 
@@ -673,10 +673,10 @@ title: '一、邂逅Vue.js开发'
 
   * 计算属性具有缓存；
     * 计算属性会基于它们的依赖关系进行缓存；
-    * 在数据不发生变化时，计算属性是不需要重新计算的； 
+    * 在数据不发生变化时，计算属性是不需要重新计算的；
     * 但是如果依赖的数据发生变化，在使用时，计算属性依然会重新进行计算；
 
-  
+
 
 ## 1.2、计算属性computed
 
@@ -686,7 +686,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     <h2>{{ fullname }}</h2>
-    
+
     const app = Vue.createApp({
     	data() {
     		return {
@@ -699,7 +699,7 @@ title: '一、邂逅Vue.js开发'
             fullname() {
               return this.firstName + " " + this.lastName
             }
-            
+
     		// 完整写法：（了解）
             //在大多数情况下，只需要一个getter方法即可
             fullname: {
@@ -731,7 +731,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     <button @click="changeMessage">修改message</button>
-    
+
     const app = Vue.createApp({
         // data: option api
         data() {
@@ -749,14 +749,14 @@ title: '一、邂逅Vue.js开发'
         watch: {
             // 1.默认有两个参数: newValue/oldValue
             message(newValue, oldValue) {
-                console.log(newValue, oldValue)  
+                console.log(newValue, oldValue)
                 //你好啊, 李银河! Hello Vue
             },
             info(newValue, oldValue) {
                 // 2.如果是对象类型, 那么拿到的是代理对象
-                console.log( newValue, oldValue)  
+                console.log( newValue, oldValue)
                 //Proxy {name: 'kobe'} Proxy {name: 'why', age: 18}
-    
+
                 // 3.获取原生对象
                 // console.log({ ...newValue })
                 console.log(Vue.toRaw(newValue))
@@ -812,8 +812,8 @@ title: '一、邂逅Vue.js开发'
         }, { deep: true, immediate: true })
     }
     ```
-  
-    
+
+
 
 ## 1.4、与计算属性的区别
 
@@ -827,7 +827,7 @@ title: '一、邂逅Vue.js开发'
 
 * ```html
   <div id="app">
-      <template v-if="books.length"> 
+      <template v-if="books.length">
           <table>
               <tr>
                   <th>序号</th>
@@ -859,7 +859,7 @@ title: '一、邂逅Vue.js开发'
           <div>无数据</div>
       </template>
   </div>
-  
+
   <script src="../lib/vue.js"></script>
   <script src="./data/data.js"></script>
   <script>
@@ -907,13 +907,13 @@ title: '一、邂逅Vue.js开发'
 * ##### v-model：
 
   * v-model指令可以在表单 input、textarea以及select元素上创建双向数据绑定；
-  * 根据控件类型自动选取正确的方法来更新元素； 
+  * 根据控件类型自动选取正确的方法来更新元素；
 
   - v-model 本质上是语法糖，负责监听用户的输入事件来更新数据；
 
 * ##### v-model的原理：
 
-  * v-bind绑定value属性的值； 
+  * v-bind绑定value属性的值；
   * v-on绑定input事件，从事件的event对象中获取最新的value值，并赋值给value绑定的响应式数据；
 
 * ##### 双向绑定的实现：
@@ -944,15 +944,15 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 单个勾选框：
 
-  * v-model即为布尔值。 
+  * v-model即为布尔值。
 
-  * 此时input的value属性并不影响v-model的值。 
+  * 此时input的value属性并不影响v-model的值。
 
   * ```html
     <label for="agree">
         <input id="agree" type="checkbox" v-model="isAgree"> 同意协议
-    </label> 
-    
+    </label>
+
     data() {
     	return {
     		isAgree: true
@@ -960,9 +960,9 @@ title: '一、邂逅Vue.js开发'
     }
     ```
 
-* ##### 多个复选框： 
+* ##### 多个复选框：
 
-  * 当是多个复选框时，因为可以选中多个，所以v-model绑定的响应式数据是一个数组。 
+  * 当是多个复选框时，因为可以选中多个，所以v-model绑定的响应式数据是一个数组。
 
   * 当选中某一个时，就会将input的value添加到数组中。
 
@@ -977,14 +977,14 @@ title: '一、邂逅Vue.js开发'
         </label>
         <h2>爱好: {{hobbies}}</h2>   //[ "sing", "jump" ]
     </div>
-    
+
     data() {
     	return {
     		hobbies: []
     	}
     }
     ```
-  
+
 * ##### 注：
 
   * 是否受value的影响，是根据v-model绑定的响应式数据的类型来决定的；
@@ -1006,9 +1006,9 @@ title: '一、邂逅Vue.js开发'
           <input id="female" type="radio" v-model="gender" value="female"> 女
       </label>
           //多个input的v-model绑定同一个响应式数据时也就代表以往所需设置的name相同；
-      <h2>性别: {{gender}}</h2>  
+      <h2>性别: {{gender}}</h2>
   </div>
-  
+
   data() {
       return {
       	gender: "female"   //对应一个字符串
@@ -1024,7 +1024,7 @@ title: '一、邂逅Vue.js开发'
 
   * ##### 单选：只能选中一个值：
 
-    * v-model绑定的是一个值； 
+    * v-model绑定的是一个值；
 
     * 当选中option中的一个时，会将它对应的value赋值到`v-model`对应的响应式数据中；
 
@@ -1035,7 +1035,7 @@ title: '一、邂逅Vue.js开发'
           <option value="banana">香蕉</option>
       </select>
       <h2>单选: {{fruit}}</h2>
-      
+
       data() {
           return {
               fruit: "orange"
@@ -1045,9 +1045,9 @@ title: '一、邂逅Vue.js开发'
 
   * ##### 多选：可以选中多个值：
 
-    * v-model绑定的是一个数组； 
+    * v-model绑定的是一个数组；
 
-    * 当选中多个值时，就会将选中的option的value值添加到数组中； 
+    * 当选中多个值时，就会将选中的option的value值添加到数组中；
 
     * ```html
       <select multiple size="3" v-model="fruits">
@@ -1056,7 +1056,7 @@ title: '一、邂逅Vue.js开发'
           <option value="banana">香蕉</option>
       </select>
       <h2>多选: {{fruits}}</h2>
-      
+
       data() {
           return {
               fruits: []
@@ -1068,7 +1068,7 @@ title: '一、邂逅Vue.js开发'
 
 ## 1.6、v-model的值绑定
 
-* 将请求到的数据绑定到data返回的对象中，再通过v-bind来进行值的绑定，这个过程就是值绑定。 
+* 将请求到的数据绑定到data返回的对象中，再通过v-bind来进行值的绑定，这个过程就是值绑定。
 
 
 
@@ -1076,9 +1076,9 @@ title: '一、邂逅Vue.js开发'
 
 * ##### lazy：
 
-  * 默认情况下，v-model在进行双向绑定时，绑定的是input事件，那么会在每次内容输入后就将最新的值和绑定的响应式数据进行同步； 
+  * 默认情况下，v-model在进行双向绑定时，绑定的是input事件，那么会在每次内容输入后就将最新的值和绑定的响应式数据进行同步；
 
-  * 如果在v-model后跟上lazy修饰符，那么会将绑定的事件切换为 change 事件，只有在提交时（比如回车）或失去焦点时才会触发； 
+  * 如果在v-model后跟上lazy修饰符，那么会将绑定的事件切换为 change 事件，只有在提交时（比如回车）或失去焦点时才会触发；
 
   * ```html
     <input type="text" v-model.lazy="message">
@@ -1114,17 +1114,17 @@ title: '一、邂逅Vue.js开发'
 
 * ##### Vue组件化：
 
-  * createApp函数传入了一个对象App，这个对象其实本质上就是一个组件，也是应用程序的根组件； 
-  * 组件化提供了一种抽象，使得可以开发出一个个独立可复用的小组件来构造应用； 
-  * 任何的应用都会被抽象成一颗组件树； 
+  * createApp函数传入了一个对象App，这个对象其实本质上就是一个组件，也是应用程序的根组件；
+  * 组件化提供了一种抽象，使得可以开发出一个个独立可复用的小组件来构造应用；
+  * 任何的应用都会被抽象成一颗组件树；
 
 
 
 ## 1.2、注册组件的方式
 
 * ##### 注册组件分成两种：
-  
-  * 全局组件：在任何其他的组件中都可以使用的组件； 
+
+  * 全局组件：在任何其他的组件中都可以使用的组件；
   * 局部组件：只有在注册的组件中才能使用的组件；
 
 
@@ -1141,23 +1141,23 @@ title: '一、邂逅Vue.js开发'
 
   * 类似于webpack这种打包工具在打包项目时，对于没有使用到的全局组件依然会对其进行打包；
 
-* ##### 注册和使用过程： 
+* ##### 注册和使用过程：
 
   * ```html
     <div id="app">
         <!-- <home-nav></home-nav> -->
         <HomeNav></HomeNav> // 在vue脚手架中可以使用，普通运行不了
         <home-nav></home-nav>
-    
+
         <product-item></product-item>
         <product-item></product-item>
         <product-item></product-item>
     </div>
-    
+
     <template id="nav">
         <h2>我是应用程序的导航</h2>
     </template>
-    
+
     <template id="product">
         <div class="product">
             <h2>{{title}}</h2>
@@ -1166,7 +1166,7 @@ title: '一、邂逅Vue.js开发'
             <button @click="favarItem">收藏</button>
         </div>
     </template>
-    
+
     <script src="../lib/vue.js"></script>
     <script>
         // 1.创建app
@@ -1178,7 +1178,7 @@ title: '一、邂逅Vue.js开发'
                 }
             },
         })
-    
+
         // 2.注册全局组件
         app.component("product-item", {
             template: "#product",
@@ -1194,17 +1194,17 @@ title: '一、邂逅Vue.js开发'
                 }
             }
         })
-    
+
         app.component("HomeNav", {
             template: "#nav"
         })
-    
+
         // 2.挂载app
         app.mount("#app")
     </script>
     ```
 
-    
+
 
 ### 1.2.2、注册局部组件（开发中使用较多）
 
@@ -1213,13 +1213,13 @@ title: '一、邂逅Vue.js开发'
   * 通过components属性选项来进行注册；
   * 该components选项对应的是一个对象，对象中的键值对是组件的名称: 组件对象；
 
-* ##### 注册和使用过程： 
+* ##### 注册和使用过程：
 
   * ```html
     <div id="app">
         <product-item></product-item>
     </div>
-    
+
     <template id="product">
         <div class="product">
             <h2>{{title}}</h2>
@@ -1228,7 +1228,7 @@ title: '一、邂逅Vue.js开发'
             <button>收藏</button>
         </div>
     </template>
-    
+
     <script src="../lib/vue.js"></script>
     <script>
         // 1.1.组件打算在哪里被使用
@@ -1252,13 +1252,13 @@ title: '一、邂逅Vue.js开发'
                 }
             }
         })
-    
+
         // 2.挂载app
         app.mount("#app")
     </script>
     ```
 
-  
+
 
 
 ### 1.2.3、定义组件名的方式有两种：
@@ -1279,9 +1279,9 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 单文件的特点：
 
-  * 代码的高亮； 
-  * ES6、CommonJS的模块化能力； 
-  * 组件作用域的CSS； 
+  * 代码的高亮；
+  * ES6、CommonJS的模块化能力；
+  * 组件作用域的CSS；
   * 可以使用预处理器来构建更加丰富的组件，比如TypeScript、Babel、Less、Sass等；
 
 * ##### 注：想要支持单文件可以使用Vue CLI来创建项目；
@@ -1290,7 +1290,7 @@ title: '一、邂逅Vue.js开发'
 
 ## 1.3、Vue CLI 安装和使用
 
-* ##### 安装Vue CLI：	
+* ##### 安装Vue CLI：
 
   * `npm install @vue/cli -g`
 
@@ -1305,7 +1305,7 @@ title: '一、邂逅Vue.js开发'
 * ##### 注：
 
   * Vue CLI：用于快速构建vue开发环境和配置的一个工具；
-  
+
 * ##### 更改vue中使用的包管理工具的操作：
 
   * 命令：`vi ~/.vuerc`；
@@ -1322,7 +1322,7 @@ title: '一、邂逅Vue.js开发'
 
   * 给VSCode来进行读取, VSCode在读取到其中的内容时, 给我们的代码更加友好的提示；
 
-  
+
 
 ## 1.5、vue不同版本的作用
 
@@ -1340,7 +1340,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 父子组件之间进行通信：
 
-  * 父组件传递给子组件：通过`props`属性； 
+  * 父组件传递给子组件：通过`props`属性；
   * 子组件传递给父组件：通过`$emit`触发事件；
 
 ## 1.3、父组件传递给子组件
@@ -1356,7 +1356,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### Props两种常见的写法：
 
-  * 字符串元素的数组，数组中的字符串就是attribute的名称； 
+  * 字符串元素的数组，数组中的字符串就是attribute的名称；
   * 对象类型，对象类型可以在指定attribute名称的同时，指定它需要传递的类型、是否必须传、默认值等等；（必须和默认值二选一）
 
 * ##### 示例：
@@ -1375,7 +1375,7 @@ title: '一、邂逅Vue.js开发'
           // 1.props数组语法
           // 弊端: 1> 不能对类型进行验证 2.没有默认值的
           props: ["name", "age", "height"]
-          
+
           // 2.props对象语法(必须掌握)
           props: {
             name: {
@@ -1392,14 +1392,14 @@ title: '一、邂逅Vue.js开发'
               default: () => ({ name: "james" })
             }
       	}
-          
+
           // 3.补：这种写法也可以
           props: {
               name: String
           }
       }
       ```
-  
+
 * ##### type的类型：
 
 
@@ -1452,7 +1452,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 操作步骤：(自定义事件的流程)
 
-  * 在子组件中定义好在某些情况下触发的事件名称，同时可传入参数； 
+  * 在子组件中定义好在某些情况下触发的事件名称，同时可传入参数；
   * 在父组件中以v-on的方式传入要监听的事件名称，并且绑定到对应的方法中；
   *  在子组件中发生某个事件的时候，父组件根据事件名称触发对应的事件，同时获取到参数；
 
@@ -1468,7 +1468,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       <add-counter @add="addBtnClick"></add-counter>
-      
+
       addBtnClick(count) {  //count = 100
           this.counter += count
       },
@@ -1479,12 +1479,12 @@ title: '一、邂逅Vue.js开发'
   * 用来定义一个组件可以向其父组件触发的事件。
 
   * 便于查看组件有哪些自定义事件；
-  
+
   * ```js
     export default {
         // 1.emits数组语法
         emits: ["add"]
-        
+
         // 2.emits对象语法，以对传递的参数进行验证
         emits: {
           add: function(count) {
@@ -1508,15 +1508,15 @@ title: '一、邂逅Vue.js开发'
       <div class="app">
         <!-- 1.tab-control -->
         <tab-control :titles="['衣服', '鞋子', '裤子']" @tab-item-click="tabItemClick"/>
-    
+
         <!-- 2.展示内容 -->
         <h1>{{ pageContents[currentIndex] }}</h1>
       </div>
     </template>
-    
+
     <script>
       import TabControl from './TabControl.vue'
-    
+
       export default {
         components: {
           TabControl
@@ -1534,11 +1534,11 @@ title: '一、邂逅Vue.js开发'
         }
       }
     </script>
-    
+
     <style scoped>
     </style>
     ```
-  
+
 * 子组件：（TabControl.vue）
 
   * ```vue
@@ -1553,7 +1553,7 @@ title: '一、邂逅Vue.js开发'
         </template>
       </div>
     </template>
-    
+
     <script>
       export default {
         props: {
@@ -1612,7 +1612,7 @@ title: '一、邂逅Vue.js开发'
     * ```vue
       <template>
       	<slot></slot>
-      
+
           // 插槽的默认内容写法
           <slot>
               <p>我是默认内容, 哈哈哈</p>
@@ -1644,7 +1644,7 @@ title: '一、邂逅Vue.js开发'
           	<template v-slot:left>
                   <button>{{ leftText }}</button>
               </template>
-      
+
               <!-- 简写，字符#替换(v-slot:) -->
               <template #left>
                   <button>{{ leftText }}</button>
@@ -1673,7 +1673,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 渲染作用域：
 
-  * 父级模板里的所有内容都是在父级作用域中编译的； 
+  * 父级模板里的所有内容都是在父级作用域中编译的；
   * 子模板里的所有内容都是在子作用域中编译的；
   * 如：默认情况下，父组件模板里使用插值语法往子组件插槽插入内容，插值语法里的变量对应的是父组件的响应式数据；
 
@@ -1691,15 +1691,15 @@ title: '一、邂逅Vue.js开发'
           <template v-slot:default="props">  <!-- #default="props" -->
               <button>{{ props.item }}</button>
           </template>
-          
+
           <!-- 独占默认插槽的缩写：-->
           <!-- 1.只有一个默认插槽时，可以省去default；可同时存在其他插槽；-->
           <template v-slot="props">  <!-- #="props" -->
               <button>{{ props.item }}</button>
           </template>
       </tab-control>
-          
-      <!-- 独占默认插槽的缩写： -->   
+
+      <!-- 独占默认插槽的缩写： -->
       <!-- 2.如果只有一个默认插槽，且不可存在其他插槽时, 那么template可以省略，而v-slot写在子组件元素上；-->
       <tab-control v-slot="props">
             <button>{{ props.item }}</button>
@@ -1724,8 +1724,8 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 两种方式：
 
-  * 全局事件总线； 
-  * Provide/Inject； 
+  * 全局事件总线；
+  * Provide/Inject；
 
 
 
@@ -1743,9 +1743,9 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { HYEventBus } from 'hy-event-store'
-      
+
       const eventBus = new HYEventBus()
-      
+
       export default eventBus
       ```
 
@@ -1766,7 +1766,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import eventBus from './utils/event-bus'
-      
+
       created() {
           eventBus.on("whyEvent",this.whyEventHandler)
       },
@@ -1781,8 +1781,8 @@ title: '一、邂逅Vue.js开发'
 
 * ##### Provide/Inject用于非父子组件之间共享数据：
 
-  * 无论层级结构有多深，祖先组件都可以作为其所有后代组件的依赖提供者； 
-  * 祖先组件有一个 provide 选项来提供数据； 
+  * 无论层级结构有多深，祖先组件都可以作为其所有后代组件的依赖提供者；
+  * 祖先组件有一个 provide 选项来提供数据；
   * 后代组件有一个 inject 选项来使用这些数据；
 
 * ##### 注：仅用于祖先、后代组件共享数据；
@@ -1793,8 +1793,8 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       <button @click="message = 'hello world'">修改message</button>
-      
-      import { computed } from 'vue' 
+
+      import { computed } from 'vue'
       export default {
           data() {
               message: "hello"
@@ -1809,21 +1809,21 @@ title: '一、邂逅Vue.js开发'
           }
       }
       ```
-  
+
 * 后代组件：（HomeContent.vue）
-  
+
   * ```js
       //手动解包.value
       <h2>{{ name }}-{{ age }}-{{message.value}}</h2>
-      
+
       export default {
       	inject: ["name", "age", "message"]   // message元素是ref对象，需要解包
       }
       ```
-  
+
 * ##### 把数据变成响应式：
 
-  * 使用响应式的一些API来完成这些功能，比如说computed函数； 
+  * 使用响应式的一些API来完成这些功能，比如说computed函数；
 
   * computed返回的是一个ref对象，需要用.vaule手动解包，取出其中的value来使用；
 
@@ -1832,9 +1832,9 @@ title: '一、邂逅Vue.js开发'
     * ```js
       app.config.unwrapInjectedRef = true
       ```
-    
+
   * ##### 注：
-  
+
     * 使用了`computed`方法的属性在后代组件里是不允许更改的；
     * `computed`方法让祖先组件改掉响应式数据后，使子组件对应的`inject`的数据也是响应式的；
 
@@ -1848,7 +1848,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 生命周期函数：
 
-  * 是一些钩子函数（回调函数），在某个时间会被Vue源码内部进行回调； 可以在该生命周期中编写属于自己的逻辑代码了； 
+  * 是一些钩子函数（回调函数），在某个时间会被Vue源码内部进行回调； 可以在该生命周期中编写属于自己的逻辑代码了；
 
 
 
@@ -1911,26 +1911,26 @@ title: '一、邂逅Vue.js开发'
     * ```js
       <h2 ref="title">{{ message }}</h2>
       <banner ref="banner"/>
-      
+
       // 2.获取元素
       console.log(this.$refs.title)
-      
+
       // 3.获取组件实例
       console.log(this.$refs.banner)
-      
+
       // 3.1.在父组件中可以主动的调用子组件的组件实例方法
       this.$refs.banner.bannerClick()
-      
+
       // 3.2.获取banner组件实例, 获取banner中的根元素
       console.log(this.$refs.banner.$el)
-      
+
       // 3.3.如果banner template是多个根, 拿到的是第一个node节点
       // 注意: 开发中不推荐一个组件的template中有多个根元素
       // console.log(this.$refs.banner.$el.nextElementSibling)
-      
+
       // 4.组件实例还有两个属性(了解):
       console.log(this.$parent) // 获取父组件
-      console.log(this.$root) // 获取根组件 
+      console.log(this.$root) // 获取根组件
       //在Vue3中已经移除了$children的属性
       ```
 
@@ -1948,7 +1948,7 @@ title: '一、邂逅Vue.js开发'
       // is中的组件需要来自两个地方: 1.全局注册的组件 2.局部注册的组件
       // 动态组件的传值: 将属性和监听事件放到component上，与普通组件使用一样；
       <component name="why" :age="18" @homeClick="homeClick" :is="currentTab"></component>
-      
+
       components: {
           Home,
           About,
@@ -1985,17 +1985,17 @@ title: '一、邂逅Vue.js开发'
 
   * include：
 
-    * string | RegExp | Array。只有名称匹配的组件会被缓存； 
+    * string | RegExp | Array。只有名称匹配的组件会被缓存；
 
   * exclude：
 
-    * string | RegExp | Array。只有名称不匹配的组件会被缓存； 
+    * string | RegExp | Array。只有名称不匹配的组件会被缓存；
 
   * max：
 
-    * number | string。最多可以缓存多少组件实例，一旦达到这个数 
+    * number | string。最多可以缓存多少组件实例，一旦达到这个数
 
-    字，那么缓存组件中最近没有被访问的实例会被销毁； 
+    字，那么缓存组件中最近没有被访问的实例会被销毁；
 
 * #####  include 和 exclude：
 
@@ -2032,21 +2032,21 @@ title: '一、邂逅Vue.js开发'
           console.log("home deactivated")
       }
       ```
-  
-  
+
+
 
 ## 1.6、Webpack的代码分包
 
 * ##### 默认的打包过程：
-  
-  * 默认情况下，在构建整个组件树的过程中，因为组件和组件之间是通过模块化直接依赖的，那么webpack在打包时就会将组件模块打包到一起，app.js文件的内容过大，会造成首屏的渲染速度变慢； 
-  
-* ##### 打包时，代码的分包： 
+
+  * 默认情况下，在构建整个组件树的过程中，因为组件和组件之间是通过模块化直接依赖的，那么webpack在打包时就会将组件模块打包到一起，app.js文件的内容过大，会造成首屏的渲染速度变慢；
+
+* ##### 打包时，代码的分包：
 
   * 对于一些不需要立即使用的组件，可以单独对它们进行拆分；
   * 在需要时从服务器加载下来，并且运行代码；
   * 从而加快首屏的渲染速度；
-  
+
 * ##### 注：项目使用的第三方依赖会被打包到带有vendors文件名的js文件；
 
 * ```js
@@ -2072,7 +2072,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     const AsyncCategory = defineAsyncComponent(() => import("./views/Category.vue"))
-    
+
     components: {
         Category: AsyncCategory
     },
@@ -2084,7 +2084,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 实际原理：
 
-  * 绑定了`modelValue`属性； 
+  * 绑定了`modelValue`属性；
   * 监听了 `@update：modelValue`的事件；
 
 * ##### v-model的实现原理：
@@ -2111,7 +2111,7 @@ title: '一、邂逅Vue.js开发'
           methods: {
               changeCounter() {
                   this.$emit("update:modelValue", 999)
-              } 
+              }
           }
       }
       ```
@@ -2171,17 +2171,17 @@ title: '一、邂逅Vue.js开发'
 
     * ##### 情况一：如果是data函数的返回值对象：
 
-      * 返回值对象默认情况下会进行合并； 
-      * 若属性发生了冲突，那么会保留组件自身的数据； 
+      * 返回值对象默认情况下会进行合并；
+      * 若属性发生了冲突，那么会保留组件自身的数据；
 
     * ##### 情况二：如果是生命周期钩子函数：
 
-      * 生命周期的钩子函数会被合并到数组中，都会被调用； 
+      * 生命周期的钩子函数会被合并到数组中，都会被调用；
 
     * ##### 情况三：值为对象的选项，例如 methods、components 和 directives，将被合并为同一个对象。
 
-      * key不同，都会生效； 
-      * key相同，会取组件对象的键值对； 
+      * key不同，都会生效；
+      * key相同，会取组件对象的键值对；
 
 * ##### 示例：
 
@@ -2204,7 +2204,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import messageMixin from '../mixins/message-mixin'
-      
+
       export default {
           mixins: [messageMixin]
       }
@@ -2214,12 +2214,12 @@ title: '一、邂逅Vue.js开发'
 
     * 使用应用app的`mixin`方法来完成注册；
 
-    * 全局混入的选项将会影响每一个组件； 
+    * 全局混入的选项将会影响每一个组件；
 
     * ```js
       //main.js
       import messageMixin from '../mixins/message-mixin'
-      
+
       app.mixin(messageMixin)
       ```
 
@@ -2233,7 +2233,7 @@ title: '一、邂逅Vue.js开发'
 
   * 在对应的属性中编写对应的功能模块；
   * 实现某一个功能时，对应的代码逻辑会被拆分到各个属性中；
-  * 组件变得更大、更复杂，同一个功能的逻辑就会被拆分的很分散； 
+  * 组件变得更大、更复杂，同一个功能的逻辑就会被拆分的很分散；
   * 不便于查找和处理单个逻辑关注点；
 
 * ##### Composition API：
@@ -2249,10 +2249,10 @@ title: '一、邂逅Vue.js开发'
   * props：
     * 父组件传递过来的属性会被放到props对象中；
   * context（包含三个属性）：
-    * attrs：所有的非prop的attribute； 
-    * slots：父组件传递过来的插槽； 
+    * attrs：所有的非prop的attribute；
+    * slots：父组件传递过来的插槽；
     * emit：当组件内部需要发出事件时会用到emit；
-  
+
 * #####  返回值：
 
   * setup的返回值可以在模板template中被使用；
@@ -2316,15 +2316,15 @@ title: '一、邂逅Vue.js开发'
   ```js
   // 使用的时候不需要写.value；使用时候是深层解包
     <h2>当前计数: {{ info.counter }}</h2>
-    // 修改的时候需要写.value；修改时候不是深层解包 
+    // 修改的时候需要写.value；修改时候不是深层解包
     <button @click="info.counter.value++">+1</button>
-    
+
     const counter = ref(0)
     const info = {  //普通对象里面套ref
         counter
     }
   ```
-  
+
 * ##### 应用场景：
 
   * 定义本地的一些简单数据；
@@ -2334,7 +2334,7 @@ title: '一、邂逅Vue.js开发'
     * ```js
       // 若使用reactive函数，只会返回一个代理对象，若对对象进行替换则失去响应式；只能把数据逐个push到数组里；
       // const musics = reactive([])
-      
+
       const musics = ref([])
       // musics的值是被ref对象.value属性所维护，修改ref对象的value值后，值依然被ref对象所包裹，所以依然存在响应式；
       onMounted(() => {
@@ -2362,13 +2362,13 @@ title: '一、邂逅Vue.js开发'
 * ##### 传入三个类型的参数：
 
   * 普通对象；
-  * reactive返回的对象； 
+  * reactive返回的对象；
   * ref的对象；
 
 * ##### readonly使用规则：
 
-  * readonly返回的对象都是不允许修改的（无论在父组件还是在子组件）； 
-  * 但是经过readonly处理的原来的对象是允许被修改的； 
+  * readonly返回的对象都是不允许修改的（无论在父组件还是在子组件）；
+  * 但是经过readonly处理的原来的对象是允许被修改的；
 
 * ##### 示例：
 
@@ -2376,26 +2376,26 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       <show-info :roInfo="roInfo" @changeRoInfoName="changeRoInfoName"></show-info>
-      
+
       const info = reactive({
           name: "why",
           age: 18,
           height: 1.88
       })
-      
+
       // 使用readOnly包裹info
       const roInfo = readonly(info)
       return {
           roInfo,
       }
       ```
-    
+
   * ##### 子组件：（ShowInfo.vue)
 
     * ```js
       // 只要在子组件修改接收的数据，代码就会无效(报警告)
       <button @click="roInfo.name = 'james'">ShowInfo按钮</button>
-      
+
       props: {
           // readonly数据
           roInfo: {
@@ -2403,7 +2403,7 @@ title: '一、邂逅Vue.js开发'
               default: () => ({})
           }
       },
-      // 需要修改数据，必须通过注册自定义事件，让父组件监听事件来修改数据；    
+      // 需要修改数据，必须通过注册自定义事件，让父组件监听事件来修改数据；
       emits: ["changeRoInfoName"],
       setup(props, context) {
           function roInfoBtnClick() {
@@ -2412,7 +2412,7 @@ title: '一、邂逅Vue.js开发'
           return { roInfoBtnClick }
       }
       ```
-  
+
 * ##### 注意：
 
   * readonly传入响应式数据返回才是响应式数据；
@@ -2423,16 +2423,16 @@ title: '一、邂逅Vue.js开发'
 
 * ##### isProxy：
 
-  * 检查对象是否是由 `reactive` 或 `readonly` 创建的 proxy。 
+  * 检查对象是否是由 `reactive` 或 `readonly` 创建的 proxy。
 
 * ##### isReactive：
 
-  * 检查对象是否是由 `reactive` 创建的响应式代理： 
-  * 如果该代理是 `readonly` 建的，但包裹了由 reactive 创建的另一个代理，它也会返回 true； 
+  * 检查对象是否是由 `reactive` 创建的响应式代理：
+  * 如果该代理是 `readonly` 建的，但包裹了由 reactive 创建的另一个代理，它也会返回 true；
 
 * ##### isReadonly：
 
-  * 检查对象是否是由 readonly 创建的只读代理。 
+  * 检查对象是否是由 readonly 创建的只读代理。
 
 * ##### toRaw：
 
@@ -2440,7 +2440,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### shallowReactive：
 
-  * 创建一个响应式代理，它跟踪其自身 property 的响应性，但不执行嵌套对象的深层响应式转换 (深层还是原生对象)。 
+  * 创建一个响应式代理，它跟踪其自身 property 的响应性，但不执行嵌套对象的深层响应式转换 (深层还是原生对象)。
 
 * ##### shallowReadonly：
 
@@ -2463,19 +2463,19 @@ title: '一、邂逅Vue.js开发'
             age: 18,
             height: 1.88
         })
-    
+
         // reactive被解构后会变成普通的值, 失去响应式
         // const { name, age } = info
-        
+
         // toRefs: 使得解构出来的属性具有响应式；
         const { name, age } = toRefs(info)
-        
+
         // 在setup中修改解构的值需要解包
         name.value = "coder"
-        
+
         // toRef:
         const height = toRef(info, "height")
-    
+
         return {
             name,
             age,
@@ -2494,11 +2494,11 @@ title: '一、邂逅Vue.js开发'
 
 * ##### isRef：
 
-  * 判断值是否是一个ref对象； 
+  * 判断值是否是一个ref对象；
 
 * ##### shallowRef
 
-  * 创建一个浅层的ref对象； 
+  * 创建一个浅层的ref对象；
 
 * ##### triggerRef：
 
@@ -2524,20 +2524,20 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       <h2>{{ fullname }}</h2>
-      
+
       import { reactive, computed, ref } from 'vue'
       const names = reactive({
           firstName: "kobe",
           lastName: "bryant"
       })
-      
+
       const fullname = computed(() => {
           return names.firstName + " " + names.lastName
       })
       ```
 
   * 传入一个具有 get 和 set 的对象，返回一个可变的（可读写）ref 对象；
-  
+
     * ```js
       const fullname = computed({
           set: function(newValue) {
@@ -2561,12 +2561,12 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     <h2 ref="titleRef">我是标题</h2>
-    
+
     import { ref, onMounted } from 'vue'
-    
+
     setup() {
         const titleRef = ref()
-        
+
         // 挂载完后才能获取到元素
         onMounted(() => {
             // 在setup里需要解包
@@ -2582,7 +2582,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     <show-info ref="showInfoRef"></show-info>
-    
+
     const showInfoRef = ref()
     // 挂载完后才能获取到组件实例
     onMounted(() => {
@@ -2606,7 +2606,7 @@ title: '一、邂逅Vue.js开发'
   * ```js
     // 导入方式
     import { onMounted } from 'vue'
-    
+
     setup() {
         onMounted(() => {   //传入的才是生命周期钩子
             console.log("onmounted")
@@ -2620,7 +2620,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### provide可以传入两个参数：
 
-  * key：提供的属性名称； 
+  * key：提供的属性名称；
 
   * value：提供的属性值；
 
@@ -2628,7 +2628,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { provide, ref } from 'vue'
-      
+
       const name = ref("why")
       //不同于Options API，其传递过去接收到的就是响应式数据；
       //reactive不能单独传递对象里的某个属性，响应式会失效；
@@ -2647,7 +2647,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { inject } from 'vue'
-      
+
       const name = inject("name")   //提供的是ref对象，那么获取到的也是ref对象
       const age = inject("age")
       //定义默认值；
@@ -2666,8 +2666,8 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 监听方法：
 
-  * watch：需要手动指定侦听的数据源； 
-  * watchEffect：用于自动收集响应式数据的依赖； 
+  * watch：需要手动指定侦听的数据源；
+  * watchEffect：用于自动收集响应式数据的依赖；
 
 
 
@@ -2682,7 +2682,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     import { watch } from 'vue'
-    
+
     //1.默认深层监听
     const message = ref("Hello World")
     const age = ref(18)
@@ -2692,9 +2692,9 @@ title: '一、邂逅Vue.js开发'
     })
     //监听多个数据源，数组形式
     watch([message, age], (newValue, oldValue) => {
-        console.log(newValue, oldValue) 
+        console.log(newValue, oldValue)
     })
-    
+
     //2.监听reactive数据变化后, 获取普通对象，默认是浅层监听；
     watch(() => ({ ...info }), (newValue, oldValue) => {
         console.log(newValue, oldValue)
@@ -2703,7 +2703,7 @@ title: '一、邂逅Vue.js开发'
         deep: true
     })
     ```
-  
+
 * 注意：
 
   * 如果监听源是reactive响应式数据，是深层监听；如果监听源是ref对象，是浅层监听；如果监听源是ref.value，是深层监听；
@@ -2726,14 +2726,14 @@ title: '一、邂逅Vue.js开发'
     //返回值是一个函数；不需要停止监听可不用变量接收；
     const stopWatch = watchEffect(() => {
         console.log("-------", counter.value, name.value)
-    
+
         // 判断counter.value >= 10，停止监听；
         if (counter.value >= 10) {
             stopWatch()  //调用函数停止监听；
         }
     })
     ```
-  
+
 * ##### 注意：
 
   * 监听不了普通值；
@@ -2755,7 +2755,7 @@ title: '一、邂逅Vue.js开发'
 
 * `<script setup>`是在.vue文件中使用组合式 API 的编译时语法糖；
 
-  * 更少的样板内容，更简洁的代码； 
+  * 更少的样板内容，更简洁的代码；
 
 * ##### 顶层作用域的绑定会被暴露给模板：
 
@@ -2781,7 +2781,7 @@ title: '一、邂逅Vue.js开发'
 
       * ```js
         <h2>{{ name }}</h2>
-        
+
         //可以不赋值给变量，赋值给变量主要为了在setup中使用props;
         //赋不赋值给变量都可以，在模板中直接使用传递的属性即可，如上
         const props = defineProps({
@@ -2795,9 +2795,9 @@ title: '一、邂逅Vue.js开发'
           }
         })
         ```
-    
+
     * 绑定函数, 并且发出事件：
-    
+
       * ```js
         const emits = defineEmits(["infoBtnClick"])
         function showInfoBtnClick() {
@@ -2819,7 +2819,7 @@ title: '一、邂逅Vue.js开发'
 
       * ```js
         <show-info ref="showInfoRef"></show-info>
-        
+
         const showInfoRef = ref()
         onMounted(() => {
             showInfoRef.value.foo()
@@ -2847,7 +2847,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### `vue的基础语法` + `vue-router` + `vuex`
 
-  
+
 
 ## 1.2、前端路由
 
@@ -2859,14 +2859,14 @@ title: '一、邂逅Vue.js开发'
 
 * ##### web的发展阶段：
 
-  * 后端路由阶段； 
-  * 前后端分离阶段； 
+  * 后端路由阶段；
+  * 前后端分离阶段；
   * 单页面富应用（SPA）；
     * 加载单个HTML页面并在用户与应用程序交互时动态更新该页面的Web应用程序。
-    
+
     * 维护url和组件之间的映射关系；
-    
-      
+
+
 
 
 ## 1.3、vue-router
@@ -2894,13 +2894,13 @@ title: '一、邂逅Vue.js开发'
 
 * hash的优势就是兼容性更好，在老版IE中都可以运行，但是缺陷是有一个#，显得不像一个真实的路径。
 
-  
+
 
 ### 1.4.2、hash和history模式示例
 
 * ```js
   import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-  
+
   // 创建一个路由: 映射关系
   const router = createRouter({
       // 指定采用的模式: hash
@@ -2908,7 +2908,7 @@ title: '一、邂逅Vue.js开发'
       // history: createWebHistory(),
   )}
   ```
-  
+
 * ##### 区别：
 
   * | hash                                                         | history                                                      |
@@ -2919,7 +2919,7 @@ title: '一、邂逅Vue.js开发'
     | 刷新不会存在 404 问题                                        | 浏览器直接访问嵌套路由时，会报 404 问题。                    |
     | 不需要服务器任何配置                                         | 需要在服务器配置⼀个回调路由                                 |
 
-    
+
 
 ## 1.5、路由的默认路径
 
@@ -2952,22 +2952,22 @@ title: '一、邂逅Vue.js开发'
 
   * ##### replace属性：
 
-    * 当点击时，会调用 router.replace()，而不是 router.push()； 
+    * 当点击时，会调用 router.replace()，而不是 router.push()；
 
-  * ##### active-class属性： 
+  * ##### active-class属性：
 
-    * 设置激活a元素后应用的class，默认是router-link-active； 
+    * 设置激活a元素后应用的class，默认是router-link-active；
 
   * ##### exact-active-class属性：
 
     * 链接精准激活时，应用于渲染的 `<a>`的 class，默认是router-link-exact-active； （嵌套下的子元素）；
-  
+
 * ##### 写法：
 
   * ```vue
     //字符串写法
     <router-link to="/home">home</router-link>
-    
+
     //对象写法
     <router-link :to="{ path: '/home', query: { name: 'why'}}"></router-link>
     ```
@@ -2981,8 +2981,8 @@ title: '一、邂逅Vue.js开发'
 * ##### 示例：
 
   * ```js
-    { 
-    	path: "/home", 
+    {
+    	path: "/home",
         // component可以传入一个组件，也可以接收一个函数，需要返回一个Promise；
         component: () => import("../Views/Home.vue")
     }
@@ -2992,7 +2992,7 @@ title: '一、邂逅Vue.js开发'
 
 ## 1.8、路由的其他属性
 
-* name属性：路由记录独一无二的名称； 
+* name属性：路由记录独一无二的名称；
 * meta属性：自定义的数据；
 
 
@@ -3019,7 +3019,7 @@ title: '一、邂逅Vue.js开发'
       //路径只为/uesr则无法跳到user组件；
       <router-link to="/user/321">用户</router-link>
       //若想跳到user的子路由组件，需要to="/user/321/userChild"
-      
+
       <router-view></router-view>
       ```
 
@@ -3045,7 +3045,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     import { useRoute } from 'vue-router'
-    
+
     const route = useRoute()
     console.log(route.params.id)
     ```
@@ -3085,8 +3085,8 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       routes: [
-         { 
-            path: "/home", 
+         {
+            path: "/home",
             ...,
             children: [
               {
@@ -3099,10 +3099,10 @@ title: '一、邂逅Vue.js开发'
                  {
                    // /home/recommend
                    path: "recommend",  // 不可加斜杠
-                   ...  
-                 },		
+                   ...
+                 },
           	}
-            ]  
+            ]
          }
       ]
       ```
@@ -3129,13 +3129,13 @@ title: '一、邂逅Vue.js开发'
     //普通写法
     //传入路径
     this.$router.push('/home')
-    
+
     //对象写法
     //属性为路由名或路径
     this.$router.push({
         // name: "home"
         path: "/home",
-        
+
         //传入query参数
         query: {
             name: "why",
@@ -3147,17 +3147,17 @@ title: '一、邂逅Vue.js开发'
 * ##### setup写法：
   * ```js
     import { useRouter } from 'vue-router'
-    
+
     const router = useRouter()
-    
+
     // 普通写法
     router.push("/home")
-    
+
     // 对象写法
     router.push({
         // name: "home"
         path: "/home",
-        
+
         //传入query参数
         query: {
             name: "why",
@@ -3197,12 +3197,12 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { useRouter } from "vue-router"
-      
+
       const router = useRouter()
       router.replace(...)  // 跟push写法一样，可以对象可以字符串
       ```
 
-      
+
 
 ### 2.3.3、页面的前进后退
 
@@ -3220,11 +3220,11 @@ title: '一、邂逅Vue.js开发'
 * ##### 步骤：
 
   * 创建路由需要映射的组件；
-  * 通过createRouter创建路由对象，并且传入history模式和routes； 
+  * 通过createRouter创建路由对象，并且传入history模式和routes；
     * 创建基于hash或者history的模式；
-    * 配置路由映射: 组件和路径映射关系的routes数组； 
-  * 使用app注册路由对象（use方法）； 
-  * 路由使用: 通过`<router-link>`和`<router-view>`； 
+    * 配置路由映射: 组件和路径映射关系的routes数组；
+  * 使用app注册路由对象（use方法）；
+  * 路由使用: 通过`<router-link>`和`<router-view>`；
 
 * ##### 示例：
 
@@ -3232,7 +3232,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-      
+
       // 创建一个路由: 映射关系
       const router = createRouter({
         // 指定采用的模式: hash,
@@ -3240,13 +3240,13 @@ title: '一、邂逅Vue.js开发'
         history: createWebHashHistory(),
         // history: createWebHistory(),
         routes: [
-          { 
-            path: "/", 
+          {
+            path: "/",
             redirect: "/home"  //重定向
           },
-          { 
+          {
             name: "home",
-            path: "/home", 
+            path: "/home",
             component: () => import("../Views/Home.vue"),  //路由懒加载
             //自定义数据
             meta: {
@@ -3269,10 +3269,10 @@ title: '一、邂逅Vue.js开发'
               },
             ]
           },
-          { 
+          {
             name: "about",
-            path: "/about", 
-            component: () => import("../Views/About.vue") 
+            path: "/about",
+            component: () => import("../Views/About.vue")
           },
           {
             path: "/user/:id",
@@ -3285,7 +3285,7 @@ title: '一、邂逅Vue.js开发'
           }
         ]
       })
-      
+
       export default router
       ```
 
@@ -3295,13 +3295,13 @@ title: '一、邂逅Vue.js开发'
       <div class="nav">
           <router-link to="/home" replace>首页</router-link>
           <!-- <router-link :to="{ path: '/home' }" replace>首页</router-link> -->
-          
+
           <router-link to="/about" replace active-class="active">关于</router-link>
           <router-link to="/user/123">用户123</router-link>
       </div>
-      
+
       <!-- 占位组件 -->
-      <router-view></router-view>  
+      <router-view></router-view>
       ```
 
   * ##### Home.vue：(路由组件)
@@ -3310,7 +3310,7 @@ title: '一、邂逅Vue.js开发'
       <div class="home-nav">
           <router-link to="/home/recommend">推荐</router-link>
       </div>
-      
+
       <!-- 占位组件 -->
       <router-view></router-view>
       ```
@@ -3335,7 +3335,7 @@ title: '一、邂逅Vue.js开发'
           path: "/admin",
           component: () => import("../Views/Admin.vue")
       })
-      
+
       //二级路由，第一个参数为已知路由的name属性值
       router.addRoute("home", {
           path: "vip",
@@ -3347,7 +3347,7 @@ title: '一、邂逅Vue.js开发'
 
   * ##### 删除路由的三种方式：
 
-    * 添加一个name相同的路由； 
+    * 添加一个name相同的路由；
 
       * ```js
         router.addRoute({
@@ -3362,17 +3362,17 @@ title: '一、邂逅Vue.js开发'
       * ```js
       router.removeRoute("about")  //传入路由名
         ```
-    
+
     * 通过addRoute方法的返回值回调；
-    
+
       * ```js
         const removeRoute = router.addRoute(...)
         removeRoute()
         ```
-    
+
   * ##### 路由的其他方法补充：
-  
-    * router.hasRoute()：检查路由是否存在。 
+
+    * router.hasRoute()：检查路由是否存在。
     * router.getRoutes()：获取一个包含所有路由记录的数组。
 
 
@@ -3381,7 +3381,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 导航守卫主要用来通过跳转或取消的方式守卫导航。
 
-  
+
 
 ### 2.6.1、全局的前置守卫 beforeEach
 
@@ -3389,15 +3389,15 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 它有两个参数：
 
-  * `to`：即将进入的路由 `Route` 对象； 
-  * `from`：即将离开的路由 `Route` 对象； 
+  * `to`：即将进入的路由 `Route` 对象；
+  * `from`：即将离开的路由 `Route` 对象；
 
 * ##### 返回值：
 
-  * `false`：取消当前导航； 
-  * 不返回或者 `undefined`：进行默认导航； 
-  * 返回一个路由地址： 
-    * 可以是一个 `string` 类型的路径； 
+  * `false`：取消当前导航；
+  * 不返回或者 `undefined`：进行默认导航；
+  * 返回一个路由地址：
+    * 可以是一个 `string` 类型的路径；
     * 可以是一个对象，对象中包含 `path`、`query`、`params` 等信息；
 
 * ##### 可选的第三个参数：next：
@@ -3444,7 +3444,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 每一个Vuex应用的核心就是store（仓库）：
 
-  * store本质上是一个容器，它包含着应用中大部分的状态（state）； 
+  * store本质上是一个容器，它包含着应用中大部分的状态（state）；
 
 * ##### Vuex和单纯的全局对象的区别：
 
@@ -3460,7 +3460,7 @@ title: '一、邂逅Vue.js开发'
 * ##### Vuex使用单一状态树：
 
   * 用一个对象就包含了全部的应用层级的状态；
-  * 每个应用将仅仅包含一个 `store` 实例； 
+  * 每个应用将仅仅包含一个 `store` 实例；
 
 * ##### 单一状态树的优势：
 
@@ -3481,7 +3481,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { createStore } from 'vuex'
-      
+
       const store = createStore({
         state: () => ({}),
         getters: {},
@@ -3520,13 +3520,13 @@ title: '一、邂逅Vue.js开发'
     <h2>{{ $store.state.counter }}</h2>
     ```
 
-* ##### Options API： 
+* ##### Options API：
 
   * 使用computed来简化写法：
 
     * ```js
       <h2>{{ storeCounter }}</h2>
-      
+
       export default {
           computed: {
               storeCounter() {
@@ -3540,7 +3540,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { mapState } from 'vuex'
-      
+
       export default {
           computed: {
               //数组写法
@@ -3549,7 +3549,7 @@ title: '一、邂逅Vue.js开发'
               ...mapState({
                   //会传入一个state对象，固定写法
                   //可以重命名
-                  sName: state => state.name,  
+                  sName: state => state.name,
                   sLevel: state => state.level
               })
           }
@@ -3563,7 +3563,7 @@ title: '一、邂逅Vue.js开发'
     * ```js
       import { mapState, useStore } from 'vuex'
       import { toRefs } from 'vue'
-      
+
       //解构mapState返回的对象，得到一个个函数
       const { name, level } = mapState(["name", "level"])
       //利用导入的useStore函数获取store对象
@@ -3577,10 +3577,10 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       <h2>{{ counter }}</h2>
-      
+
       import { toRefs } from 'vue'
       import { useStore } from 'vuex'
-      
+
       const store = useStore()
       //使用toRefs可以让让解构后的数据是ref对象，依然具有响应式
       const { name, level } = toRefs(store.state)
@@ -3600,12 +3600,12 @@ title: '一、邂逅Vue.js开发'
         doubleCounter(state) {
             return state.counter * 2
         },
-            
+
         // 2.在该getters属性中, 获取其他的getters
         message(state, getters) {
           return `name:${state.name}；TotalAge:${getters.doubleCounter}`
         },
-            
+
         // 3.getters是可以返回一个函数的, 调用这个函数可以传入参数(了解)
         getFriendById(state) {
           return function(id) {
@@ -3625,7 +3625,7 @@ title: '一、邂逅Vue.js开发'
     <h2>{{ $store.getters.getFriendById(111) }}</h2>
     ```
 
-* ##### Options API： 
+* ##### Options API：
 
   * 可以使用computed来简化写法；
 
@@ -3633,7 +3633,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { mapGetters } from 'vuex'
-      
+
       export default {
           computed: {
               ...mapGetters(["doubleCounter"]),
@@ -3648,7 +3648,7 @@ title: '一、邂逅Vue.js开发'
     * ```js
       import { computed } from 'vue'
       import { mapGetters, useStore } from 'vuex'
-      
+
       const store = useStore()
       //解构后得到得是函数
       const { message: messageFn } = mapGetters(["message"])
@@ -3660,13 +3660,13 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       <h2>{{ message }}</h2>
-      
+
       import { toRefs } from 'vue';
       import { useStore } from 'vuex'
-      
+
       const store = useStore()
       const { message } = toRefs(store.getters)
-      
+
       //针对某一个getters属性使用computed或toRef
       //使用computed函数后返回的也是ref对象；
       const message = computed(() => store.getters.message)
@@ -3690,7 +3690,7 @@ title: '一、邂逅Vue.js开发'
   * ```js
     //导入常量文件
     import { CHANGE_INFO } from './mutation_types'
-    
+
     mutations: {
         increment(state) {
           state.counter++
@@ -3713,7 +3713,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { CHANGE_INFO } from "@/store/mutation_types"
-      
+
       export default {
           methods: {
             changeName() {
@@ -3741,10 +3741,10 @@ title: '一、邂逅Vue.js开发'
     * ```js
       //使用mapMutations方法，若要给mutations的方法传参则直接在元素里传
       <button @click="changeName('王小波')">修改name</button>
-      
+
       import { mapMutations } from 'vuex'
       import { CHANGE_INFO } from "@/store/mutation_types"
-      
+
       methods: {
            ...mapMutations(["changeName", "incrementLevel", CHANGE_INFO])，
            //对象写法
@@ -3760,31 +3760,31 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       <button @click="changeName('王小波')">修改name</button>
-      
+
       import { mapMutations, useStore } from 'vuex'
       import { CHANGE_INFO } from "@/store/mutation_types"
-      
+
       const store = useStore()
-      
+
       const mutations = mapMutations(["changeName", "incrementLevel", CHANGE_INFO])
-      
-      const newMutations = {}  
+
+      const newMutations = {}
       Object.keys(mutations).forEach(key => {
           newMutations[key] = mutations[key].bind({ $store: store })
       })
       const { changeName, incrementLevel, changeInfo } = newMutations
       //传参在元素上传
       ```
-      
-  
-  
-  
+
+
+
+
 * ##### mutation重要原则：
 
   * `mutation`必须是同步函数：
     * 因为devtool工具会记录mutation的日记；
-    * 每一条mutation被记录，devtools都需要捕捉到前一状态和后一状态的快照； 
-    * 但是在mutation中执行异步操作，就无法追踪到数据的变化； 
+    * 每一条mutation被记录，devtools都需要捕捉到前一状态和后一状态的快照；
+    * 但是在mutation中执行异步操作，就无法追踪到数据的变化；
 
 
 
@@ -3792,7 +3792,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### Action类似于mutation，不同在于：
 
-  * Action提交的是mutation，而不是直接变更状态； 
+  * Action提交的是mutation，而不是直接变更状态；
   * Action可以包含任意异步操作；
 
 * ##### context参数：
@@ -3801,7 +3801,7 @@ title: '一、邂逅Vue.js开发'
 
   * 可以使用context来提交mutation、获取state和getters；
 
-    
+
 
 ### 1.7.1、actions的使用：
 
@@ -3843,7 +3843,7 @@ title: '一、邂逅Vue.js开发'
       methods: {
           //要传参数在元素上传
           ...mapActions(["incrementAction", "changeNameAction"])
-          
+
          //对象写法
          ...mapActions({
             addAction: "addAction" //属性为绑定的事件，属性值为actions里对应的属性
@@ -3858,7 +3858,7 @@ title: '一、邂逅Vue.js开发'
     * ```js
       import { useStore } from 'vuex'
       const store = useStore()
-      
+
       function increment() {
           store.dispatch("incrementAction")
       }
@@ -3869,7 +3869,7 @@ title: '一、邂逅Vue.js开发'
     * ```js
       import { useStore, mapActions } from 'vuex'
       const store = useStore()
-      
+
       const actions = mapActions(["incrementAction", "changeNameAction"])
       const newActions = {}
       Object.keys(actions).forEach(key => {
@@ -3891,7 +3891,7 @@ title: '一、邂逅Vue.js开发'
             // 3.await/async
             const res = await fetch("http://123.207.32.32:8000/home/multidata")
             const data = await res.json()
-    
+
             // 修改state数据
             context.commit("changeBanners", data.data.banner.list)
             context.commit("changeRecommends", data.data.recommend.list)
@@ -3904,7 +3904,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     import { useStore } from 'vuex'
-    
+
     // 告诉Vuex发起网络请求
     const store = useStore()
     // 若需要在setup中使用数据可以使用then方法，但返回的数据必须是promise)
@@ -3951,7 +3951,7 @@ title: '一、邂逅Vue.js开发'
   * ```js
     import moduleA from "..."
     import moduleB from "..."
-    
+
     const store = createStore({
       state: () => ({ ... }),
       mutations: { ... },
@@ -3989,7 +3989,7 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { useStore } from 'vuex'
-      
+
       const store = useStore()
       // 派发事件时, 默认也是不需要跟模块名称
       // 提交mutation时, 默认也是不需要跟模块名称
@@ -4020,14 +4020,14 @@ title: '一、邂逅Vue.js开发'
 
     * ```js
       import { useStore } from 'vuex'
-      
+
       const store = useStore()
       // mutations、actions使用方法
       function incrementCount() {
           store.dispatch("counter/incrementCountAction")
       }
       ```
-  
+
 * ##### 补： 在带命名空间的模块内访问全局内容
 
   * 如果你希望使用全局 state 和 getter，`rootState` 和 `rootGetters` 会作为第三和第四参数传入 getter，也会通过 `context` 对象的属性传入 action。
@@ -4081,11 +4081,11 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 更友好的TypeScript支持；
 
-  * 在与 TypeScript 一起使用时具有可靠的类型推断支持； 
+  * 在与 TypeScript 一起使用时具有可靠的类型推断支持；
 
 * ##### 不再有modules的嵌套结构：
 
-  * 可以灵活使用每一个store，它们是通过扁平化的方式来相互使用的； 
+  * 可以灵活使用每一个store，它们是通过扁平化的方式来相互使用的；
 
 * ##### 也不再有命名空间的概念；
 
@@ -4097,7 +4097,7 @@ title: '一、邂逅Vue.js开发'
 
 * ##### Store有三个核心概念：
 
-  * state、getters、actions； 
+  * state、getters、actions；
   * 等同于组件的data、computed、methods；
 
 * ##### Store在它被使用之前是不会创建的，可以通过调用use函数来使用Store；
@@ -4117,15 +4117,15 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     import { createPinia } from 'pinia'
-    
+
     export default createPinia()
     ```
-  
+
 * ##### main.js：
 
   * ```js
     import pinia from './stores'
-    
+
     app.use(pinia)
     ```
 
@@ -4138,7 +4138,7 @@ title: '一、邂逅Vue.js开发'
   * ```js
     //定义一个store
     import { defineStore } from 'pinia'
-    
+
     export default defineStore("home", {
       state: () => ({ ... }),
       getters: { ... }
@@ -4158,13 +4158,13 @@ title: '一、邂逅Vue.js开发'
     import useUser from './user'
     // 1.获取user信息
     const userStore = useUser()
-    
+
     export default defineStore("user", {
       state: () => ({}),
       getters: {
           foo(state) {
               // 使用其他store的状态，不需要跟state
-              return userStore.name + state.name 
+              return userStore.name + state.name
           }
       }
     })
@@ -4184,10 +4184,10 @@ title: '一、邂逅Vue.js开发'
     //不需要跟state;
     <h2>count: {{ userStore.name }}</h2>
     <h2>{{ name }}</h2>
-    
+
     import useUser from '@/stores/user'
     import { storeToRefs } from 'pinia'
-    
+
     const userStore = useUser()
     const { name, age, level } = storeToRefs(userStore)
     ```
@@ -4278,7 +4278,7 @@ title: '一、邂逅Vue.js开发'
     ```
 
 * 调用Actions中的方法：
-  
+
   * ```js
     //不需要跟dispatch
     import useHome from '@/stores/home'
@@ -4296,10 +4296,10 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 功能特点：
 
-  * 在浏览器中发送 XMLHttpRequests 请求； 
+  * 在浏览器中发送 XMLHttpRequests 请求；
   * 在 node.js 中发送 http请求；
-  * 支持 Promise API； 
-  * 拦截请求和响应； 
+  * 支持 Promise API；
+  * 拦截请求和响应；
   * 转换请求和响应数据；
 
 
@@ -4308,21 +4308,21 @@ title: '一、邂逅Vue.js开发'
 
 * ##### 支持多种请求方式：
 
-  * axios(config) ： 
+  * axios(config) ：
     * axios('/user/12345')   //发起一个 GET 请求 (默认请求方式)
-  * axios.request(config) 
-  * axios.get(url[, config]) 
-  * axios.delete(url[, config]) 
-  * axios.head(url[, config]) 
-  * axios.post(url[, data[, config]]) 
-  * axios.put(url[, data[, config]]) 
-  * axios.patch(url[, data[, config]]) 
+  * axios.request(config)
+  * axios.get(url[, config])
+  * axios.delete(url[, config])
+  * axios.head(url[, config])
+  * axios.post(url[, data[, config]])
+  * axios.put(url[, data[, config]])
+  * axios.patch(url[, data[, config]])
 
 * ##### 可以同时发送多个请求：
 
   * axios.all([...])：底层原理是调用Promise.all()；
 
-    
+
 
 ### 1.2.1、示例：
 
@@ -4344,7 +4344,7 @@ title: '一、邂逅Vue.js开发'
     axios.get(`http://123.207.32.32:9001/lyric?id=500665346`).then(res => {
       console.log("res:", res.data.lrc)
     })
-    
+
     //query参数
     axios.get("http://123.207.32.32:9001/lyric", {
       params: {
@@ -4360,7 +4360,7 @@ title: '一、邂逅Vue.js开发'
   * ```js
     //第二个参数为传入参数的data
     //第三个参数为配置config，也可以写在第二个参数的位置，库会对其进行判断处理；
-    
+
     //第二个参数为data
     axios.post("http://123.207.32.32:1888/02_param/postjson", {
       name: "coderwhy",
@@ -4368,7 +4368,7 @@ title: '一、邂逅Vue.js开发'
     }).then(res => {
       console.log("res", res.data)
     })
-    
+
     //第二个参数为配置，配置里写入data
     axios.post("http://123.207.32.32:1888/02_param/postjson", {
       data: {
@@ -4387,12 +4387,12 @@ title: '一、邂逅Vue.js开发'
 * ```js
   // 1.baseURL;对于一些需要重复使用的基础地址抽取出来
   const baseURL = "http://123.207.32.32:8000"
-  
+
   // 给axios实例配置公共的基础配置，每次使用实例都会默认进行以下配置；
   axios.defaults.baseURL = baseURL
   axios.defaults.timeout = 10000
   axios.defaults.headers = {}
-  
+
   // get: /home/multidata
   axios.get("/home/multidata").then(res => {
     console.log("res:", res.data)
@@ -4480,7 +4480,7 @@ title: '一、邂逅Vue.js开发'
         return Promise.reject(err)
       })
       ```
-  
+
 * ##### 注：拦截器需要写在网络前请求的前面；
 
 
@@ -4491,7 +4491,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     import axios from 'axios'
-    
+
     class RequestHttp {
       constructor(baseURL, timeout=10000) {
         this.instance = axios.create({
@@ -4510,7 +4510,7 @@ title: '一、邂逅Vue.js开发'
           return err
         })
       }
-    
+
       request(config) {
         return new Promise((resolve, reject) => {
           this.instance.request(config).then(res => {
@@ -4521,16 +4521,16 @@ title: '一、邂逅Vue.js开发'
           })
         })
       }
-    
+
       get(config) {
         return this.request({ ...config, method: "get" })
       }
-    
+
       post(config) {
         return this.request({ ...config, method: "post" })
       }
     }
-    
+
     export default new RequestHttp("http://123.207.32.32:9001")
     ```
 
@@ -4538,7 +4538,7 @@ title: '一、邂逅Vue.js开发'
 
   * ```js
     import RequestHttp from './service'
-    
+
     hyRequest.request({
       url: "/lyric?id=500665346"
     }).then(res => {
@@ -4760,7 +4760,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
 * ##### 自定义指令：
 
-  * 代码的复用和抽象主要还是通过组件； 
+  * 代码的复用和抽象主要还是通过组件；
   * 通常在某些情况下，需要对DOM元素进行底层操作，就会用到自定义指令；
 
 * ##### 自定义指令分为两种：
@@ -4769,7 +4769,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
 ### 1.1.1、自定义局部指令
 
-* ##### 自定义局部指令：组件中通过 directives 选项，只能在当前组件中使用； 
+* ##### 自定义局部指令：组件中通过 directives 选项，只能在当前组件中使用；
 
   * template：
 
@@ -4791,9 +4791,9 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
           }
       }
       ```
-    
+
   * compositions API：（setup语法糖写法）
-    
+
     * ```js
       // 写法为v + 大驼峰
       const vFocus = {
@@ -4803,7 +4803,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
         }
       }
       ```
-    
+
     * 注意：对于setup函数没有写法；
 
 
@@ -4822,12 +4822,12 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
         }
     })
     ```
-  
+
 * ##### 定义多个全局指令的写法：
 
   * 创建一个directives文件夹 -> focus.js和index.js ；
 
-  * focus.js： 
+  * focus.js：
 
     * ```js
       export default function directiveFocus(app) {
@@ -4844,7 +4844,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
     * ```js
       import directiveFocus from "./focus"
       ...
-      
+
       export default function directives(app) {
         directiveFocus(app)
          ...  // 可以添加更多的dir...
@@ -4855,11 +4855,11 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
     * ```js
       import directives from "./01_自定义指令/directives/index"
-      
+
       // 1.可以直接调用,但要传入app
       const app = createApp(APP)
-      directives(app) 
-      
+      directives(app)
+
       // 2.或者使用use()，use()会给传入的函数传入参数app对象并调函数；
       createApp(App).use(directives).mount("#app")
       ```
@@ -4872,31 +4872,31 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
   * ##### created：
 
-    * 在绑定元素的 attribute 或事件监听器被应用之前调用； 
+    * 在绑定元素的 attribute 或事件监听器被应用之前调用；
 
   * ##### beforeMount：
 
-    * 当指令第一次绑定到元素并且在挂载父组件之前调用； 
+    * 当指令第一次绑定到元素并且在挂载父组件之前调用；
 
   * ##### mounted：
 
-    * 在绑定元素的父组件被挂载后调用； 
+    * 在绑定元素的父组件被挂载后调用；
 
   * ##### beforeUpdate：
 
-    * 在更新包含组件的 VNode 之前调用； 
+    * 在更新包含组件的 VNode 之前调用；
 
   * ##### updated：
 
-    * 在包含组件的 VNode 及其子组件的 VNode 更新后调用； 
+    * 在包含组件的 VNode 及其子组件的 VNode 更新后调用；
 
   * ##### beforeUnmount：
 
-    * 在卸载绑定元素的父组件之前调用； 
+    * 在卸载绑定元素的父组件之前调用；
 
   * ##### unmounted：
 
-    * 当指令与元素解除绑定且父组件已卸载时，只调用一次； 
+    * 当指令与元素解除绑定且父组件已卸载时，只调用一次；
 
 * ##### 示例：
 
@@ -4914,34 +4914,34 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
 * ```js
   <h2 v-why:kobe.abc.cba="message">哈哈哈哈</h2>
-  
-  // :kobe为参数的名称；  
+
+  // :kobe为参数的名称；
   // .abc和.cba为修饰符；
   // message为传入的值；
-  
+
   // 通过bindings来获取对应的内容，bindings为钩子函数的第二个参数；
   const vWhy = {
     mounted(el, bindings) {
       el.textContent = bindings.value  //可以进行对应操作
     }
   }
-  
+
   ```
-  
+
 
 
 
 ## 1.3、内置组件—Teleport
 
-* ##### 某些情况下，希望组件不是挂载在这个组件树上的，可能是移动到Vue app之外的其他位置： 
+* ##### 某些情况下，希望组件不是挂载在这个组件树上的，可能是移动到Vue app之外的其他位置：
 
-  * 比如移动到body元素上，或者有其他的div#app之外的元素上； 
+  * 比如移动到body元素上，或者有其他的div#app之外的元素上；
   * 这个时候就可以通过teleport来完成；
 
 * ##### 两个属性：
 
-  * to：指定将其中的内容移动到的目标元素，可以使用选择器； 
-  * disabled：是否禁用 teleport 的功能； 
+  * to：指定将其中的内容移动到的目标元素，可以使用选择器；
+  * disabled：是否禁用 teleport 的功能；
 
 * ##### 示例：
 
@@ -4966,8 +4966,8 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
 * ##### 两个插槽：
 
-  * default：如果default可以显示，那么显示default的内容； 
-  * fallback：如果default无法显示，那么会显示fallback插槽的内容； 
+  * default：如果default可以显示，那么显示default的内容；
+  * fallback：如果default无法显示，那么会显示fallback插槽的内容；
 
 * ##### 示例：
 
@@ -4982,9 +4982,9 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
             </template>
         </suspense>
     </div>
-    
+
     import { defineAsyncComponent } from 'vue';
-    
+
     const AsyncHome = defineAsyncComponent(() => import("./AsyncHome.vue"))
     ```
 
@@ -4995,7 +4995,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 * ##### 向Vue全局添加一些功能时，会采用插件的模式，两种编写方式：
 
   * 对象类型：
-    * 一个对象，但是必须包含一个 install 的函数，该函数会在安装插件时执行； 
+    * 一个对象，但是必须包含一个 install 的函数，该函数会在安装插件时执行；
   * 函数类型：
     * 一个function，这个函数会在安装插件时自动执行；
 
@@ -5009,7 +5009,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
         console.log("传入对象的install被执行:", app)
       }
     })
-    
+
     // 方式二: 传入函数的情况
     app.use(function(app) {
       console.log("传入函数被执行:", app)
@@ -5059,7 +5059,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
     * ```js
       import { h } from 'vue'
       import Home from "./Home.vue"
-      
+
       export default {
           render() {   //渲染函数
               return h("div", { className: "app" }, [
@@ -5083,15 +5083,15 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
       <template>
         <render/>
       </template>
-      
+
       <script>
         import { h, ref } from 'vue'
         import Home from "./Home.vue"
-      
+
         export default {
           setup() {
             ...
-      
+
             //返回一个函数，函数又返回一个h函数；
             return () => h("div", { className: "app" }, [
               h("h2", null, `当前计数: ${counter.value}`),
@@ -5110,16 +5110,16 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
       * 必须要有`<template>`和`<render />`；
       * template元素里除`<render />`，还可以有其他元素；
-    
+
     * ```js
       <template>
         <render/>
       </template>
-      
+
       <script setup>
       import { ref, h } from 'vue';
       ...
-      
+
       const render = () => h("div", { className: "app" }, [
         h("h2", null, `当前计数: ${counter.value}`),
         h("button", { onClick: increment }, "+1"),
@@ -5128,10 +5128,10 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
       ])
       </script>
       ```
-  
-* 注意： 
 
-  * 如果没有props，那么通常可以将children作为第二个参数传入； 
+* 注意：
+
+  * 如果没有props，那么通常可以将children作为第二个参数传入；
   * 如果会产生歧义，可以将null作为第二个参数传入，将children作为第三个参数传入；
 
 
@@ -5164,7 +5164,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
       * ```js
         import jsx from '@vitejs/plugin-vue-jsx'
-        
+
         plugins: [
             jsx()
         ]
@@ -5175,10 +5175,10 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
   * Options API：
 
     * 注意：不能有template；
-  
+
     * ```vue
       import About from "./Home.vue"
-      
+
       render() {
         return (
             <div class="app">
@@ -5190,19 +5190,19 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
       	)
       }
       ```
-  
+
   * setup：
-  
+
     * 注意：(与vue的render函数一样)
-  
+
       - 有无`<template>`和`<jsx />`都可以；
       - template中只能有`<jsx />`，其他元素不会被渲染；
-      
+
     * ```vue
       <template>
         <jsx/>
       </template>
-      
+
       setup() {
       	...
           return () => (
@@ -5215,19 +5215,19 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
       	)
       }
       ```
-  
+
   * setup语法糖：
-  
+
     * 注意：(与vue的render函数一样)
-    
+
       - 必须要有`<template>`和`<jsx/>`；
       - template元素里除`<jsx/>`，还可以有其他元素；
-      
+
     * ```vue
       <template>
         <jsx/>
       </template>
-      
+
       const jsx = () => (
         <div class="app">
           <h2>当前计数: { counter.value }</h2>
@@ -5246,7 +5246,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
 * ##### 在下列情形中，可以给任何元素和组件添加进入/离开过渡：
 
-  * 条件渲染； (使用 v-if、v-show) 
+  * 条件渲染； (使用 v-if、v-show)
   * 动态组件；（`<component>`）
   * 组件根节点；
     * 给导入的组件使用包裹transition，添加的class会添加到组件的根节点；
@@ -5255,9 +5255,9 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
   * 当插入或删除包含在`transition`组件中的元素时，vue的处理是：
     * 自动监测目标元素是否应用了CSS过渡或者动画，有则在恰当的时机添加/删除 CSS类名；
-    * 如果 transition 组件提供了JavaScript钩子函数，这些钩子函数将在恰当的时机被调用； 
+    * 如果 transition 组件提供了JavaScript钩子函数，这些钩子函数将在恰当的时机被调用；
     * 如果没有找到JavaScript钩子并且也没有检测到CSS过渡/动画，DOM插入、删除操作将会立即执行；
-  
+
 * ##### 注意：
 
   * transtion主要是针对单个元素或者组件；（transition里只能插入一个元素，多个会报警告）
@@ -5267,27 +5267,27 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
 ## 1.2、过渡动画class
 
-* ##### v-enter-from：定义进入过渡的开始状态。 
+* ##### v-enter-from：定义进入过渡的开始状态。
 
-  * 在元素被插入之前生效，在元素被插入之后的下一帧移除。 
+  * 在元素被插入之前生效，在元素被插入之后的下一帧移除。
 
-* ##### v-enter-active：定义进入过渡生效时的状态。 
+* ##### v-enter-active：定义进入过渡生效时的状态。
 
-  * 在整个进入过渡的阶段中应用，在元素被插入之前生效，在过渡/动画完成之后移除。这个类可以被用来定义进入过渡的过程时间，延迟和曲线函数。 
+  * 在整个进入过渡的阶段中应用，在元素被插入之前生效，在过渡/动画完成之后移除。这个类可以被用来定义进入过渡的过程时间，延迟和曲线函数。
 
-* ##### v-enter-to：定义进入过渡的结束状态。 
+* ##### v-enter-to：定义进入过渡的结束状态。
 
-  * 在元素被插入之后下一帧生效 (与此同时 v-enter-from 被移除)，在过渡/动画完成之后移除。 
+  * 在元素被插入之后下一帧生效 (与此同时 v-enter-from 被移除)，在过渡/动画完成之后移除。
 
-* ##### v-leave-from：定义离开过渡的开始状态。 
+* ##### v-leave-from：定义离开过渡的开始状态。
 
-  * 在离开过渡被触发时立刻生效，下一帧被移除。 
+  * 在离开过渡被触发时立刻生效，下一帧被移除。
 
-* ##### v-leave-active：定义离开过渡生效时的状态。 
+* ##### v-leave-active：定义离开过渡生效时的状态。
 
-  * 在整个离开过渡的阶段中应用，在离开过渡被触发时立刻生效，在过渡/动画完成之后移除。这个类可以被用来定义离开过渡的过程时间，延迟和曲线函数。 
+  * 在整个离开过渡的阶段中应用，在离开过渡被触发时立刻生效，在过渡/动画完成之后移除。这个类可以被用来定义离开过渡的过程时间，延迟和曲线函数。
 
-* ##### v-leave-to：离开过渡的结束状态。 
+* ##### v-leave-to：离开过渡的结束状态。
 
   * 在离开过渡被触发之后下一帧生效 (与此同时 v-leave-from 被删除)，在过渡/动画完成之后移除。
 
@@ -5298,10 +5298,10 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 * ##### class的name命名规则如下：
 
   * 如果使用一个没有name的transition：
-    * 那么所有的class是以 v- 作为默认前缀； 
+    * 那么所有的class是以 v- 作为默认前缀；
   * 如果添加了一个name属性：
     * 比如 `<transition name="why">`；
-    * 那么所有的class会以 `why- `开头； 
+    * 那么所有的class会以 `why- `开头；
 
 
 
@@ -5313,44 +5313,44 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
     <transition>
         <h2 v-if="isShow">哈哈哈哈</h2>
     </transition>
-    
+
     .v-enter-from, .v-leave-to {
       opacity: 0;
     }
-    
+
     .v-enter-to, .v-leave-from {
       opacity: 1;
     }
-    
+
     .v-enter-active, .v-leave-active {
       transition: all 2s ease;
     }
     ```
-  
+
 * ##### animation动画：
 
   * ```js
     <transition name="why">
         <h2 v-if="isShow">哈哈哈哈</h2>
     </transition>
-    
+
     .why-enter-active {
       animation: whyAnim 2s ease;
     }
-    
+
     .why-leave-active {
       animation: whyAnim 2s ease reverse;
     }
-    
+
     @keyframes whyAnim {
       0% {
         opacity: 0;
       }
-    
+
       50% {
         opacity: 0.5;
       }
-    
+
       100% {
         opacity: 1;
       }
@@ -5377,7 +5377,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
 * ##### duration可以设置两种类型的值：
 
-  * number类型：同时设置进入和离开的过渡时间； 
+  * number类型：同时设置进入和离开的过渡时间；
 
     * ```vue
       <transition :duration="2000">...</transition>
@@ -5401,8 +5401,8 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 * 两个元素之间切换的时候，进入和离开动画是同时发生的，会出现位置问题：
 
   * 如果不希望同时执行进入和离开动画，需要设置mode：
-    * in-out: 新元素先进行过渡，完成之后当前元素过渡离开； 
-    * out-in: 当前元素先进行过渡，完成之后新元素过渡进入； 
+    * in-out: 新元素先进行过渡，完成之后当前元素过渡离开；
+    * out-in: 当前元素先进行过渡，完成之后新元素过渡进入；
 
 * ##### 示例：
 
@@ -5416,7 +5416,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
       <transition mode="out-in">
           <component :is="isShow? Home: About"></component>
       </transition>
-      
+
       //setup语法糖，is要被动态绑定，值不能为字符串；
       import About from "./components/about.vue"
       import Home from "./components/home.vue"
@@ -5430,7 +5430,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 
 * ```vue
   <transition appear>...</transition>
-  
+
   // 不需要设置appear动画，会自动执行设置好的动画
   ```
 
@@ -5439,19 +5439,19 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 ## 1.9、列表的过渡
 
 * `<transition-group>` 有如下的特点：
-  
-  * 默认情况下，它不会渲染一个元素的包裹器，但是你可以指定一个元素并以 tag 属性进行渲染； 
-  * 过渡模式不可用，因为我们不再相互切换特有的元素； 
-  * 内部元素总是需要提供唯一的 key 属性值； 
+
+  * 默认情况下，它不会渲染一个元素的包裹器，但是你可以指定一个元素并以 tag 属性进行渲染；
+  * 过渡模式不可用，因为我们不再相互切换特有的元素；
+  * 内部元素总是需要提供唯一的 key 属性值；
 * CSS 过渡的类将会应用在内部的元素中，而不是这个组/容器本身；
-  
+
 * ```js
   <template>
     <div class="app">
       <button @click="addNumber">添加数字</button>
       <button @click="removeNumber">删除数字</button>
       <button @click="shuffleNumber">打乱数字</button>
-      
+
       <transition-group tag="div" name="why">   // 可以添tag属性来添加包裹元素
         <template v-for="item in nums" :key="item">  // key不能有任何重复
           <span>{{ item }}</span>
@@ -5459,62 +5459,62 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
       </transition-group>
     </div>
   </template>
-  
+
   <script setup>
   import { reactive, ref } from 'vue';
   import { shuffle } from "underscore";
-  
+
   const nums = ref([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-  
+
   const addNumber = () => {
     nums.value.splice(randomIndex(), 0, nums.value.length)
   }
-  
+
   const removeNumber = () => {
     nums.value.splice(randomIndex(), 1)
   }
-  
+
   const shuffleNumber = () => {
     nums.value = shuffle(nums.value)
   }
-  
+
   const randomIndex = () => {
     return Math.floor(Math.random() * nums.value.length)
   }
-  
+
   </script>
-  
+
   <style scoped>
-  
+
   span {
     margin-right: 10px;
     display: inline-block;
   }
-  
+
   .why-enter-from, .why-leave-to {
     opacity: 0;
     transform: translateY(30px);
   }
-  
+
   .why-enter-to, .why-leave-from {
     opacity: 1;
     transform: translateY(0);
   }
-  
+
   .why-enter-active, .why-leave-active {
     transition: all 2s ease;
   }
-  
+
   .why-leave-active {
     position: absolute;   // 删除动画和其他元素移动动画是同时进行的，删除的元素会占位，因此其他元素无法移动，需要给删除元素删除时添加绝对定位
   }
-  
-  
+
+
   /* 针对其他移动的阶段需要的动画 */
-  .why-move { 
+  .why-move {
     transition: all 2s ease;
   }
-  
+
   </style>
   ```
 
@@ -5531,21 +5531,21 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
       // 使用Set集合，使得收集到的相同函数只存留一个
       this.reactiveFns = new Set()
     }
-  
+
     // 响应式依赖的收集
     depend() {
       if (reactiveFn) {  // 该判断是为了防止把赋值给变量的null添加到Set集合;
         this.reactiveFns.add(reactiveFn)
       }
     }
-  
+
     notify() {
       this.reactiveFns.forEach(fn => {
         fn()
       })
     }
   }
-  
+
   // 设置一个专门执行响应式函数的一个函数
   let reactiveFn = null
   function watchFn(fn) {
@@ -5553,7 +5553,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
     fn()
     reactiveFn = null  // 不设置为null的话，若有两个不同的对象，对第一个对象进行修改的过程中会把后一个函数添加到集合里接着遍历，会把下一个函数也执行；
   }
-  
+
   // 对象的依赖管理，管理不同对象的不同依赖关系；
   // 封装一个函数: 负责通过obj的key获取对应的Depend对象；
   const objMap = new WeakMap()
@@ -5564,24 +5564,24 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
       map = new Map()
       objMap.set(obj, map)
     }
-  
+
     // 2.根据key, 找到对应的depend对象；
     let dep = map.get(key)
     if (!dep) {
       dep = new Depend()
       map.set(key, dep)
     }
-  
+
     return dep
   }
-  
+
   // 封装函数，针对所有的对象都可以变成响应式对象；
   // 方案一: Object.defineProperty() -> Vue2
   function reactive(obj) {
     // 遍历所有的key，并且通过属性存储描述符来监听属性的获取和修改；
     Object.keys(obj).forEach(key => {
       let value = obj[key]
-    
+
       // 监听对象属性的变化以及收集相关的依赖；
       Object.defineProperty(obj, key, {
         set: function(newValue) {
@@ -5598,10 +5598,10 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
           return value
         }
       })
-    })  
+    })
     return obj
   }
-  
+
   // ========================= 业务代码 ========================
   // 其他对象跟以下写法相同
   const obj = reactive({
@@ -5609,18 +5609,18 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
     age: 18,
     address: "广州市"
   })
-  
+
   watchFn(function() {
     console.log(obj.name)
     console.log(obj.age)
   })
-  
+
   // 修改name
   console.log("--------------")
   obj.age = 20
   ```
-  
-  
+
+
 
 ## 1.2、vue3响应式
 
@@ -5631,21 +5631,21 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
           // 使用Set集合，使得收集到得相同函数只存留一个
           this.reactiveFns = new Set()
       }
-  
+
       // 响应式依赖的收集
       depend() {
           if (reactiveFn) {
               this.reactiveFns.add(reactiveFn)
           }
       }
-  
+
       notify() {
           this.reactiveFns.forEach(fn => {
               fn()
           })
       }
   }
-  
+
   // 设置一个专门执行响应式函数的一个函数
   let reactiveFn = null
   function watchFn(fn) {
@@ -5653,7 +5653,7 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
       fn()
       reactiveFn = null
   }
-  
+
   // 对象的依赖管理，管理不同对象的不同依赖关系；
   // 封装一个函数: 负责通过obj的key获取对应的Depend对象；
   const objMap = new WeakMap()
@@ -5664,17 +5664,17 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
           map = new Map()
           objMap.set(obj, map)
       }
-  
+
       // 2.根据key, 找到对应的depend对象；
       let dep = map.get(key)
       if (!dep) {
           dep = new Depend()
           map.set(key, dep)
       }
-  
+
       return dep
   }
-  
+
   // 封装函数，针对所有的对象都可以变成响应式对象；
   // 方式二: new Proxy() -> Vue3
   function reactive(obj) {
@@ -5696,26 +5696,26 @@ export interface HYRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
           }
       })
   }
-  
+
   // ========================= 业务代码 ========================
   const obj = reactive({
       name: "why",
       age: 18,
       address: "广州市"
   })
-  
+
   watchFn(function() {
       console.log(obj.name)
       console.log(obj.age)
       console.log(obj.age)
   })
-  
+
   // 修改name
   console.log("--------------")
   obj.age = 20
   ```
 
-  
+
 
 ## 1.3、对象的依赖管理
 

@@ -125,7 +125,7 @@ async function onRetry() {
 > ◼ 单页应用程序 (SPA) 全称是：`Single-page application`，SPA应用是在客户端呈现的（术语称：CRS）
 
 - 整个应用程序的内容都是通过 Javascript 动态加载，包括应用程序的逻辑、UI 以及与服务器通信相关的所有数据。
-- 构建 SPA 应用常见的库和框架有： React、AngularJS、Vue.js 等。 
+- 构建 SPA 应用常见的库和框架有： React、AngularJS、Vue.js 等。
 
 
 
@@ -174,7 +174,7 @@ async function onRetry() {
 
    > [更多查看：](https://developers.google.com/search/docs/crawling-indexing/valid-page-metadata)
 
-   
+
 
 ## 三、SSG静态站点生成
 
@@ -231,10 +231,10 @@ async function onRetry() {
   3. renderToString 渲染将app生成html字符串响应浏览器
 
   4. 水和过程，通过 createApp 创建客户端app，进行挂载dom上，之后将js打包通过script标签引入到html中
-  
+
      > 就是将客户端的js放到html中，让应用具有交互的能力
-  
-     
+
+
 
 
 
@@ -409,7 +409,7 @@ router.isReady().then(() => {
    };
    ~~~
 
-   
+
 
 
 
@@ -435,7 +435,7 @@ router.isReady().then(() => {
      //帮忙忽略node_modules中的js文件，注意options选项和mode同级别的
      externals: [nodeExternals()],
    });
-   
+
    ~~~
 
 3. 客户端配置
@@ -452,10 +452,10 @@ router.isReady().then(() => {
        path: path.resolve(__dirname, "../build/client"),
      },
    });
-   
+
    ~~~
 
-   
+
 
 
 
@@ -480,13 +480,13 @@ router.isReady().then(() => {
   5. `Nuxt` 使用 `h3`来实现部署可移植性（h3是一个极小的高性能的http框架）
 
      > 支持在 `Serverless`、`Workers` 和 `Node.js` 环境中运行
-     
+
   6. 服务器引擎
-  
+
      - 在开发环境中，它使用 `Rollup` 和 `Node.js` 。
-  
+
      - 在生产环境中，使用 `Nitro` 将您的应用程序和服务器构建到一个通用 `.output` 目录中。
-  
+
        > Nitro服务引擎提供了扩平台部署的支持，包括 Node、Deno、Serverless、Workers等平台上部署。
        >
        > Nitro 可以从相同的代码库生成适合不同宿主提供商的不同输出格式。
@@ -551,14 +551,14 @@ router.isReady().then(() => {
 
     > Mac：/etc/hosts
     > Win：c:/Windows/System32/drivers/etc/hosts
-  
+
     ~~~
     185.199.108.113
     185.199.109.113
   185.199.110.113
     185.199.111.113
     ~~~
-  
+
   - 之后载重新执行创建命令
 
 
@@ -628,7 +628,7 @@ tsconfig.json		#Typescript的配置文件
         baseUrl: "http:yanan.wang"
       }
     },
-  
+
     //定义应用的配置, 这里的变量都会打包到项目里面去，这些是不会覆盖的，并且兼容 server和client都可以获取的
     //区别，runtimeconfig 配置的是运行时的变量，不会提前加载，没有热模块替换，只支持基本数据类型
     //appconfig的变量会被打包，但不是环境变量，都是响应式的
@@ -639,7 +639,7 @@ tsconfig.json		#Typescript的配置文件
       theme: {
         primary: "重要的"
       },
-  
+
     },
     //app配置，给所有页面seo优化，mate name = keywords and description
     //也可以使用 useHead({}) 配置，具体使用看文档
@@ -656,7 +656,7 @@ tsconfig.json		#Typescript的配置文件
             content: "这里时网站的藐视"
           }
         ],
-        style: [ 
+        style: [
               // <style type="text/css">:root { color: red }</style>
               { children: ':root { color: red }'}
          ],
@@ -672,7 +672,7 @@ tsconfig.json		#Typescript的配置文件
             src: "http://codercba.com",
           },
         ],
-  
+
       }
     },
     //默认就是true
@@ -694,14 +694,14 @@ tsconfig.json		#Typescript的配置文件
       "public": "/<rootDir>/public"
     } */
    /*
-    //配置Nuxt扩展，比如@nuxt/pinia，@nuxt/image  
+    //配置Nuxt扩展，比如@nuxt/pinia，@nuxt/image
     modules:[],
     //定义路由规则，更改路由渲染模式或分配基于路由缓存策略
     routeRules: {},
     //指定打包工具
     builder: "vite" */
   })
-  
+
   //使用方法
   const runtimeConfig = useRuntimeConfig();
   if (process.server) {
@@ -716,7 +716,7 @@ tsconfig.json		#Typescript的配置文件
   }
   ~~~
 
-  
+
 
 - .env 文件
 
@@ -858,7 +858,7 @@ npm install sass --save-dev
   })
   ~~~
 
-  
+
 
 
 
@@ -890,14 +890,14 @@ npm install sass --save-dev
               默认插槽放入的元素只会在客户端使用js加载
             </div>
             <!-- 会在页面渲染完成前前显示 注意：插槽名只能作用在 template元素上-->
-            <template #fallback> 
+            <template #fallback>
               zhnagsan
             </template>
         </ClientOnly>
       </div>
     ~~~
 
-    
+
 
 
 # 第四节、Nuxt 路由
@@ -908,7 +908,7 @@ npm install sass --save-dev
 
 - `Nuxt` 项目中的页面是在 `pages` 目录创建的，**必须在`pages`**下面创建，否则不会声明路由
 - `Nuxt`会根据该 `pages` 的**目录结构**和其文件名来**自动生成对应的路由**
-- 命令创建页面 
+- 命令创建页面
   - `npx nuxi add page home`
   - ` npx nuxi add page detail/[id]`
   - `npx nuxi add page user-[role]/[id]`
@@ -922,7 +922,7 @@ npm install sass --save-dev
 - `NuxtLink`：是 Nuxt 自带的**页面导航**组件
 
   > 是 `Vue Router<RouterLink>`组件 和 `HTML<a>`标签的**封装扩展**，添加了一些其它功能。
-  
+
   - `a`标签也会导航页面，，`NuxtLink`可以**防止整页刷新**。当然，手动输入URL后，点击 刷新浏览器也可导航，这会导致整个页面刷新
 
 - `NuxtLink` 组件属性
@@ -940,7 +940,7 @@ npm install sass --save-dev
           >
     ~~~
 
-    
+
 
   - `href`：to的别名
 
@@ -985,7 +985,7 @@ npm install sass --save-dev
 - **注意**：官方文档没有写 `option` 对象可以传 `state`  对象，但事实上可以的，通过 ` history.state` 进行获取
 
   > 但是**不会像 route.state 一直保存**
-  
+
   ~~~js
   //完整写法
   await navigateTo({
@@ -993,7 +993,7 @@ npm install sass --save-dev
       query: {
           name: "zhagnsan"
       },
-      
+
   }, {
     replace?: boolean
     //修改重定向的状态码
@@ -1001,7 +1001,7 @@ npm install sass --save-dev
     //当设置为true时，允许导航到外部URL。否则会报错
     external?: boolean
   })
-  
+
   //state 获取使用history.state
   function btn() {
     return navigateTo({
@@ -1012,9 +1012,9 @@ npm install sass --save-dev
       state: {adress: "天津曲艺协会"}
     })
   }
-  
-  
-  
+
+
+
   // 简写
   await navigateTo('/search')
   ~~~
@@ -1031,13 +1031,13 @@ npm install sass --save-dev
   function toProfile() {
   	return navigateTo("/profile")
   }
-  
+
   async function toHome() {
   	await navigateTo("/home")
   }
   ~~~
 
-  
+
 
 ### 2、useRouter
 
@@ -1066,7 +1066,7 @@ npm install sass --save-dev
    2. detail-[id]
    3. [id]
 
-   
+
 
 - 获取路径参数
 
@@ -1076,7 +1076,7 @@ npm install sass --save-dev
   useRoute().params.id
   ~~~
 
-  
+
 
 - 获取普通路由的查询对象
 
@@ -1084,7 +1084,7 @@ npm install sass --save-dev
   useRoute().query
   ~~~
 
-  
+
 
 
 
@@ -1123,12 +1123,12 @@ npm install sass --save-dev
       </div>
     </div>
   </template>
-  
+
   <script lang="ts" setup>
   const props = defineProps({
     error: Object,
   });
-  
+
   function goHome() {
      //清除错误重定向到主页
     clearError({ redirect: "/" });
@@ -1137,7 +1137,7 @@ npm install sass --save-dev
   <style scoped></style>
   ~~~
 
-  
+
 
 ## 五、路由中间件
 
@@ -1177,7 +1177,7 @@ npm install sass --save-dev
         // 如果返回的是 navigateTo, 直接导航到新的页面
         // return navigateTo("/detail02");
       },
-  
+
       // function (to, from) {
       //   console.log("index 第三个中间件");
       // },
@@ -1186,8 +1186,8 @@ npm install sass --save-dev
   });
   ~~~
 ~~~
-  
-  
+
+
 
 ### 2、命名中间件
 
@@ -1211,7 +1211,7 @@ npm install sass --save-dev
   });
   ~~~
 
-  
+
 
 ### 3、全局中间件
 
@@ -1229,10 +1229,10 @@ npm install sass --save-dev
     //   return navigateTo("/login");
     // }
   });
-  
+
   ~~~
 
-  
+
 
 ### 4、路由验证
 
@@ -1288,7 +1288,7 @@ npm install sass --save-dev
   </template>
   ~~~
 
-  
+
 
 - 切换布局
 
@@ -1310,7 +1310,7 @@ npm install sass --save-dev
   });
   ~~~
 
-  
+
 
 
 
@@ -1369,7 +1369,7 @@ export default defineNuxtConfig({
 2. 推荐方式：(优先级高一点)在` plugins`文件夹下的ts文件中通过 `defineNuxtPlugin()` 创建的插件，会在创建`Vue`实例的时候获取到 `nuxtApp` 实例
 
    ~~~js
-   export default defineNuxtPlugin( nuxtApp => {}) 
+   export default defineNuxtPlugin( nuxtApp => {})
    ~~~
 
 
@@ -1398,7 +1398,7 @@ export default defineNuxtConfig({
   console.log(nuxtApp.$hello('name'))
   ~~~
 
-  
+
 
 ### 2、hooks 方法
 
@@ -1482,7 +1482,7 @@ export default defineNuxtConfig({
 
     > 其实就是相当与 `setup` 函数中定义的**方法**都是在 `created` 钩子中**创建**的
 
-  
+
 
 - 测试 `useFetch` 添加 `await` 是否有效
 
@@ -1534,7 +1534,7 @@ export default defineNuxtConfig({
   4. `setup` 中用`useFetch `获取数据，会减去客户端重复发起的请求
 
      > 对于 $fetch 方法的封装，$fetch 会在客户端发送一次请求，server 也会发送一次
-     
+
   5. `option` 支持响应式数据
 
 - **注意点**：
@@ -1567,7 +1567,7 @@ if (import.meta.server) {
 
 ## 1) key + 复用语义（同 key 复用）
 
-~~~javascript	
+~~~javascript
 const route = useRoute()
 const fetchKey = computed(() => `cate-list:${route.fullPath}`)
 const { data, pending, error } = await useFetch('/api/cate/list', {
@@ -1655,7 +1655,7 @@ async function onSearchClick() {
   );
   ~~~
 
-  
+
 
 - 修改 `option` 对象
 
@@ -1667,11 +1667,11 @@ async function onSearchClick() {
   }
   ~~~
 
-  
 
-- 拦截器 
 
-  > 和 `axios` 的区别，想要修改返回 `data` 的值，**需要重写 `_data`** 
+- 拦截器
+
+  > 和 `axios` 的区别，想要修改返回 `data` 的值，**需要重写 `_data`**
 
   ~~~js
   const { data, pending, error, refresh } = await useFetch('/api/auth/login', {
@@ -1684,7 +1684,7 @@ async function onSearchClick() {
       // Handle the request errors
     },
     onResponse({ request, response, options }) {
-      
+
       //注意：这里 的返回值并不能决定，结构出来 data对象的值，
       //如果需要修改data的值需要重写 _data变量
       return response._data
@@ -1692,10 +1692,10 @@ async function onSearchClick() {
     onResponseError({ request, response, options }) {
       // Handle the response errors
     }
-  
+
   ~~~
 
-  
+
 
 
 
@@ -1730,7 +1730,7 @@ async function onSearchClick() {
       },
     ],
   });
-  
+
   //  在 .vue 文件中 在 #components 中进行导入，未测试尝试一下
   <script setup>
     import { NuxtLink, LazyMountainsList } from '#components'
@@ -1875,7 +1875,7 @@ export default defineEventHandler((event) => {
 export default defineEventHandler((event) => {
   const id = parseInt(event.context.params.id) as number
   if (!Number.isInteger(id)) {
-  
+
   //使用createError方法创建错误
     throw createError({
       statusCode: 400,
@@ -1922,7 +1922,7 @@ export default defineEventHandler(async (event) => {
   const bodyRaw = await readRawBody(event);
   //前端使用 useCookie()
   const cookies = parseCookies(event)
-  
+
   console.log(query);
   console.log(method);
   console.log(body);
@@ -1962,7 +1962,7 @@ export default defineEventHandler(async (event) => {
    npm install @pinia/nuxt –-save
    ~~~
 
-   
+
 
 2. 安装pinia，但是要注意，有遇到pinia安装失败，可以添加 `--legacy-peer-deps` 告诉 `NPM` 忽略对等依赖并继续安装。
 
@@ -1985,12 +1985,12 @@ export default defineEventHandler(async (event) => {
 
    ~~~js
    import { defineStore } from "pinia";
-   
+
    export interface IState {
      counter: number;
      homeInfo: any;
    }
-   
+
    export const useHomeStore = defineStore("home", {
      state: (): IState => {
        return {
@@ -1999,10 +1999,10 @@ export default defineEventHandler(async (event) => {
        };
      }
    });
-   
+
    ~~~
 
-   
+
 
 
 
@@ -2087,7 +2087,7 @@ export default defineEventHandler(async (event) => {
    }
    ~~~
 
-   
+
 
 3. 一种集群部署的方式
 
@@ -2095,7 +2095,7 @@ export default defineEventHandler(async (event) => {
 
 
 
-​	
+​
 
 # 十六、配置代理
 
@@ -2129,7 +2129,7 @@ nitro: {
 
 # 十七、Seo-Kit
 
-> seo工具包	
+> seo工具包
 
 为 Nuxt 配置 SEO 是一项艰巨的工作;它需要安装许多模块，单独配置它们，然后找出所有元标记。
 如果有更简单的方法呢？
@@ -2171,7 +2171,7 @@ nitro: {
 > 为了使配置能够访问Nuxt应用程序，模块和服务器，应在运行时配置中提供配置。
 > 这也允许您轻松覆盖不同环境的配置。
 
-- **使用**：配置好下面的信息之后，通过`<SeoKit />` 组件将配置的源信息**引入**到页面上	
+- **使用**：配置好下面的信息之后，通过`<SeoKit />` 组件将配置的源信息**引入**到页面上
 
   > 只会给添加 `<SeoKit />` 组件的页面引入元数据
   >
@@ -2206,7 +2206,7 @@ export default defineNuxtConfig({
 //<title>About | shop-ljm</title>
 ~~~
 
-​	
+​
 
 
 
@@ -2287,7 +2287,7 @@ const productId = ref(1)
 // 如果有（比如之前点过商品 1），直接从内存拿，不发网络请求
 const { data, refresh } = await useFetch(() => `/api/product/${productId.value}`, {
   key: `product-detail-${productId.value}`, // 手动指定唯一 Key
-  
+
   // 配合这个配置可以实现：即使路由跳走了再回来，只要内存还在就用旧的
   getCachedData(key) { //
     const nuxtApp = useNuxtApp()
@@ -2326,7 +2326,7 @@ export default defineCachedEventHandler(async (event) => {
 })
 ~~~
 
-2. 使用 routeRules 
+2. 使用 routeRules
 
 
 

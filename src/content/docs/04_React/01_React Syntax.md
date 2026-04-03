@@ -18,14 +18,14 @@ title: '第一章、react 介绍'
 
   > 组件化开发页面目前前端的流行趋势，我们会将复杂的界面拆分成一个个小的组件；
 
-  
+
 
 - ##### 多平台适配
 
   1. 2013年，`React`发布之初主要是开发**Web**页面；
 
   2. 2015年，`Facebook`推出了**ReactNative**，用于开发移动端跨平台；（虽然目前Flutter非常火爆，但是还是有很多公司在使用ReactNative-）；
-     
+
      > 用开发跨平台移动端的适配方案——native 是原生的意思
 3. 2017年，`Facebook`推出**ReactVR**，用于开发虚拟现实Web应用程序；（VR也会是一个火爆的应用场景）；
 
@@ -49,7 +49,7 @@ title: '第一章、react 介绍'
      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
      ~~~
 
-     
+
 
 - ##### 拆分的原因
 
@@ -79,7 +79,7 @@ title: '第一章、react 介绍'
 
   > 因此，可以直接使用 `React.createElement()` 写 `react` 代码，但是可读性非常差
 
-  
+
 
 -  (2)、`React.createElement` 执行最终创建出来一个 `ReactElement`对象，组成了一个JavaScript的对象树
 
@@ -110,13 +110,13 @@ title: '第一章、react 介绍'
 
    > 一个运行时渲染器将会遍历整个虚拟 `DOM` 树，并据此构建真实的 `DOM` 树。这个过程被称为**挂载** (`mount`)。
 
-   
+
 
 ## 三、react 响应式更新
 
 - 在`react`中**没有双向绑定的概念**，每次更新页面和值都需要**手动调用**指定的`api`来触发
 
-  
+
 
 - ##### `React` 只更新它需要更新的部分
 
@@ -160,37 +160,37 @@ title: '第一章、react 介绍'
 
 1. `jsx` **标签不能是字符串**，都需要`babel`进行转换
 
-   
+
 
 2. `react`组件**首字母**必须大写
 
    > 因为 `React` 中使用 `JSX` 语法引入组件的时候，是**根据首字母**是否大写来**区分**它 `react` 组件还是 `dom` 元素。
 
-   
+
 
 3. `jsx` **只能**有**一个根**，`vue2` 也只能有一个根，`vue3`可以有多个根
 
-   
+
 
 4. 通常使用**分组运算符**将换行的`jsx`，**当作一个整体**
 
-   
+
 
 5. 可以是双标签，单标签**必须**使用 **`/>` 结尾**，例：img 标签，后面要加 /
 
-   
+
 
 6. `jsx`中使用 `{}` 包裹js代码进行执行，注释也是一样 `{/* */}`
 
-   
+
 
 7. 在子元素(可以理解为被jsx标签包裹的 `{}` ) 的 `{}` 中如果存放的是**数组**的话，会将数组元素**全部取出，直接显示**。放的 `jsx` 标签的话也会显示
 
-   
+
 
 8. `Number`、`String` **会**直接显示
 
-   
+
 
 9. `null`、`undefined`、`Boolean` **不会**显示内容，必须要转换成字符传显示 `{ture.toString()}`
 
@@ -201,7 +201,7 @@ title: '第一章、react 介绍'
    <div>{this.state.flag.toString()}</div>
    ~~~
 
-   
+
 
 10.  `Object` 不能作为 `jsx` 标签内容，会报错
 
@@ -211,8 +211,8 @@ title: '第一章、react 介绍'
           this.state = {
             argu3: {name: "zhangsan ", age: 98}
           }
-        } 
-    
+        }
+
         render() {
           return (
             <div>
@@ -222,11 +222,11 @@ title: '第一章、react 介绍'
         }
     ~~~
 
-    
+
 
 11. `{}` 语法也可以**嵌入表达式**、运算表达式、三元运算符、执行一个函数。
 
-    
+
 
 12. `render()` 函数当中返回的**jsx内容( 注意：这里是jsx内容 )**，就是之后React会帮助我们渲染的内容
 
@@ -252,8 +252,8 @@ title: '第一章、react 介绍'
 
 ~~~typescript
         <div>
-          <button 
-              className={`${this.state.flag ? 'box' : ''}`} 
+          <button
+              className={`${this.state.flag ? 'box' : ''}`}
               onClick={() => this.trigger()}
           >
            trigger
@@ -279,9 +279,9 @@ title: '第一章、react 介绍'
           </button>
           <div style={
             {
-                width: "100px", 
-                height: "100px", 
-                backgroundColor: "green", 
+                width: "100px",
+                height: "100px",
+                backgroundColor: "green",
                 //绑定样式
                 border: `${this.state.str}`
             }
@@ -368,7 +368,7 @@ title: '第一章、react 介绍'
                   })
   ~~~
 
-  
+
 
 
 
@@ -395,7 +395,7 @@ title: '第一章、react 介绍'
 
   > 如果**每次调用 `setState` 都进行一次更新**，那么意味着 `render` 函数会被频繁调用，界面重新渲染，这样效率是很低的；
 
-  
+
 
   - 获取到多个更新之后的值，之后进行**批量更新**
 
@@ -403,11 +403,11 @@ title: '第一章、react 介绍'
     >
     > `render` 会**检查** `state` 和 `props` 中的属性，将被修改的值，**批量同步到真实dom上**，<u>节省回流重绘的开销</u>
 
-    
+
 
   - 据说render执行的时机，是和屏幕的刷率有关系，不一定会等当前对列异步事件执行完毕之后执行
 
-  
+
 
 - #### 保持 render 和 setState 修改的值保持一致性
 
@@ -488,7 +488,7 @@ this.setState({message: "zhangsan"}, () => {})
 
   - 默认所有的操作都放到了 "批处理" 中 **都变成了异步操作(批处理)**
 
-  
+
 
 - 如果在某些场景一定要同步的话可以使用 `react-dom`包 中的 `flushSync`函数
 

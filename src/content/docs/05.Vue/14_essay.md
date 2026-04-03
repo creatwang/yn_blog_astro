@@ -8,11 +8,11 @@ title: '14_essay'
 
 key 是否能使用 symbol
 
- VNode 和 真实的dom对比	
+ VNode 和 真实的dom对比
 
 简洁见名知意
 
-侦听器diff	
+侦听器diff
 
 阿里思维导图组件
 
@@ -22,7 +22,7 @@ checkbox 回看
 
 不支持 name-zhangsan 这种写法
 
-局部组件 是否回被打包 回看视频 
+局部组件 是否回被打包 回看视频
 
 回看 vue/cli更新
 
@@ -50,13 +50,13 @@ emits: 回看
 
 
 
-7-19 
+7-19
 
 复习 margin 负值的使用
 
 style 标签的 lang = "less" 回看
 
-name $parent $root $attr $slot 
+name $parent $root $attr $slot
 
 webpack3 魔法注释
 
@@ -88,7 +88,7 @@ path 的懒加载为什么查找规则要添加后缀名
 
 查看 stateref 和 ref 的区别
 
-创建一个引用对象，其中包含存储的所有状态、getter和插件添加的状态属性。 类似于toRefs()，但专门为Pinia商店设计，所以方法和非反应性属性完全被忽略。 
+创建一个引用对象，其中包含存储的所有状态、getter和插件添加的状态属性。 类似于toRefs()，但专门为Pinia商店设计，所以方法和非反应性属性完全被忽略。
 
 44173741
 

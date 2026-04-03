@@ -354,7 +354,7 @@ description: 可以快速回顾，对比vue语法.
   	  //默认值是50，默认开启距离底部距离50 的时候会触发回调
   "onReachBottomDistance": 50  //对应事件onReachBottom
 
-  
+
 }
 ~~~
 
@@ -949,7 +949,7 @@ console.log(appInstance.globalData) // I am global data
 
 ```html
   <wxs module="format">
-  
+
     function foo(num) {
       var total = 1000
       num = num * 1
@@ -962,11 +962,11 @@ console.log(appInstance.globalData) // I am global data
       }
       return total
     }
-  
+
     module.exports = {
       foo: foo,
     }
-      
+
   </wxs>
 ```
 
@@ -980,15 +980,15 @@ console.log(appInstance.globalData) // I am global data
   //导入： <wxs module="foo" src="/utils/format.wxs"></wxs>
   //定义：
   function foo (str) {
-    
+
     var minutes = Math.floor(str / 60) + ""
     var millisecond = Math.floor(str % 60) + ""
     var minTemp = "00" + minutes
     var millTemp = "00" + millisecond
     return minTemp.slice(minutes.length) + ":" + millTemp.slice(millisecond.length)
-  
+
   }
-  
+
   //这里记得导出
   module.exports = {
     foo: foo
@@ -1156,7 +1156,7 @@ console.log(appInstance.globalData) // I am global data
   ```html
     <!--绑定class-->
     <slotCpn bgc="info"></slotCpn>
-    
+
     <!--
     .info {
       background-color: #f5f5f5;
@@ -1214,16 +1214,16 @@ console.log(appInstance.globalData) // I am global data
       这里是默认值
     </view>
   </view>
-  
+
   <style>
       .default {
         display: none;
       }
-  
+
       .section:empty {
         display: none;
       }
-  
+
       .section:empty + .default {
         display: block;
       }
@@ -1491,7 +1491,7 @@ class Repuest{
   }
   request(options) {
    return new Promise((resolve, reject) => {
-       
+
     //小程序网络请求 Api
     wx.request({
       ...options,
@@ -1500,7 +1500,7 @@ class Repuest{
       fail: err => reject(err),
     })
 
-   }) 
+   })
   }
   get(options) {
     return this.request({
@@ -1864,7 +1864,7 @@ module.exports = req
 
 ```js
   //父页面进行跳转并监听
-  
+
       wx.navigateTo({
         url: '/pages/channel/channel',
         // 通过events 选项声明监听的对象
@@ -1875,7 +1875,7 @@ module.exports = req
           }
         }
       })
-  
+
   // 子页面返回发起事件
     btn() {
       wx.navigateBack()

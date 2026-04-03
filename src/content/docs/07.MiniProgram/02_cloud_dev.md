@@ -12,7 +12,7 @@ title: '云开发核心技术'
   - 环境相互独立
   - 同常会有两套，生产/开发，**同**测试服务器和上线服务器
 
-  
+
 
 - ##### 云数据库：
 
@@ -47,7 +47,7 @@ title: '云开发核心技术'
   | env       | String\|Object | 否   | 默认选中环境 | env 参数**决定**接下来小程序发起的云开发调用(wx.cloud.xxx)<br>会默认**请求到哪个云环境的资源**<br>(相当于要配置使用哪个数据库) |
   | traceUser | Boolean        | 否   | false        | 会在`云开发>运营分析>用户访问` 下可以查看用户的访问量        |
 
-  
+
 
 - 初始化示例，通常在`onLaunch` 声明周期中确认环境
 
@@ -135,8 +135,8 @@ title: '云开发核心技术'
       }).get().then(res => console.log(res))
     },
   ~~~
-  
-  
+
+
 
 ####  `limit` 、`skip`
 
@@ -201,7 +201,7 @@ title: '云开发核心技术'
 - `collection.add()`
 - **注意**：添加之后会**自动添加 `_id` 和 `_openid**`
 - **注意**：`api` 的 `options` **要在`data` 选项中声明要添加的数据**
-- **_openid** 用来记录那个用户修改了或者查看了数据 
+- **_openid** 用来记录那个用户修改了或者查看了数据
 
 ~~~js
     list.add({
@@ -233,11 +233,11 @@ title: '云开发核心技术'
       })
   ~~~
 
-  
+
 
 - `set`: 使用新对象替换原来对象
 
-  > 会将**整条数据**进行替换	
+  > 会将**整条数据**进行替换
 
   ~~~js
   douyu.doc("6842667962ff81da0e709a7b5aac73a7").set({
@@ -281,7 +281,7 @@ title: '云开发核心技术'
 
 ~~~js
   updateFile() {
-    
+
     wx.chooseMedia({
       camera: "image",
     }).then(res => {
@@ -311,7 +311,7 @@ title: '云开发核心技术'
   down() {
     wx.cloud.downloadFile({
       fileID: "cloud://cloud1-5gq90yl1e17197f6.636c-cloud1-5gq90yl1e17197f6-1313408770/image/avatar.jpg"
-        
+
      //获取临时文件
      }).then(res => {
       //将临时文件保存到相册
@@ -328,7 +328,7 @@ title: '云开发核心技术'
 
 - ` wx.cloud.deleteFile`
 
-- 可以批量删除文件 `fileList` 
+- 可以批量删除文件 `fileList`
 
   ~~~js
       wx.cloud.deleteFile({
@@ -336,7 +336,7 @@ title: '云开发核心技术'
       })
   ~~~
 
-  
+
 
 
 
@@ -352,9 +352,9 @@ title: '云开发核心技术'
 ~~~js
   getTempFile() {
     wx.cloud.getTempFileURL({
-        
+
       fileList: ["cloud://cloud1-5gq90yl1e17197f6.636c-cloud1-5gq90yl1e17197f6-1313408770/image/avatar.jpg"]
-        
+
     }).then(res => console.log(res.fileList[0].tempFileURL))
   }
 
@@ -402,7 +402,7 @@ title: '云开发核心技术'
 
 3. 普通网络请求在云数据库获取数据的时候**最多20条**，云函数 get() 方法**默认**返回 100条，在云函数中进行**整理更多的数据**，返回逻辑层
 
-   - **例如**：get 默认返回100条，可以通过 `limit(500)` 返回更多的数据 
+   - **例如**：get 默认返回100条，可以通过 `limit(500)` 返回更多的数据
    - 像普通的网络请求使用了 limit(100) 也**只会**返回20条数据
 
 
@@ -452,17 +452,17 @@ title: '云开发核心技术'
 
 - 支持 `promise` 和回调函数的方式返回结果
 
-- 在云函数没有 `wx` 的 `api` 所以**获取 `cloud` 对象**，要使用 `wx-server-sdk` `sdk` 
+- 在云函数没有 `wx` 的 `api` 所以**获取 `cloud` 对象**，要使用 `wx-server-sdk` `sdk`
 
   > 例： `const db = cloud.database()`
 
   ~~~js
   // 通过 wx-server-sdk 来获取cloud 对象
   const cloud = require('wx-server-sdk')
-  
+
   //初始换云环境，使用默认的环境
   cloud.init()
-  
+
   //获取db对象
   const db = cloud.database()
   // 云函数入口函数
@@ -481,7 +481,7 @@ title: '云开发核心技术'
   }
   ~~~
 
-  
+
 
 #### 上传 buffer 图片文件
 

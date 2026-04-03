@@ -23,7 +23,7 @@ title: '第一节、组件化开发模式'
   >
   > 这样实现的应用可被抽象为组件树
 
-  
+
 
 ### 优势
 
@@ -45,7 +45,7 @@ title: '第一节、组件化开发模式'
 
 ##### 全局注册 都是单数形式的
 
-##### 局部注册 是双数加 `'s'` 的  
+##### 局部注册 是双数加 `'s'` 的
 
 
 
@@ -61,7 +61,7 @@ title: '第一节、组件化开发模式'
 
    > 在进行组件使用的时候，html是不区分大小写的，**可以使用链接符的方式进行使用**
 
-   
+
 
 2. 或者直接使用**短横线连接符**的方式进行命名
 
@@ -102,11 +102,11 @@ title: '第一节、组件化开发模式'
 
 - 特点：
   1. 在那个组件注册的，就只能在那个组件使用。
-  
+
      > 别的组件需要的时候，使用模块化在进行注册即可
-  
+
      优点：根据需要创建对应的子组件，可读性高，更加的灵活。
-  
+
 - 使用：components 也是一个 options 选项
   - components 是一个对象类型，key：作为组件名，value：是组件对象
   - 注意：使用短横线分割符的方式定义key记得要使用字符串类型。JavaScript中变量 和 key 的定义不允许使用短横线分隔符
@@ -172,7 +172,7 @@ title: '第一节、组件化开发模式'
    </style>
    ~~~
 
-   
+
 
 5. 可以更加方便的使用**预处理器**来构建更加丰富的组件，比如`TypeScript`、`Babel`、`Less`、`Sass`等；
 
@@ -201,10 +201,10 @@ title: '第一节、组件化开发模式'
 
 ### 1、vue cli 修改内部使用的包管理工具
 
-- windows 可以使用gitbash 
+- windows 可以使用gitbash
 
   > 时候 inset 进行i需改 packageManager
-  
+
 - 因为有的时候使用 pnpm 会死机
 
 ~~~shell
@@ -240,12 +240,12 @@ vi ~/.vuerc
 
     > 原因就是是在js中绑定的，在js绑定的话，就不会由vue-loader处理而是交由，vue进行处理
 
-  
+
 
 - 如果需要完整版的vue代码得时候需要**引用 /dist/bunlder/vue.esm.js**
 
   - 来引入 `runtime+comiple` 的完整版本
-  
+
 
 
 
@@ -255,7 +255,7 @@ vi ~/.vuerc
 
 ~~~js
   configureWebpack: {
-    productionSourceMap: false, 
+    productionSourceMap: false,
         // 生产环境是否生成 sourceMap 文件，一般情况不建议打开,怕泄露源码
         //map文件的作用在于：项目打包后，代码都是经过压缩加密的，如果运行时报错，输出的错误信息无法准确得知是哪里的代码报错。
     plugins: [
@@ -352,10 +352,10 @@ vi ~/.vuerc
       ]
     }
   }
-  
+
   ~~~
 
-  
+
 
 - babel.config.js
 
@@ -382,16 +382,16 @@ vi ~/.vuerc
 - 父组件给这些 `attribute` 赋值，子组件通过 `attribute` 的名称获取到对应的值；
 
   > 在父组件当中使用 **`props` options选项进行接收数据**
-  
-  
-  
+
+
+
 - **(重要)**：在`data` 和 `prop`存在相同变量的时候会**按照代码执行的顺序进行覆盖**
 
   > 后面的变量会替换前面的变量
 
   - **注意**：虽然会进行覆盖，但是**会报警告**，所以在**规范中不要**造成 `props` 和 `data` 的**变量覆盖**
 
-  
+
 
 - **(重要)Prop 的大小写命名(camelCase vs kebab-case)**
 
@@ -462,7 +462,7 @@ export default {
 
    > **注意***：指定接收数据类型的时候，**不**是字符串，而**是变量的形式编写的**，否则会未知错误
 
-   
+
 
    - 可配置的数据类型： `String`，`Number`，`Boolean`，`Array`，`Object`，`Date`，`Function`，`Symbol`
    - **注意**：这里如果设置除了字符串以外的其他类型的话 可以**使用v-bind，这样定义属性的值就是js代码。就可以表示其他类型**
@@ -477,7 +477,7 @@ export default {
      }
    ~~~
 
-   
+
 
 2. 可以设置**默认值**
 
@@ -489,7 +489,7 @@ export default {
 
      > 使用函数的话，每创建一个组件都会调用默认值的函数这样的话每次那到的对象类型的默认值都是最新的。
 
-   
+
 
 3. 指定当前参数是**否是必填项**
 
@@ -509,19 +509,19 @@ export default {
 
    ~~~js
    //警告信息
-   Missing required prop: "message" 
-     at <PropObjectTest> 
+   Missing required prop: "message"
+     at <PropObjectTest>
      at <App>
    ~~~
 
-   
+
 
 4. ##### 自定义验证函数
 
    > 会验证：接收属性的值。
 
    - **validator**：将 prop 值作为唯一参数传入的自定义验证函数。在开发模式下，如果该函数返回一个[假值](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) (即验证失败)，一个控制台警告将会被抛出。
-   
+
    ~~~js
        props: {
          title: {
@@ -533,10 +533,10 @@ export default {
          }
        },
    ~~~
-   
-   
-   
-   
+
+
+
+
 
 
 
@@ -574,8 +574,8 @@ export default {
        default: "德云社相声演员",
       /*进行校验，实参就是传入的值*/
     },
-        
-        
+
+
 //方式二：设置Object 类型的默认值
   props: {
 
@@ -610,7 +610,7 @@ export default {
       },
   ~~~
 
-  
+
 
 ### 5、$attrs 非Prop的Attribute
 
@@ -633,12 +633,12 @@ export default {
   - **注意**：这里父组件定义的**class属性 可以直接在子组件**当中使用 **$attr 进行获取**  。
 
     > **但是 style 不行**，style比较特殊，它保存的样式是对象类型的。不能进行接收
-    
+
     ~~~html
     <!--父组件-->
     <noprops-attr addr="天津市" profession="小生" class="{color: #333}" style="{color: #999}">
       </noprops-attr>
-    
+
     <!--子组件 ：这里在没有使用props options接收的情况下可以使用$attrs对象直接获取值-->
     <template>
       <div>
@@ -646,27 +646,27 @@ export default {
       </div>
     </template>
     ~~~
-    
-    
-    
+
+
+
   - 一定要 `style` 的话，可以尝试 `v-bind`
-  
+
     ~~~html
     <label>
         <input type="text" v-bind="$attrs" />
     </label>
     ~~~
-  
-    
-  
+
+
+
   - `js` 当中也可以直接获取
-  
+
     ~~~js
     console.log(this.$attrs.info);
     ~~~
-  
-    
-  
+
+
+
 
 
 
@@ -675,7 +675,7 @@ export default {
 - 多个根需要 **手动 **决定要将自定义属性**那个根元素上面**否则会报错
 
   > 就是说当有两个根元素的时候，**一定要**使用 `$attrs` 将自定义属性**明确显示的绑定要一个节点上**，无论是 v-bind=`"$attrs"` 还是 `:class="attrs.class"` ,都可以明确的绑定一个也可以，就是不能不绑定
-  
+
   ~~~html
   <template>
   <!--多个根需要手动决定要将自定义属性那个根元素上面否则会报错-->
@@ -687,8 +687,8 @@ export default {
     </div>
   </template>
   ~~~
-  
-  
+
+
 
 
 
@@ -762,7 +762,7 @@ export default {
   }
   ~~~
 
-  
+
 
 ### 2、自定义事件的参数和验证
 
@@ -825,17 +825,17 @@ export default {
   3. `slot` 标签不会渲染到页面上
 
      > 组件标签中的内容会替换掉，slot 标签
-  
+
   ~~~html
-  <template>    
+  <template>
        <div class="info">
            <!--预留一个特定的位置，使用该组件的时候在内容的位置插入的元素会替换slot标签-->
             <slot></slot>
        </div>
   </template>
   ~~~
-  
-  
+
+
 
 ## 二、具名插槽
 
@@ -862,8 +862,8 @@ export default {
       </template>
     </minxDefaultSlot>
   ~~~
-  
-  
+
+
 
 
 
@@ -874,10 +874,10 @@ export default {
 - 可以通过 `v-slot:[dynamicSlotName]`方式动态绑定一个名称；
 
   > 使组件标签的**内容**，可以**动态在不同的插槽之间进行切换**。
-  
+
   - 注意：这里是中括号的形式
   - 可以使用语法糖。
-  
+
   ~~~html
     <activeSlot>
        <!--动态的将以下内容，在不同的插槽当中进行动态的切换-->
@@ -889,8 +889,8 @@ export default {
     <button @click="slotName = slotNameList[1]">中间</button>
     <button @click="slotName = slotNameList[2]">右边</button>
   ~~~
-  
-  
+
+
 
 
 
@@ -905,7 +905,7 @@ export default {
   1. 在**子组件**的作用域**提供数据**，**绑定到slot的标签属性当中**，
   2. **同时**会**生成**一个**包含所有slot标签属性集合的对象**，父组件在可以**使用自定义变量进行接收该对象**。
 
-  
+
 
 - **(重点)作用**：在**不同父组件进行复用**的时候，根据**相同数据(由子组件进行提供**，**否则在不同的父组件当中使用**的时候**要但单独重复的请求获取数据**)，**自定义数据的展示形式**
 
@@ -915,7 +915,7 @@ export default {
 
 - **父子通讯的方法总结**
 - 父传子 `$attrs` 和 `props`
-  
+
 - 子传父：`$emit()` 和 `作用域插槽slot`
 
 
@@ -981,7 +981,7 @@ export default {
       <!--绑定好需要携带的数据 list-->
       <slot :info="list"></slot>
     </div>
-  
+
   <!--父组件-->
     <defaultSlot message="个人信息">
       <!--获取默认插槽携带的数据对象 ’通过解构获取属性值‘-->
@@ -993,10 +993,10 @@ export default {
         </div>
       </template>
     </defaultSlot>
-  
+
   ~~~
 
-  
+
 
 
 
@@ -1017,7 +1017,7 @@ export default {
      </defaultSlot>
   ~~~
 
-  
+
 
 
 
@@ -1127,7 +1127,7 @@ export default {
   }
   ~~~
 
-  
+
 
 **函数**：如果要**使用 data 当中的数据**的时候，要在进行定义 `Provide options` 选项的时候记得要使用 函数返回一个对象。
 
@@ -1147,11 +1147,11 @@ export default {
 
 - 这个时候 `porvide` 提供的数据**不是响应式的**。因为是将响应式对象的值传了过去
 
-- 数组可以是响应式的是因为，数组**绑定的是地址值**，**同时 `vue` 会将一些操作数组的方法进行侦听，触发之后会更新视图** 
+- 数组可以是响应式的是因为，数组**绑定的是地址值**，**同时 `vue` 会将一些操作数组的方法进行侦听，触发之后会更新视图**
 
   > 如果**整个替换数组**的话就不会是响应式的了。
 
-  
+
 
 - 这个使用可以使用 `vue` 中单独的 `computed` 计算属性函数
 
@@ -1217,7 +1217,7 @@ export default {
 
   - 数据的传送方，进行 emit 发出调用，同时传递参数
 
-  
+
 
 - 简单使用过程
 
@@ -1226,12 +1226,12 @@ export default {
   //创建一个事件中心
   const eventBus = new HYEventBus()
   export default eventBus
-  
+
   //之后在使用的组件当中进行导入使用，这个时候是同一个实例
   import eventBus from './utils/event-bus'
   ~~~
 
-  
+
 
 - 注意事项：`import eventBus from ‘../*’`  的时候在加载的时候执行一次，之后在import的时候只会取出变量。不会重复执行
   - 这个是**模块化的知识点**，会有一个变量进行判断是否需要重新加载。
@@ -1263,7 +1263,7 @@ export default {
 
 - `Vue` 组件**创建前调用**
 
-- **调用完**：之后会**进行组件的初始化，生命周期函数，和事件，还有一些基本的对象** 
+- **调用完**：之后会**进行组件的初始化，生命周期函数，和事件，还有一些基本的对象**
 
   > 此时还**无法通过 `vm` 访问到 `data` 中的数据，`methods` 中的方法。**
 
@@ -1304,7 +1304,7 @@ export default {
 
     > 一般进行dom操作都会在这执行。
 
-  
+
 
 ### 5、beforeUpdate
 
@@ -1443,7 +1443,7 @@ export default {
   <detail-feature-area name="描述" :ref="getSectionRef" :data="mainPart.topModule"/>
   ~~~
 
-  
+
 
 - **注意***：组件**卸载之后**，也会**调用这个函数**
 
@@ -1458,7 +1458,7 @@ export default {
     }
   ~~~
 
-  
+
 
 
 
@@ -1532,7 +1532,7 @@ export default {
     <component @click="trigger" ref="abc" :message="title" :is="cpnName"></component>
   </div>
   </template>
-  
+
   <script>
   import home from "@/12_动态组件的使用(了解)/home";
   import about from "@/12_动态组件的使用(了解)/about";
@@ -1562,13 +1562,13 @@ export default {
     }
   }
   </script>
-  
+
   <style scoped>
-  
+
   </style>
   ~~~
 
-  
+
 
 
 
@@ -1601,12 +1601,12 @@ export default {
       > 例：如果两个组件`max 1 includ`包含两个组件 那么两个组件在相互切换的时候会不断的进入队列之后在被顶出，只有选中切换的当前组件才会在这个只有一个位置的队列里
 
   - **强调**：`keep-alive` 是**根据**组件对象中 **name options 选项**来**匹配缓存组件的**，并且使用 `String` 匹配**多个组件**使用**逗号隔开**的时候，**不能有空格！！！**
-  
+
   > 想要加空格的话可以使用数组。**提示**：使用数组的话记得**使用 v-bind** 。
-  
+
     - 匹配首**先检查组件自身**的 **`name` 选项**，因为不会有默认的 `name options`；
     -  **默认**会**将包含的所有组件**进行缓存
-  
+
   ~~~html
   <template>
   <div>
@@ -1617,7 +1617,7 @@ export default {
   </keep-alive>
   </div>
   </template>
-  
+
   <!-- vue3中结合router-view组件的使用-->
   <router-view v-slot="{ Component }">
       <keep-alive :include=[a,b]>
@@ -1625,8 +1625,8 @@ export default {
       </keep-alive>
   </router-view>
   ~~~
-  
-  
+
+
 
 ### keep-alive 缓存组件的生命周期
 
@@ -1647,7 +1647,7 @@ export default {
     }
   ~~~
 
-  
+
 
 
 
@@ -1674,7 +1674,7 @@ export default {
       index.html
     ~~~
 
-    
+
 
 - 解决方案
 
@@ -1708,7 +1708,7 @@ export default {
   const about = defineAsyncComponent(() => import("./about"))
   ~~~
 
-  
+
 
 - 异步组件打包后的结构
 
@@ -1726,7 +1726,7 @@ export default {
     index.html
   ~~~
 
-  
+
 
 ### 定义异步组件二
 
@@ -1765,7 +1765,7 @@ const math = defineAsyncComponent({
 - **使用场景**：
 
   - 由于子组件不能直接修改父组件传入的值，因此可以使用v-mode来**实现父子组件的数据同步**
-  
+
     > （这个是重点需求）父组件改了，子组件也会改，同样子组件改了父组件也会改。
 
 
@@ -1779,7 +1779,7 @@ const math = defineAsyncComponent({
 - **同时**会在组件标签上**自定义一个事件 `update:modelValue`** 并且监听该事件，**父组件通过监听该事件接收响应的值** 在赋值给所绑定的 `data` 属性
 - 这里的事件类型标识的创建方式是**根据 `uptate:`** 加上 **`v-model` 所绑定的属性名称** 的结构**自动生成的**。
   - 这里的如果世界 v-mode="list" ,**默认绑定的就是 modelValue属性**
-  
+
 - **绑定多个属性**
 
 
@@ -1801,7 +1801,7 @@ const math = defineAsyncComponent({
   <home @update:info="info = $event" :info="info"></home>
   ~~~
 
-  
+
 
 ### 默认绑定
 
@@ -1824,7 +1824,7 @@ const math = defineAsyncComponent({
     </label>
   </div>
 </template>
-<script>	
+<script>
   methods: {
     //通过input事件获取实时更新的数据msg，这里也可以使用watch
     trigger() {
@@ -1863,13 +1863,13 @@ const math = defineAsyncComponent({
 
   - `data`返回的对象会进行合并，对象当中的**属性冲突**会**优先保留组件自身数据**
 
-    
+
 
 - ###### 2、生命周期 `life cycle`
 
   - 生命周期的钩子函数，会被**合并到一个数组当中**，**都会被调用**
 
-    
+
 
 - ###### 3、其他options，methods，watch，component....
 
@@ -1973,7 +1973,7 @@ const service = axios.create({
 
   > vue-cli 并不会随便读取变量，只会读取 `NODE_ENV` 、`BASE_URL` 。或者是`VUE_APP_自定义名称`
 
-  
+
 
 ### 特定配置文件
 
@@ -1992,15 +1992,15 @@ const service = axios.create({
   - 使用的时候，也需要使用 `process.env.BASE_URL` 来进行读取
 
 ```js
-axios.interceptors.request.use(  config => {    
-    if (config.isBi) {      
-        config.url = process.env.VUE_APP_BI_BASEURL + config.url    
-    } else {      
-        config.url = process.env.VUE_APP_BASEURL + config.url    
-    }    
-    return config  
-},  err => {    
-    return Promise.reject(err)  
+axios.interceptors.request.use(  config => {
+    if (config.isBi) {
+        config.url = process.env.VUE_APP_BI_BASEURL + config.url
+    } else {
+        config.url = process.env.VUE_APP_BASEURL + config.url
+    }
+    return config
+},  err => {
+    return Promise.reject(err)
            })
 ```
 
@@ -2050,7 +2050,7 @@ if (process.env.NODE_ENV === "development") {
 
 2. vue3中的if优先级高于for了
 
-   
+
 # Faq
 
 ### vue中覆盖 UI (user interface) 样式的4种方法
@@ -2075,16 +2075,16 @@ if (process.env.NODE_ENV === "development") {
       top: 50% !important;
       transform: translateY(-50%) !important;
    }
-   
+
    //vue2
    ::v-deep .search-input .el-input__inner {
    	border: 0px;
    }
-   
+
    //vue3
     :deep(.van-tabbar-item__icon) {
        font-size: 50px;
      }
    ~~~
-   
-   
+
+

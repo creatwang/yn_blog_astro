@@ -36,7 +36,7 @@ title: '一、SvelteKit 中的路由'
     ┣ 📂 about
     ┃ ┗ 📜 +page.svelte
     ┗ 📂 contact
-      ┗ 📜 +page.svelte 
+      ┗ 📜 +page.svelte
   ```
 
 - 可以访问 `/`、 `/contact`、`/about`和/或`/blog`查看我们刚刚创建的页面
@@ -82,7 +82,7 @@ title: '一、SvelteKit 中的路由'
     ┗ 📂 [slug]
       ┣ 📜 +page.js -- Preloads data
       ┗ 📜 +page.svelte -- Renders the page
-    
+
 ```
 
 
@@ -199,7 +199,7 @@ export async function load({ params }){
       </li>
     </ul>
   </nav>
-    
+
 </header>
 ~~~
 
@@ -269,7 +269,7 @@ Svelte 允许将样式表**直接导入到组件中**，还有其他加载样式
 ┗ 📂 lib
   ┣ 📁 components
   ┗ 📂 styles
-    ┗ 📜 style.css 
+    ┗ 📜 style.css
 ```
 
 - 直接导入即可
@@ -369,7 +369,7 @@ import { mdsvex } from 'mdsvex'
 
 const config = {
   kit: { /* Kit options here */ },
-  
+
   extensions: ['.svelte', '.md'],
 
   preprocess: [

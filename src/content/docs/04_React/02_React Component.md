@@ -20,7 +20,7 @@ React的组件相对于Vue更加的灵活和多样，按照不同的方式可以
 
   - ##### 类组件(Class Component)；
 
-  
+
 
 - 根据组件内部是否有状态需要维护，可以分成：
 
@@ -30,7 +30,7 @@ React的组件相对于Vue更加的灵活和多样，按照不同的方式可以
 
   - ##### 有状态组件(Stateful Component)；
 
-  
+
 
 ### 职责分类
 
@@ -77,19 +77,19 @@ React的组件相对于Vue更加的灵活和多样，按照不同的方式可以
 
 1. **所有**的组件类，**都要继承自** `React.Component`，并且调用 父类构造函数 `super()`
 
-   
 
-2. 每个组件类，都要有 `render()` 函数，返回 jsx 标签 
+
+2. 每个组件类，都要有 `render()` 函数，返回 jsx 标签
 
    - 提示：使用分组运算符包裹表示一个整体
 
    - ##### render() 方法是 class 组件中唯一必须实现的方法
 
-     
+
 
 3. 组件的名称是大写字符开头（无论类组件还是函数组件）
 
-   
+
 
 4. 但凡**参与**界面更新的状态，都要**声明到一个 state 的属**性当中
 
@@ -99,10 +99,10 @@ React的组件相对于Vue更加的灵活和多样，按照不同的方式可以
 
    - 这样的话 可以通过 `this.setState` 来更新数据，在**内部完成了两件事**
 
-     > 1. 将 `state` 中`property`值 **修改** 掉 
+     > 1. 将 `state` 中`property`值 **修改** 掉
      > 2. **自动重新执行 **`render `函数函数
 
-     
+
 
 5. **`jsx` 只能有一个根**，`vue2` 也是一个根， `vue3`可以多根
 
@@ -123,10 +123,10 @@ React的组件相对于Vue更加的灵活和多样，按照不同的方式可以
   //内部进行调用的时候
   const click = config.onClick
   click()
-  
+
   ```
 
-  
+
 
 #### 方案一：`bind` 给 `btnClick` 显示绑定 `this`
 
@@ -138,7 +138,7 @@ React的组件相对于Vue更加的灵活和多样，按照不同的方式可以
 
 ```ts
 <script type="text/babel">
-    
+
   class App extends React.Component {
     constructor() {
       super();
@@ -253,7 +253,7 @@ React的组件相对于Vue更加的灵活和多样，按照不同的方式可以
 
 #### 1、constructor 创建
 
-#### 2、static getDerivedStateFromProps 
+#### 2、static getDerivedStateFromProps
 
 > `render`之前，无论是第一次挂载，还是更新都会调用
 
@@ -289,7 +289,7 @@ class Header extends React.Component {
 }
 ```
 
- 
+
 
 #### 3、componentDidMount
 
@@ -320,7 +320,7 @@ class Header extends React.Component {
     }
   ~~~
 
-  
+
 
 #### 6、getSnapshotBeforeUpdate(prevProps, prevState)
 
@@ -372,7 +372,7 @@ class Header extends React.Component {
 
   > `props` 会传入到子组件构造函数的形参中，至于在该组件内共享只需要交给父类进行处理即可。
 
-  
+
 
 - **注意**：如果组件中**没有需要定义的** `state` 的话，要省略 `props` 属性
 
@@ -428,7 +428,7 @@ export function Foo(props) {
 
 
 
-### 4、默认值、类型校验 
+### 4、默认值、类型校验
 
 > **关键字 `propTypes`**，该对象所在的包 `prop-types`，和构造函数的属性，都是这个关键字
 >
@@ -469,7 +469,7 @@ export function Foo(props) {
   ~~~typescript
   //父组件，给子组件传入一个函数
   <SubTab desc={e => this.trigger(e)} list={this.state.list}/>
-  
+
   //子组件，直接通过 props 进行调用，将值回传
   trigger(val){ this.props.desc(val) }
   ~~~
@@ -499,7 +499,7 @@ export function Foo(props) {
    import React, { Component } from 'react'
    import Sub from './Sub'
    import {HomeCtx} from './ctx/HomeCtx'
-   
+
    export class App extends Component {
      render() {
        return (
@@ -517,7 +517,7 @@ export function Foo(props) {
 
 3. #### 使用
 
-   - 设置静态属性 `Low.contextType = ctx` 
+   - 设置静态属性 `Low.contextType = ctx`
 
    - 之后就可以在 通过，`this.context` 获取到传入的值。
 
@@ -557,7 +557,7 @@ export function Foo(props) {
    export default Low
    ~~~
 
-   
+
 
 
 
@@ -578,41 +578,41 @@ export function Foo(props) {
 - 如果包裹多个React 元素，在特定需求的情况下，记得逐一取出
 
   > 简单只有一个的时候，推荐使用，多个可以使用Props 的方式
-  
+
   ~~~typescript
   //这里是父组件
     render() {
     return (
         <div>
           <div className="title">这里是App</div>
-              
+
           <Sub>
             <div className="main">
                {/*只有一个的时候回赋值给props*/}
               <div>这里是插槽</div>
             </div>
           </Sub>
-              
+
           <Sub>
             <div className="main">
               {/*如果有多个的时候 props 中的 children 属性变成数组类型
-  
+
               */}
               <div>这里是hi2</div>
               <div>这里是hi2</div>
               <div>这里是hi2</div>
             </div>
           </Sub>
-              
+
         </div>
       )
     }
-  
-  
+
+
   //这里是子组件
   import React, { Component } from 'react'
   import propTypes from 'prop-types'
-  
+
   export class Sub extends Component {
     render() {
       //如果包裹的只有一个react元素，可以直接使用
@@ -627,8 +627,8 @@ export function Foo(props) {
   Sub.propTypes={}
   export default Sub
   ~~~
-  
-  
+
+
 
 ## props属性传递React元素
 
@@ -767,7 +767,7 @@ Sub.propTypes = {
     }
   ~~~
 
-  
+
 
 ## prueComponent和memo
 
@@ -796,7 +796,7 @@ Sub.propTypes = {
   }))
   ~~~
 
-  
+
 
 ## 数据不可变-shallowEqual 浅层比较
 
@@ -814,7 +814,7 @@ Sub.propTypes = {
 
    - **注意**：因此就算是 、对象**中的对象属性**发生修改的**也需要重新替换**，否则校验第一层发现没变化，返回`false` 拒绝刷新
 
-   
+
 
 - **结论**：修改 `state` 中的属性，就算是**深层修改**也需要**整个属性替换**，否则 `shallowEqual` **检测不到 “新 `state`” 是否发生了修改**
 
@@ -948,7 +948,7 @@ export default forwarkRef
 
   > **警告信息**：Warning: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`
 
-  
+
 
 - `onChange`
 
@@ -962,9 +962,9 @@ export default forwarkRef
 ### input
 
 ~~~typescript
-<input 
-    type="text" 
-    value={this.state.val} 
+<input
+    type="text"
+    value={this.state.val}
     onChange={e => this.setState({val: e.target.value})}/>
 ~~~
 
@@ -979,11 +979,11 @@ export default forwarkRef
 hobbies.map((item, index) => {
    return (
        <label htmlFor={'box'+item.name} key={item.name}>
-           <input 
-               type="checkbox" 
-               id={'box'+item.name} 
-               name={item.name}  
-               checked={item.isChecked} 
+           <input
+               type="checkbox"
+               id={'box'+item.name}
+               name={item.name}
+               checked={item.isChecked}
                //将选中的值在这个回传，之后在回调函数中进行整理，保存到状态中
                onChange={e=>this.backCall(e, index)}
                />{item.text}
@@ -1195,20 +1195,20 @@ export function IsLogin(Cpn) {
 
 - `Portal` 提供了一种**将子节点**渲染到**存在于父组件以外的 `DOM` 节点的优秀**的方案
 
-- `api`：`ReactDom.createProtal`, 
+- `api`：`ReactDom.createProtal`,
 
   > 提示：`flushSync` 方法也是 `react-dom` 包中的
 
   1. **参数一**：**任何 `React` 元素**，例如一个元素，字符串或 `fragment`；
 
-  2. **参数二**：类型原生的 `DOM` 元素 
+  2. **参数二**：类型原生的 `DOM` 元素
 
      > 参数一的 `React` 元素，会挂载到参数二原生dom元素上
 
   ~~~typescript
   import React, { PureComponent } from 'react'
   import { createPortal } from 'react-dom'
-  
+
   export class Model extends PureComponent {
     render() {
       return createPortal((
@@ -1219,8 +1219,8 @@ export function IsLogin(Cpn) {
     }
   }
   export default Model
-  
-  
+
+
   //使用
   <Model model={".tmp"}>
       <div>zhangsan</div>
@@ -1316,7 +1316,7 @@ export default App
 import React, { Fragment, PureComponent, StrictMode } from 'react'
   render() {
     return (
-        
+
       <StrictMode>
         <Fragment>
           <div className="box">张三</div>

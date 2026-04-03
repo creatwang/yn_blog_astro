@@ -90,7 +90,7 @@ title: '第一节、数据可视化'
    ~~~js
    //根据上述，通常数据量小时候用 svg模式，echart 默认使用的 cancer
    var myChart = echarts.init(containerDom, null, { renderer: 'svg' });
-   
+
    //5.3.0 的版本推荐使用，服务端渲染，svg模式
    const chart = echarts.init(null, null, {
      renderer: 'svg', // 必须使用 SVG 模式
@@ -102,7 +102,7 @@ title: '第一节、数据可视化'
    chart.setOption({
      //...
    });
-   
+
    // 输出字符串
    const svgStr = chart.renderToSVGString();
    ~~~
@@ -145,7 +145,7 @@ title: '第一节、数据可视化'
          };
    ~~~
 
-   
+
 
 
 
@@ -161,13 +161,13 @@ import chinaMapData from '../data/china.json'
 echarts.registerMap('china', chinaMapData)
 //传入组件
 export default function (el: HTMLElement) {
-  
+
   const echartInstance = echarts.init(el)
 
   const setOptions = (options: echarts.EChartsOption) => {
     echartInstance.setOption(options)
   }
-  
+
  //手动更新echarts 大小
   const updateSize = () => {
     echartInstance.resize()
@@ -338,14 +338,14 @@ export default {
             show: false // 是否显示对应地名
           },
             //数组类型：根据namemap所对应的name配置需要展示的数据
-            //"dataArr": [ { "name": "阿富汗", "value": 28397.812 }, {"name": "安哥拉", "value": 19549.124 }] 
+            //"dataArr": [ { "name": "阿富汗", "value": 28397.812 }, {"name": "安哥拉", "value": 19549.124 }]
           data: dataMapArr.dataArr,
             //对象类型：每个地区展示的名字 例： "namemap": { "Afghanistan": "阿富汗", "Angola": "安哥拉",
     		//"Albania": "阿尔巴尼亚"},
           nameMap: nameMap,
         },
         {
-          //显示散点图的类型 
+          //显示散点图的类型
           type: 'effectScatter',
           coordinateSystem: 'geo',
           itemStyle: { // 坐标点颜色
@@ -1309,7 +1309,7 @@ export default {
 
 1. `display: none` 解决方法（没试过，嫌麻烦）：
    1、通过 `js` 获取外层 `div` 的宽高，然后设置给图表容器
-   2、加  `mychart.resize()`  
+   2、加  `mychart.resize()`
 
 
 
@@ -1391,7 +1391,7 @@ export default {
             splitLine: {show: false}
           }
         ],
-     
+
  series: [
           {
             smooth: true, //这个是把线变成曲线

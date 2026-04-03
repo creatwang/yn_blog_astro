@@ -8,10 +8,10 @@ title: 'linux 常用命令'
 
 ## 一、部署的linux命令
 
-1. 后台启动jar包：nohup java -jar ruoyi.jar 
-2. 查看java进程：px -aux | grep java 或者` ps –ef|grep tomcat` 
+1. 后台启动jar包：nohup java -jar ruoyi.jar
+2. 查看java进程：px -aux | grep java 或者` ps –ef|grep tomcat`
 3. 打包压缩： `tar -zcvf  文件名.tar.gz  文件`
-4. 解压： `tar -zxvf tar.gz压缩文件` 
+4. 解压： `tar -zxvf tar.gz压缩文件`
 
 - - tar 命令系统自带不用安装
 
@@ -24,7 +24,7 @@ title: 'linux 常用命令'
 ```xml
 <Host name="localhost"  appBase="webapps"
       unpackWARs="true" autoDeploy="true">
-  
+
   <!--开启了Tomcat的reloadable=true,那么每当相关文件改变时，Tomcat会停止web app并释放内存,然后重新加载web app.这实在是个浩大的工程。-->
   <!--添加-->
   <Context docBase="d:tomcat/weapp/Asset" path="/" reloadable="false"/>
@@ -33,14 +33,14 @@ title: 'linux 常用命令'
   <!--
         <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
         -->
-  
+
   <!-- Access log processes all example.
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
   <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
          prefix="localhost_access_log." suffix=".txt"
          pattern="%h %l %u %t &quot;%r&quot; %s %b" />
-  
+
       </Host>
 ```
 

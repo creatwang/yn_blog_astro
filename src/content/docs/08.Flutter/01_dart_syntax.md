@@ -18,7 +18,7 @@ title: '第一章、flutter 渲染机制'
 
 > 这“三棵树”协同工作的机制是其性能强大的核心原因。到 2026 年，虽然底层的渲染引擎演进到了 **Impeller**，但其三树联动逻辑依然遵循以下经典架构
 
-​	
+​
 
 ## 1.1、三棵树的角色定位
 
@@ -192,40 +192,40 @@ void activate() {
 
 1. 数字 (Numbers)
 
-Dart 提供了三种处理数值的类型： 
+Dart 提供了三种处理数值的类型：
 
 - **`int`**：整数值，通常为 64 位（取决于平台）。
 - **`double`**：64 位双精度浮点数。
 - **`num`**：`int` 和 `double` 的父类。当一个变量既可以是整数又可以是浮点数时使用。
 - 字符串 (Strings)
 
-- **`String`**：UTF-16 编码的字符序列。可以使用单引号或双引号定义，支持插值表达式 `${expression}`。 
+- **`String`**：UTF-16 编码的字符序列。可以使用单引号或双引号定义，支持插值表达式 `${expression}`。
 - 布尔值 (Booleans)
 
-- **`bool`**：仅有两个对象，即布尔字面量 `true` 和 `false`。 
+- **`bool`**：仅有两个对象，即布尔字面量 `true` 和 `false`。
 - 集合 (Collections)
 
-Dart 内置了强大的集合支持： 
+Dart 内置了强大的集合支持：
 
 - **`List`**：有序的项目集合（类似于数组）。
 - **`Set`**：无序且元素唯一的集合。
 - **`Map`**：键值对映射集合。
 - 记录 (Record)
 
-- **`Record`**：在 Dart 3.0 引入，允许将多个值组合成一个单一对象，类似于匿名结构体。例如：`(String, int) record = ('A', 1);`。 
+- **`Record`**：在 Dart 3.0 引入，允许将多个值组合成一个单一对象，类似于匿名结构体。例如：`(String, int) record = ('A', 1);`。
 - 其他核心类型
 
 - **`Runes`**（及其替代方案）：用于表示字符串中的 Unicode 字符点。
 - **`Symbol`**：用于表示在 Dart 程序中声明的运算符或标识符。
 - **`Null`**：表示空值的类型，只有一个值 `null`。
 - **`dynamic`**：显式告知编译器关闭静态类型检查（慎用）。
-- **`void`**：通常用于表示函数不返回任何值。 
+- **`void`**：通常用于表示函数不返回任何值。
 - 特殊底层类型
 
 - **`Object`**：除 `Null` 外所有 Dart 类的基类。
-- **`Never`**：表示表达式永远无法成功完成评估（通常用于总是抛出异常的函数）。 
+- **`Never`**：表示表达式永远无法成功完成评估（通常用于总是抛出异常的函数）。
 
-**注意：** 在 Dart 中，一切皆为对象（包括数字和函数），所有类型都直接或间接继承自 `Object`。随着 2026 年 Dart 宏（Macros）等特性的成熟，类型系统在静态元编程方面得到了进一步增强。 
+**注意：** 在 Dart 中，一切皆为对象（包括数字和函数），所有类型都直接或间接继承自 `Object`。随着 2026 年 Dart 宏（Macros）等特性的成熟，类型系统在静态元编程方面得到了进一步增强。
 
 
 
@@ -356,7 +356,7 @@ dart
 
 void main() {
   // 调用并使用结构赋值（Destructuring）
-  var (name, age) = getUserInfo(); 
+  var (name, age) = getUserInfo();
   print("姓名: $name, 年龄: $age");
 }
 ```
@@ -404,7 +404,7 @@ print(userInfo.name); // 直接通过名字访问，不再用 $1
 
 Dart 是一个空安全的语言，也就是说，你无法将一个非空类型对象值设为 null :
 
-~~~dart	
+~~~dart
 void main() {
     int a = null//这个是不行的
     int? a = null // 这样可以
@@ -474,7 +474,7 @@ class TestPage extends StatelessWidget {
     const c1 = Textwrapper(text: 'Apple');
     var c2 = const Textwrapper(text: 'Apple');
     print('Textwrapper identical = ${identical(c1, c2)}'); //out true
-    
+
   }
 }
 
@@ -562,7 +562,7 @@ class MyApp {
   // 这里有默认值可以自动推断的就使用var
   var name = 'zhagnsan';
    MyApp(this.age) {
-     
+
    }
 }
 ~~~
@@ -632,7 +632,7 @@ class ApiService {
   final String status;
 
   // 使用逗号分隔多个初始化项,
-  ApiService._private(this.url) 
+  ApiService._private(this.url)
       : createdAt = DateTime.now(),
         status = 'loading',
         assert(url.isNotEmpty) {  // 也可以包含断言
@@ -652,7 +652,7 @@ class ApiService {
 
 ~~~dart
 //这样也可以只不过是多算了一遍表达式
-Score(List<int> points) 
+Score(List<int> points)
   : total = points.reduce((a, b) => a + b),
     assert(points.reduce((a, b) => a + b) <= 100); // 只能重算一遍表达式
 ~~~
@@ -688,12 +688,12 @@ class A {
    ```dart
    final String domain;
    // 定义时无法赋值，因为需要解析传入的 url
-   ApiService(String url) : domain = Uri.parse(url).host; 
+   ApiService(String url) : domain = Uri.parse(url).host;
    ```
 
    请谨慎使用此类代码。
 
-   
+
 
 3. **节省内存/延迟创建**：如果在定义时赋值，那么每个实例的初始值都是一样的。通过构造函数赋值，可以让每个对象拥有自己独特的、不可变的“基因”。
 
@@ -758,7 +758,7 @@ class A {
 ~~~dart
 class ApiService {
   final String url;
-  
+
   // 1. 定义一个私有的静态变量，用来在内存中缓存唯一的实例
   static ApiService? _instance;
 
@@ -788,7 +788,7 @@ class ApiService {
 
 void main() {
   print("--- 第一次调用 ApiService() ---");
-  var service1 = ApiService(); 
+  var service1 = ApiService();
   service1.getData();
 
   print("\n--- 第二次调用 ApiService() ---");
@@ -1184,7 +1184,7 @@ void processPayment(double amount, double balance) {
   print("支付成功：$amount");
 
   // 3. 断言：校验执行结果
-  assert(balance >= 0, '支付后余额异常'); 
+  assert(balance >= 0, '支付后余额异常');
 }
 
 ~~~
@@ -1201,11 +1201,11 @@ class AppConfig {
       // --- 阶段 A: 初始化列表与断言 ---
       : assert(apiEndpoint.startsWith('https'), '安全警告：API 必须使用 https'),
         assert(timeout > 0, '配置错误：超时时间必须大于 0') {
-    
+
     // --- 阶段 B: 构造函数逻辑体 ---
     _logMessage = "配置已加载：$apiEndpoint";
     print(_logMessage);
-    
+
     // 逻辑处理：如果超时过长，在调试期给个提醒
     if (timeout > 10000) {
       print("注意：当前设置的超时时间较长。");
@@ -1266,7 +1266,7 @@ int add(int a, int b) => a + b;
 // 常用在 Flutter 的组件构建中
 Widget build(BuildContext context) => Scaffold(body: Center());
 
-3. 取值器与设置器   
+3. 取值器与设置器
 class Rectangle {
   double width = 0;
   double height = 0;
@@ -1351,7 +1351,7 @@ class Utils {
 try {
   // 可能抛出错误的代码
   var result = 10 ~/ 0; // 整数除以零
-    
+
 } on IntegerDivisionByZeroException {
   // 相当于if和switch的作用 如果当前异常是IntegerDivisionByZeroException就执行这个代码块
   print('不能除以零！');
@@ -1416,9 +1416,9 @@ try {
   pay(100, 50);
 } on InsufficientBalanceException catch (e) {
   print('记录日志: 用户尝试支付失败');
-  
+
   // 重新抛出，让 UI 层也能捕获到并弹出提示框
-  rethrow; 
+  rethrow;
 }
 ~~~
 
@@ -1470,7 +1470,7 @@ class Counter with ChangeNotifier,A,B {
   void increment() {
     _count++;
     // 这个方法来自 ChangeNotifier，用来通知监听者（UI）去刷新
-    notifyListeners(); 
+    notifyListeners();
   }
 }
 ~~~
@@ -1492,7 +1492,7 @@ part 'user_provider.g.dart'; // 此时这行会报错，因为文件还没生成
 @riverpod
 class Counter extends _$Counter { // 此时 _$Counter 会报红
   @override
-  int build() => 0; 
+  int build() => 0;
 
   void increment() => state++; // 此时 state 是继承自生成的父类的
 }
@@ -1577,7 +1577,7 @@ import 'package:json/json.dart'; // 引入宏库
 class User {
   final int id;
   final String name;
-  
+
   // 你只需要定义字段，宏会自动在内存中帮你生成:
   // 1. User.fromJson(Map<String, Object?> json)
   // 2. Map<String, Object?> toJson()
@@ -1658,8 +1658,8 @@ lib/
 │   └── common_widgets/       # 基础原子组件（按钮、输入框）
 ├── features/                 # 业务功能层（按模块划分）
 │   ├── home/                 # 首页模块
-│   │   ├── data/             # 数据源（API、DTO模型） 
-│   │   │   ├──dto/             # dto的组成有可能是多个实体构成的 
+│   │   ├── data/             # 数据源（API、DTO模型）
+│   │   │   ├──dto/             # dto的组成有可能是多个实体构成的
 │   │   │   └──mapper/          # 用于拆分转换dto
 │   │   │   └──data_source/     # 定义数据的来源 api get post
 │   │   │   └──home_repository_imp.dart/  Repository（仓库） 而不是 Api 或 Service，是因为它在设计模式中扮演着“数据守护者”的角色，而不仅仅是发个请求。
@@ -1668,7 +1668,7 @@ lib/
                 │   └── product_entity.dart  # 纯净的业务模型
                 └── repositories/            # 存放接口
                 └── i_product_repository.dart # 定义方法的契约
-│   │   ├── presentation/     # UI 逻辑  
+│   │   ├── presentation/     # UI 逻辑
 │   │   │   ├── widgets/      # 局部组件
 │   │   │   ├── screen_m.dart # 手机端页面
 │   │   │   └── screen_p.dart # Pad 端页面（或响应式适配逻辑）
@@ -1694,18 +1694,18 @@ lib/
   > 是一个便利列表的超集，当使用dart map的时候它不能像js map 那样返回index，可以使用collection中的 `mapIndexed((index, val)` ，当然还有更多的方法
 
 - **`riverpod_generator`**
-  
+
   - **用途**：将你带有 `@riverpod` 注解的函数或类，转化为 UI 可用的 `fetchUserProvider` 或 `counterProvider`。
   - **不运行后果**：你写的 `extends _$Counter` 会持续报错，且 UI 无法找到对应的 Provider。
-  
+
 - **`freezed`**
   - **用途**：生成**不可变对象**。它会自动帮你写好 `copyWith`、`==` 和 `hashCode`（这是实现你最开始要求的 **Set 集合存放对象自动去重** 的核心逻辑）。
   - **不运行后果**：无法使用复杂的模型类。
-  
+
 - **`json_serializable`**
   - **用途**：生成 `fromJSON` 和 `toJSON` 的具体实现代码。
   - **不运行后果**：无法自动将后端返回的 Map 数据转换为 Dart 对象。
-  
+
 - 资源与路由优化（推荐生成）
 
 这些库虽然可选，但在 2026 年的规范项目中通常都会使用：
@@ -1875,7 +1875,7 @@ dart
 class EnvConfig {
   // 建议定义为 static const，这样在编译时就会被替换为常量
   static const String baseUrl = String.fromEnvironment(
-    'BASE_URL', 
+    'BASE_URL',
     defaultValue: 'https://localhost:8080',
   );
 
@@ -1903,7 +1903,7 @@ class EnvConfig {
 
   请谨慎使用此类代码。
 
-  
+
 
 - **打包正式版：**
 
@@ -1915,9 +1915,9 @@ class EnvConfig {
 
   请谨慎使用此类代码。
 
-  
 
-  
+
+
 
 ------
 
@@ -2071,8 +2071,8 @@ Widget build(BuildContext context) {
   return ResponsiveScaledBox(
     // 1. 设定一个“基准宽度”（比如 600）
     // 无论手机还是平板，程序都会认为屏幕宽度就是 600
-    width: 600, 
-    
+    width: 600,
+
     // 2. 这里的内容你照常写，直接用固定数字
     child: Scaffold(
       appBar: AppBar(title: const Text("商城首页")),
@@ -2141,16 +2141,16 @@ Widget build(BuildContext context) {
     background: Container(color: Colors.grey[200]), // 左右两侧留白背景
     child: child!,
   )
-      
-      
-      
+
+
+
   MaterialApp(
     builder: (context, child) => ResponsiveBreakpoints.builder(
       // 1. 最外层：锁定最大宽度，防止 2080px 这种超宽屏导致 UI 散架
       child: MaxWidthBox(
         maxWidth: 1200, // 无论屏幕多宽，商城内容区最大 1200dp
         background: Container(color: const Color(0xFFF5F5F5)), // 屏幕两侧多出的部分背景色
-        
+
         // 2. 中间层：执行镜像缩放，让你不用写 .w
         child: ResponsiveScaledBox(
           width: 600, // 你的设计稿基准宽度
@@ -2166,7 +2166,7 @@ Widget build(BuildContext context) {
     ),
     home: const HomeScreen(),
   );
-  
+
   ```
 
 
@@ -2188,14 +2188,14 @@ Widget build(BuildContext context) {
   ```dart
   ResponsiveRowColumn(
     // 核心逻辑：手机返回 COLUMN，Pad 返回 ROW
-    layout: ResponsiveBreakpoints.of(context).isMobile 
-            ? ResponsiveRowColumnType.COLUMN 
+    layout: ResponsiveBreakpoints.of(context).isMobile
+            ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
-    
+
     // 间距设置：Row 时水平间距 20，Column 时垂直间距 20
-    columnSpacing: 20, 
+    columnSpacing: 20,
     rowSpacing: 20,
-    
+
       // 决定这里横着排还是竖着排
     children: [
       // 左侧/上侧：商品大图
@@ -2203,7 +2203,7 @@ Widget build(BuildContext context) {
         rowFlex: 2, // 在 Pad 上占 2 份宽度
         child: Image.asset('assets/product.png', fit: BoxFit.cover),
       ),
-      
+
       // 右侧/下侧：商品标题和价格
       ResponsiveRowColumnItem(
         rowFlex: 3, // 在 Pad 上占 3 份宽度
@@ -2218,12 +2218,12 @@ Widget build(BuildContext context) {
       ),
     ],
   )
-  
+
   ```
 
-  
 
-  
+
+
 
 ### ResponsiveGridView (响应式网格)
 
@@ -2260,7 +2260,7 @@ class HomeProductGrid extends ConsumerWidget {
       data: (products) => ResponsiveGridView.builder(
         // 这里就是你写的那个组件
         gridDelegate: const ResponsiveGridDelegate(
-          maxExtent: 200,      
+          maxExtent: 200,
           mainAxisSpacing: 16,
           crossAxisSpacing: 16,
           childAspectRatio: 0.8,
@@ -2284,11 +2284,11 @@ class HomeProductGrid extends ConsumerWidget {
 
 **任务：** 请为我构建一个 iPad 端商城的基础架构
 
-技术栈，flutter， 
+技术栈，flutter，
 
 - 网络请求：可以使用市面上的流行库
 
-- responsive_framework 
+- responsive_framework
   - 设置响应式布局
 
 - **`riverpod_generator`**
