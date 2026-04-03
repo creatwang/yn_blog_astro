@@ -32,9 +32,17 @@
   border-radius: 16px;
 }
 
-.card {
+:root[data-theme="light"] .card {
+  border: 1px solid rgba(18, 52, 77, 0.15);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 248, 252, 0.98));
+  color: #0f172a;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+:root[data-theme="dark"] .card {
   border: 1px solid rgba(77, 212, 255, 0.18);
   background: linear-gradient(180deg, rgba(17, 26, 42, 0.95), rgba(12, 18, 30, 0.95));
+  color: var(--sl-color-text);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -88,4 +96,11 @@
 .athena-btn.ghost {
   background: rgba(255, 255, 255, 0.02);
   color: var(--sl-color-text);
+}
+
+/* Enlarge navbar logo while keeping proportions */
+.site-title img {
+  height: calc((var(--sl-nav-height) - 2 * var(--sl-nav-pad-y)) * 1.9);
+  width: auto;
+  max-width: none;
 }
