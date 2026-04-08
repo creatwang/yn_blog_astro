@@ -427,11 +427,13 @@ void payWay(string? name) {
 
 > 注意这里是修改符，并不是声明变量的关键词，如果没有主动设置变量类型会进行自动推导，但是它是用来修饰变量的
 
+
+
 ## 1、编译时常量const
 
-
-
 > 在 Dart 中，`const` 和 `final` 都用于定义**不可变**的变量，一旦赋值就不能再修改。但在 2026 年的现代 Dart 开发中，它们的区别主要体现在**赋值时机**和**内存表现**上。
+
+
 
 - **`const` (编译时常量)**：它的值必须在**编译阶段**就能确定。这就意味着你只能用字面量（如 `123`, `"hello"`）或其他 `const` 变量给它赋值。不能用函数返回值
 
@@ -741,13 +743,15 @@ class A {
 
 1. **数据清洗与逻辑前置**
 
-| 特性            | 普通构造函数           | 工厂构造函数 (`factory`)                      |
-| :-------------- | :--------------------- | :-------------------------------------------- |
-| **关键字**      | 无                     | 必须使用 `factory`                            |
-| **内存表现**    | **必定**产生新内存地址 | **不一定**，可以复用旧地址                    |
-| **return 语句** | **禁止**写 return      | **必须**写 return                             |
-| **this 访问**   | 可以访问 `this`        | **禁止**访问 `this`（因为对象可能还没造出来） |
-| **子类化**      | 只能产出本类           | 可以产出本类或任意子类                        |
+| 特性            | 普通构造函数                                                 | 工厂构造函数 (`factory`)                                     |
+| :-------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| **关键字**      | 无                                                           | 必须使用 `factory`                                           |
+| **内存表现**    | **必定**产生新内存地址                                       | **不一定**，可以复用旧地址                                   |
+| **return 语句** | **禁止**写 return, 必须返回当前类新实例, 不能返回缓存对象/子类/别的实例 | **必须**写 return 可以决定返回什么实例, 适合 `fromJson`、单例、缓存复用、参数分流 |
+| **this 访问**   | 可以访问 `this`                                              | **禁止**访问 `this`（因为对象可能还没造出来）                |
+| **子类化**      | 只能产出本类                                                 | 可以产出本类或任意子类                                       |
+
+
 
 
 
@@ -804,21 +808,11 @@ void main() {
 
 ### 3.2、返回子类实例
 
-
-
 ```dart
-abstract class Logger {
-  // 工厂构造函数：根据参数决定生产哪种具体的 Logger
-  factory Logger(String mode) {
-    if (mode == 'dev') {
-      return ConsoleLogger(); // 返回子类实例 A
-    } else {
-      return ServerLogger();  // 返回子类实例 B
-    }
-  }
-
-  void log(String message);
+abstract class Shape {
+  factory Shape.circle() = Circle; // Circle 必须实现/继承 Shape
 }
+class Circle implements Shape {}
 ```
 
 
@@ -1150,6 +1144,61 @@ Navigator类中第一个参数为context的**静态方法**都对应一个Naviga
 
 
 
+## 3. Go router
+
+~~~dart
+import 'package:go_router/go_router.dart';
+import 'package:groe_app_pad/app/router/app_routes.dart';
+import 'package:groe_app_pad/features/auth/presentation/providers/session_controller.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'app_router.g.dart';
+
+@Riverpod(keepAlive: true)
+GoRouter appRouter(Ref ref) {
+  final sessionState = ref.watch(sessionControllerProvider);
+
+  final bool isLoading = sessionState.isLoading;
+  final bool isLoggedIn = sessionState.asData?.value.isAuthenticated ?? false;
+
+  return GoRouter(
+    routes: $appRoutes,
+    // 初始化路由
+    initialLocation: const SplashRoute().location,
+    // redirect 触发时机，1.路由跳转 2.依赖变化，路由重建
+    /*
+    1.先拿 initialLocation（你这里是 /splash）
+    2.立即跑 redirect
+    3.若返回新地址就跳转，否则留在当前地址,可能觉的 立即跑 redirect 也会回到SplashRoute，但是是有必要的
+    -可能此时 session 已经是已登录状态，直接就该去首页，不该停 splash
+    -可能是未登录，应该去 login
+    -可能有深链或其他状态约束，需要第一时间裁决
+    你当前代码里第一次通常会返回 null（留在 splash），所有要等isLoading依赖变化的时候才会在调用一次跳到指定的页面
+ */
+    redirect: (context, state) {
+      final atSplash = state.matchedLocation == const SplashRoute().location;
+      final atLogin = state.matchedLocation == const LoginRoute().location;
+
+      if (isLoading) {
+        return atSplash ? null : const SplashRoute().location;
+      }
+
+      if (!isLoggedIn) {
+        return atLogin ? null : const LoginRoute().location;
+      }
+
+      if (atLogin || atSplash) return const HomeRoute().location;
+      return null;
+    },
+  );
+}
+
+~~~
+
+
+
+
+
 
 
 # 第四章、JSON转换
@@ -1456,84 +1505,150 @@ void main() {
 
 
 
-# 第八章、混入Mixin
+# 第八章、混入Mixin|with|on
 
 ~~~dart
-import 'package:flutter/material.dart';
+mixin Logger {
+  void log(String msg) => print('Log: $msg');
+}
 
-// Counter 类通过 with 混入 ChangeNotifier
-class Counter with ChangeNotifier,A,B {
-  int _count = 0;
+class MyService with Logger { // 使用 with 关键字
+  void doWork() => log('Working...'); 
+}
+~~~
 
-  int get count => _count;
 
-  void increment() {
-    _count++;
-    // 这个方法来自 ChangeNotifier，用来通知监听者（UI）去刷新
-    notifyListeners();
+
+ `on` 关键字用于**限制 mixin 只能被哪些类使用**。
+
+~~~dart
+class Bird {
+  void fly() => print('Flying...');
+}
+
+// 限制：该 mixin 只能被 Bird 或 Bird 的子类混入
+mixin Sing on Bird {
+  void singAndFly() {
+    print('Singing...');
+    fly(); // 因为有 'on Bird'，所以这里可以直接调用 Bird 的 fly()
   }
 }
+
+// 错误：Human 不是 Bird，编译报错
+// class Human with Sing {} 
+
+// 正确：Eale 继承自 Bird
+class Eagle extends Bird with Sing {}
 ~~~
 
 
 
 # 第十章、状态管理、依赖注入 Riverpod
 
+StateProvider/Provider/FutureProvider/AsyncNotifier
+
+不可变的特点：可覆盖，可注入
+
+```dart
+final cityProvider = Provider((ref) => 'London');
+final countryProvider = Provider((ref) => 'England');
+
+
+// 可注入
+final locationProvider = Provider<String>((ref) {
+  final city = ref.watch(cityProvider);
+  final country = ref.watch(countryProvider);
+  return '$city, $country';
+});
+
+// 可覆盖
+runApp(
+  ProviderScope(
+    overrides: [
+      baseUrlProvider.overrideWithValue('https://prod-api.xxx.com'),
+    ],
+    child: const MyApp(),
+  ),
+);
+
+// 跨模块共享
+final baseUrl = ref.watch(baseUrlProvider);
+
+```
+
+
+
+可变的StateProvider
+
 ~~~dart
-. 完整的工程逻辑演示
-为了让你看清“前后逻辑”，我们假设整个流程如下：
-第一步：创建源文件 lib/providers/user_provider.dart
-此时你手写以下内容：
-dart
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+final baseUrlProvider = StateProvider<String>((ref) => 'https://dev-api.xxx.com');
 
-part 'user_provider.g.dart'; // 此时这行会报错，因为文件还没生成
-
-@riverpod
-class Counter extends _$Counter { // 此时 _$Counter 会报红
-  @override
-  int build() => 0;
-
-  void increment() => state++; // 此时 state 是继承自生成的父类的
-}
-
-
-第二步：运行生成指令（关键步骤）
-在终端执行：
-bash
-dart run build_runner build
-请谨慎使用此类代码。
-
-第三步：工具生成的 lib/providers/user_provider.g.dart 内容（简化版）
-生成器会自动写出类似下面的代码，你不需要动它：
-
-// 由 riverpod_generator 自动生成的代码
-part of 'user_provider.dart';
-
-// 看！这就是你继承的那个类
-abstract class _$Counter extends AutoDisposeNotifier<int> {
-  // 这里面包含了 state 的定义和管理逻辑
-}
-
-// 还会自动生成供 UI 使用的 provider 变量
-final counterProvider = AutoDisposeNotifierProvider<Counter, int>(...);
-
-
-class MyData extends _$MyData {
-  @override
-  // 1. 返回类型必须声明为 Map
-  Map<String, int> build() {
-    // 2. 返回对应的 Map 结构
-    return {'name': 1};
-  }
-}
+final dioProvider = Provider<Dio>((ref) {
+  final baseUrl = ref.watch(baseUrlProvider);
+  return Dio(BaseOptions(baseUrl: baseUrl));
+});
+// 使用
+ref.read(baseUrlProvider.notifier).state = 'https://prod-api.xxx.com';
 ~~~
 
-总结
-文件关系：.dart 文件是你的“源代码”，.g.dart 是机器根据注解帮你写的“脚手架代码”。
-_$类名：是机器生成的抽象父类，用来帮你处理复杂的 Provider 注册逻辑。
-state：是机器生成的父类里自带的属性，代表当前的状态数据。
-在 2026 年，这种“源代码”与“生成代码”协作的模式是 Flutter 的标准逻辑。你只需要关注业务（increment），而那些琐碎的底层绑定（state 怎么通知刷新、Provider 怎么定义）全部交给机器完成。
+
+
+
+
+异步的可变的
+
+~~~dart
+
+Future<Joke> getJoke() async {
+  final result = await fetchRandomJoke();
+  return result;
+}
+
+class JokeNotifier extends AsyncNotifier<Joke> {
+  @override
+  Future<Joke> build() async {
+    return getJoke();
+  }
+
+  Future<void> loadJoke() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(getJoke);
+  }
+}
+
+final randomJokeProvider = AsyncNotifierProvider<JokeNotifier, Joke>(
+  JokeNotifier.new,
+);
+
+// 和上面的区别 两者都有“同一个 provider 在同一容器里会复用结果”的机制。
+// @riverpod 函数式（Future<User>）更轻量，适合“只读请求”。
+// AsyncNotifier 更适合有交互状态的方法场景（如 loadJoke()、updateSetup()、重试、局部修改）
+// @riverpod 需要 riverpod_annotation + riverpod_generator + build_runner 并执行代码生成
+@riverpod
+Future<User> user(Ref ref) async {
+  final response = await http.get('https://api.example.com/user/123');
+  return User.fromJson(response.body);
+}
+
+
+// 等价于 @riverpod Future<User> user(Ref ref) async { ... }
+final userProvider = FutureProvider<User>((ref) async {
+  final response = await http.get(
+    Uri.parse('https://api.example.com/user/123'),
+  );
+  final map = jsonDecode(response.body) as Map<String, dynamic>;
+  return User.fromJson(map);
+});
+~~~
+
+异步的
+
+- `if (async.isLoading / hasError / hasValue)` 手动判断
+- `async.valueOrNull`（只关心数据，不关心错误）
+- `async.whenData(...)`（只处理 data 分支）
+- `ref.watch(provider.select(...))`（只监听某个字段）
+- 监听副作用：`ref.listen(provider, ...)`（弹 toast、跳转等）
+- 不订阅只读一次：`ref.read(provider)`（事件里读取）
 
 
 
@@ -2020,6 +2135,19 @@ class AppEnv extends _$AppEnv {
 
 # Future FutureOr
 
+
+
+核心区别对比
+
+| 特性         | `Future<T>`                          | `FutureOr<T>`                                        |
+| ------------ | ------------------------------------ | ---------------------------------------------------- |
+| **本质**     | 一个具体的类，代表异步结果。         | 一个**类型别名**（Union Type）。                     |
+| **赋值**     | 只能给它 `Future` 对象。             | 既可以给 `String`，也可以给 `Future<String>`。       |
+| **await**    | 必须 `await` 才能拿值。              | 也可以 `await`（如果是同步值，`await` 会立即返回）。 |
+| **使用位置** | 常用作**返回值**，表示“这事儿得等”。 | 常用作**函数参数**或**接口定义**，表示“等不等都行”。 |
+
+就是使用上没什么区别 FutureOr 虽然可以兼容同步，但是使用的时候你无法区分当前执行的是同步还是异步
+
 ~~~dart
 @override
 Widget build(BuildContext context, WidgetRef ref) {
@@ -2038,7 +2166,28 @@ Widget build(BuildContext context, WidgetRef ref) {
 
 
 
+# dart中 abstract interface  sealed 
 
+**Dart 3.0** 引入它是为了实现更严谨的接口约束。
+
+
+
+- java：interface 只能被(多)实现， abstract 和 abstract 都不能实例化 ，但是可以被继承和实现抽象方法
+
+- dart: interface是3.0新增的(更多是语义化作用)，有**隐式接口**：任何类（包括普通类、抽象类）都可以作为接口被 `implements`。所以interface可以实例化
+
+  - 如果你 `implements` 一个**普通类**，你必须重写它所有的字段和方法
+
+- `abstract` (抽象类)
+
+  两者**基本一致**：都不能实例化，都用于被继承。
+
+  - **Java**：使用 `abstract class`。只能单继承。
+  - **Dart**：使用 `abstract class`。支持单继承，但 Dart 3 增加了类修饰符（如 `base`, `final`, `sealed`）来更精细地控制继承权限。
+
+
+
+这个 `sealed class` 的设计核心在于：**将“成功”和“失败”两种情况强制拆分开，并提供一种安全的方式来处理它们。**
 
 
 
@@ -2313,6 +2462,7 @@ class HomeProductGrid extends ConsumerWidget {
 - **`go_router_builder`**
   - **用途**：为 GoRouter 提供类型安全的路由跳转。
   - **效果**：避免手动写字符串路径，防止商城项目页面多了之后跳转出错。
+- flutter_secure_storage 
 
 
 
