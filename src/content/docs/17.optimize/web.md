@@ -393,3 +393,12 @@ export default {
 2. **第二阶段 (产物精简)**：ManualChunks 分包 + 按需引入组件 + Tree Shaking。
 3. **第三阶段 (极致体验)**：Preload 关键资源 + PWA 离线缓存。
 4. **第四阶段 (架构升级)**：根据业务复杂度选择 SSR/SSG 或模块联邦。
+
+
+
+## 六、[回流，重绘：读写分离](/01javascript/7javascript-advanced/#3回流和重绘解析)
+
+## [七、合成图层](/01javascript/7javascript-advanced/#4特殊解析--composite合成图层)
+
+## 八、Passive 滚动事件
+
