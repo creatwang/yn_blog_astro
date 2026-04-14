@@ -2212,9 +2212,6 @@ flutter_screenutil
 
 ~~~dart
 
-
-
-
 @override
 Widget build(BuildContext context) {
   return ResponsiveScaledBox(

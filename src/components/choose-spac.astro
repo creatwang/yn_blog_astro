@@ -1,0 +1,155 @@
+---
+const json = [
+    { "weight": "1kg", "color": "红色", "size": "37" },
+    { "weight": "1kg", "color": "红色", "size": "38" },
+    { "weight": "1kg", "color": "黑色", "size": "38" },
+    { "weight": "1kg", "color": "黑色", "size": "40" },
+
+    { "weight": "2kg", "color": "黑色", "size": "38" },
+    { "weight": "2kg", "color": "黑色", "size": "39" },
+    { "weight": "2kg", "color": "黑色", "size": "42" },
+    { "weight": "2kg", "color": "白色", "size": "38" },
+    { "weight": "2kg", "color": "白色", "size": "41" },
+
+    { "weight": "3kg", "color": "白色", "size": "39" },
+    { "weight": "3kg", "color": "蓝色", "size": "40" },
+    { "weight": "3kg", "color": "蓝色", "size": "42" }
+]
+---
+
+<div
+    id="app"
+    data-json={JSON.stringify(json)}
+    class="m-5 rounded-lg border border-slate-200 bg-slate-50 p-5 dark:border-slate-700 dark:bg-slate-900"
+></div>
+
+<script>
+
+    interface ProductSpec {
+        weight: string;
+        color: string;
+        size: string;
+    }
+
+    interface SpecItem {
+        specKey: keyof ProductSpec;
+        list: string[];
+    }
+
+    declare global {
+        interface Window {
+            appChooseSpec: AppChooseSpec;
+        }
+    }
+
+
+    class AppChooseSpec {
+        keys: Array<keyof ProductSpec> = []
+        curs: string[] = ['2kg', '', '42']
+        listSpec: ProductSpec[] = []
+        el: HTMLElement
+        constructor({el, data}: {
+            el: HTMLElement;
+            data: ProductSpec[];
+        }) {
+            this.listSpec = data
+            this.keys = (Object.keys(this.listSpec[0] || {}) as Array<keyof ProductSpec>)
+            this.el = el
+            this.el.onclick = this.delegateClick.bind(this)
+            this.render()
+        }
+        get groupSpec() {
+            return this.keys.reduce<SpecItem[]>((result, key, depth) => {
+                result[depth] = { specKey: key, list: [...new Set(this.listSpec.map((v) => v[key]))] }
+                return result
+            }, [])
+        }
+        get groupHas() {
+            return this.groupSpec.map(({ list }, depth) => {
+                return list.filter((target: string) => {
+                    return this.listSpec.some((row) => {
+                        return this.curs.every((cur, depth_) => {
+                            const key_ = this.keys[depth_];
+                            const key = this.keys[depth];
+                            // 逻辑解释：
+                            // 1. 如果是当前正在检查的这一行(depth === depth_)，跳过过滤
+                            // 2. 如果该维度没有选中任何值(!cur)，跳过过滤
+                            // 3. 否则，检查 row 的对应属性是否等于已选中的值
+                            return (depth === depth_ || !cur) || (row[key_] === cur && row[key] === target);
+                        })
+                    })
+                })
+            })
+        }
+        delegateClick(e: MouseEvent) {
+            const target = e.target;
+            if (!(target instanceof Element)) return;
+            const el = target.closest<HTMLElement>('[data-v]');
+            if (!el) return;
+            const { v, depth } = el.dataset
+            if (!v || depth === undefined) return;
+            const depthIdx = Number(depth);
+            if (Number.isNaN(depthIdx)) return;
+            this.curs[depthIdx] = this.curs[depthIdx] === v ? '' : v
+            this.render()
+        }
+        render() {
+            const groupSpec = this.groupSpec
+            const groupHas = this.groupHas
+            const curs = this.curs
+            const itemBase = 'inline-flex cursor-pointer select-none items-center rounded-md border px-3 py-1.5 text-sm font-medium transition-colors';
+            const itemOff = 'border-slate-300 bg-slate-100 text-slate-700 hover:bg-slate-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700';
+            const itemOn = 'border-emerald-600 bg-emerald-600 text-white';
+            const itemDisabled = 'pointer-events-none line-through opacity-50';
+
+            this.el.innerHTML = `
+      <h2 class="mb-4 text-2xl font-bold text-slate-900 dark:text-slate-100">规格选择器</h2>
+      <div class="flex flex-col gap-4 select-none">
+        ${ groupSpec.map((outer, depth) => {
+                return `
+            <section>
+              <div class="mb-2 text-sm font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-300">${ outer.specKey }</div>
+              <div class="flex flex-wrap gap-2">
+                ${ outer.list.map((v: string) => {
+                    return `
+                    <button type="button"
+                      class="${ [
+                        itemBase,v === curs[depth] ? itemOn : itemOff, !groupHas[depth].includes(v) ? itemDisabled : ''
+                    ].filter((item) => item).join(' ') }"
+                      data-v="${ v }" data-depth="${ depth }"
+                    >${ v }</button>
+                  `.trim()
+                }).join('') }
+              </div>
+            </section>
+          `.trim()
+            }).join('') }
+      </div>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <div class="text-sm font-semibold text-slate-700 dark:text-slate-200">选中了：</div>
+        <div class="flex flex-wrap gap-2">
+          ${ curs.map((v, depth) => {
+                return `
+              <button type="button" class="${ itemBase } ${ itemOn }"
+                style="display: ${ v ? '' : 'none' }"
+                data-v="${ v }" data-depth="${ depth }"
+              >${ v }</button>
+            `.trim()
+            }).join('') }
+        </div>
+      </div>
+    `
+        }
+    }
+
+    if (typeof window !== 'undefined') {
+        const appRoot = document.getElementById('app');
+        if (appRoot) {
+            const data: ProductSpec[] = JSON.parse(appRoot.dataset.json!);
+            window.appChooseSpec = new AppChooseSpec({
+                el: appRoot,
+                data
+            });
+        }
+    }
+</script>

@@ -1,14 +1,18 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://www.yanan.store',
+	vite: {
+		plugins: [tailwindcss()],
+	},
 	integrations: [
 		starlight({
 			title: 'Creatwang',
-			customCss: ['/src/styles/starlight-theme.css'],
+			customCss: ['/src/styles/starlight-tailwind.css', '/src/styles/starlight-theme.css'],
 			logo: {
 				src: './src/assets/imgs/logo/black_logo.png',
 				alt: 'YN Blog Logo',
