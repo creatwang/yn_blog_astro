@@ -1543,115 +1543,6 @@ class Eagle extends Bird with Sing {}
 
 
 
-# 第十章、状态管理、依赖注入 Riverpod
-
-StateProvider/Provider/FutureProvider/AsyncNotifier
-
-不可变的特点：可覆盖，可注入
-
-```dart
-final cityProvider = Provider((ref) => 'London');
-final countryProvider = Provider((ref) => 'England');
-
-
-// 可注入
-final locationProvider = Provider<String>((ref) {
-  final city = ref.watch(cityProvider);
-  final country = ref.watch(countryProvider);
-  return '$city, $country';
-});
-
-// 可覆盖
-runApp(
-  ProviderScope(
-    overrides: [
-      baseUrlProvider.overrideWithValue('https://prod-api.xxx.com'),
-    ],
-    child: const MyApp(),
-  ),
-);
-
-// 跨模块共享
-final baseUrl = ref.watch(baseUrlProvider);
-
-```
-
-
-
-可变的StateProvider
-
-~~~dart
-final baseUrlProvider = StateProvider<String>((ref) => 'https://dev-api.xxx.com');
-
-final dioProvider = Provider<Dio>((ref) {
-  final baseUrl = ref.watch(baseUrlProvider);
-  return Dio(BaseOptions(baseUrl: baseUrl));
-});
-// 使用
-ref.read(baseUrlProvider.notifier).state = 'https://prod-api.xxx.com';
-~~~
-
-
-
-
-
-异步的可变的
-
-~~~dart
-
-Future<Joke> getJoke() async {
-  final result = await fetchRandomJoke();
-  return result;
-}
-
-class JokeNotifier extends AsyncNotifier<Joke> {
-  @override
-  Future<Joke> build() async {
-    return getJoke();
-  }
-
-  Future<void> loadJoke() async {
-    state = const AsyncValue.loading();
-    state = await AsyncValue.guard(getJoke);
-  }
-}
-
-final randomJokeProvider = AsyncNotifierProvider<JokeNotifier, Joke>(
-  JokeNotifier.new,
-);
-
-// 和上面的区别 两者都有“同一个 provider 在同一容器里会复用结果”的机制。
-// @riverpod 函数式（Future<User>）更轻量，适合“只读请求”。
-// AsyncNotifier 更适合有交互状态的方法场景（如 loadJoke()、updateSetup()、重试、局部修改）
-// @riverpod 需要 riverpod_annotation + riverpod_generator + build_runner 并执行代码生成
-@riverpod
-Future<User> user(Ref ref) async {
-  final response = await http.get('https://api.example.com/user/123');
-  return User.fromJson(response.body);
-}
-
-
-// 等价于 @riverpod Future<User> user(Ref ref) async { ... }
-final userProvider = FutureProvider<User>((ref) async {
-  final response = await http.get(
-    Uri.parse('https://api.example.com/user/123'),
-  );
-  final map = jsonDecode(response.body) as Map<String, dynamic>;
-  return User.fromJson(map);
-});
-~~~
-
-异步的
-
-- `if (async.isLoading / hasError / hasValue)` 手动判断
-- `async.valueOrNull`（只关心数据，不关心错误）
-- `async.whenData(...)`（只处理 data 分支）
-- `ref.watch(provider.select(...))`（只监听某个字段）
-- 监听副作用：`ref.listen(provider, ...)`（弹 toast、跳转等）
-- 不订阅只读一次：`ref.read(provider)`（事件里读取）
-
-
-
 # 第十二章、Dart Macros
 
 在 2026 年，**Dart Macros（宏）** 已经成为 Dart 语言的稳定特性。它最大的价值在于：**在内存中实时生成代码，彻底告别 `.g.dart` 文件和 `build_runner` 扫描。**
@@ -1797,64 +1688,6 @@ lib/
 ```
 
 
-
-# 第十四章、依赖库
-
-1. 核心业务库（必须生成）
-
-这些库构成了你项目的底层逻辑和数据模型：
-
-- collection
-
-  > 是一个便利列表的超集，当使用dart map的时候它不能像js map 那样返回index，可以使用collection中的 `mapIndexed((index, val)` ，当然还有更多的方法
-
-- **`riverpod_generator`**
-
-  - **用途**：将你带有 `@riverpod` 注解的函数或类，转化为 UI 可用的 `fetchUserProvider` 或 `counterProvider`。
-  - **不运行后果**：你写的 `extends _$Counter` 会持续报错，且 UI 无法找到对应的 Provider。
-
-- **`freezed`**
-  - **用途**：生成**不可变对象**。它会自动帮你写好 `copyWith`、`==` 和 `hashCode`（这是实现你最开始要求的 **Set 集合存放对象自动去重** 的核心逻辑）。
-  - **不运行后果**：无法使用复杂的模型类。
-
-- **`json_serializable`**
-  - **用途**：生成 `fromJSON` 和 `toJSON` 的具体实现代码。
-  - **不运行后果**：无法自动将后端返回的 Map 数据转换为 Dart 对象。
-
-- 资源与路由优化（推荐生成）
-
-这些库虽然可选，但在 2026 年的规范项目中通常都会使用：
-
-- **`flutter_gen_runner`**
-  - **用途**：将你的图片（Assets）和字体自动转化为代码变量。
-  - **效果**：你可以写 `Assets.images.logo.path` 而不是手动打字符串 `"assets/logo.png"`。
-- **`go_router_builder`**
-  - **用途**：为 GoRouter 提供类型安全的路由跳转。
-  - **效果**：避免手动写字符串路径，防止商城项目页面多了之后跳转出错。
-
-------
-
-总结：你的 `dev_dependencies` 清单
-
-在你的 `pubspec.yaml` 中，凡是出现在 **`dev_dependencies`** 且名字里带有 **`_generator`**、**`build`** 或 **`serializable`** 字样的库，几乎都需要 `build_runner`。
-
-2026 年的最佳操作习惯
-
-不要每次改完都去手动运行 `build`。**强烈建议在项目开始开发时，直接在终端开启“监视模式”：**
-
-bash
-
-```bash
-# 2026 推荐指令
-dart run build_runner watch --delete-conflicting-outputs
-```
-
-请谨慎使用此类代码。
-
-
-
-**为什么一定要开 `watch`？**
-因为在 2026 年，由于 SDK 的优化，`watch` 模式非常轻量。它会像监听器一样守在后台，只要你保存（Ctrl+S）代码，它就会在 **0.5 秒内** 帮你补全生成的类，让你在编写业务逻辑时完全感觉不到代码生成的延迟
 
 # 第十五章、常见的命令
 
@@ -2133,7 +1966,7 @@ class AppEnv extends _$AppEnv {
 
 
 
-# Future FutureOr
+# 第十八章、异步请求Future FutureOr
 
 
 
@@ -2166,7 +1999,7 @@ Widget build(BuildContext context, WidgetRef ref) {
 
 
 
-# dart中 abstract interface  sealed 
+# 关键词 dart中 abstract interface  sealed 
 
 **Dart 3.0** 引入它是为了实现更严谨的接口约束。
 
@@ -2191,7 +2024,9 @@ Widget build(BuildContext context, WidgetRef ref) {
 
 
 
-# 屏幕适配方案
+# 常见问题
+
+## 1、屏幕适配方案
 
 | 维度            | **flutter_screenutil** (比例缩放派)                          | **responsive_framework** (自适应布局派)                     |
 | :-------------- | :----------------------------------------------------------- | :---------------------------------------------------------- |
@@ -2204,7 +2039,7 @@ Widget build(BuildContext context, WidgetRef ref) {
 
 flutter_screenutil
 
-## responsive_framework
+### responsive_framework
 
 
 
@@ -2471,4 +2306,12 @@ class HomeProductGrid extends ConsumerWidget {
 
 **3. UI 组件要求：可以使用flutter自带的库**
 
-4. 重点，由于是基础架构，设计的一定要合理，从api方法调用网络请求到人中token到获取数据到渲染页面，要按照市场上顶尖的架构设计，简单方便阅读，有完整的liu'ch
+4. 重点，由于是基础架构，设计的一定要合理，从api方法调用网络请求到人中token到获取数据到渲染页面，要按照市场上顶尖的架构设计，简单方便阅读，有完整的
+
+
+
+## 2、无限边界的问题
+
+
+
+1. 站点信息，插件判断
